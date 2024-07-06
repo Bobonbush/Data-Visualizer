@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\CmakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{B1F70365-414E-323F-BDA7-4BD08EA5C1B0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{C9DBFBD0-642E-3000-9D54-F3E00FA7881C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

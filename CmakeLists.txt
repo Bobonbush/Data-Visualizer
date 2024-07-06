@@ -1,0 +1,52 @@
+cmake_minimum_required(VERSION 3.10)
+
+# Set the project name
+project(DATAVISUALIZER)
+
+# Specify the C++ standard
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+
+# Specify the path to GLFW
+set(GLFW_PATH "GLFW")
+set(GLEW_PATH "GLEW")
+add_definitions(-DGLEW_STATIC)
+
+
+
+# Add the GLFW include directory
+include_directories(${GLFW_PATH}/include)
+include_directories(${GLEW_PATH}/include)
+
+
+# Add the GLFW library directory
+
+link_directories(${GLEW_PATH}/lib/Release/x64)
+link_directories(${GLFW_PATH}/lib-vc2022)
+
+
+
+
+
+
+# Add the executable
+add_executable(DATAVISUALIZER main.cpp
+                              shader.cpp
+                              shader.h)
+
+
+# Link against GLFW and other necessary libraries
+
+target_compile_definitions(DATAVISUALIZER PRIVATE GLEW_STATIC)
+target_link_libraries(DATAVISUALIZER glfw3 opengl32)
+target_link_libraries(DATAVISUALIZER glew32s opengl32)
+
+# Copy the shader files to the build directory
+set(SHADERDIR "${CMAKE_CURRENT_SOURCE_DIR}/Shaders")
+
+add_custom_command(TARGET DATAVISUALIZER POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${SHADERDIR} $<TARGET_FILE_DIR:DATAVISUALIZER>)
+
+
