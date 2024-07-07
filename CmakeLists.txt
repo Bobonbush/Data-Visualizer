@@ -44,9 +44,12 @@ target_link_libraries(DATAVISUALIZER glew32s opengl32)
 
 # Copy the shader files to the build directory
 set(SHADERDIR "${CMAKE_CURRENT_SOURCE_DIR}/Shaders")
-
+set(ASSETS "${CMAKE_CURRENT_SOURCE_DIR}/Assets")
 add_custom_command(TARGET DATAVISUALIZER POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
     ${SHADERDIR} $<TARGET_FILE_DIR:DATAVISUALIZER>)
+add_custom_command(TARGET DATAVISUALIZER POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${ASSETS} $<TARGET_FILE_DIR:DATAVISUALIZER>)
 
 

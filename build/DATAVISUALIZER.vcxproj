@@ -117,9 +117,18 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message></Message>
+      <Message>	</Message>
       <Command>setlocal
 "C:\Program Files\CMake\bin\cmake.exe" -E copy_directory "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/Shaders" "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/Debug"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_directory "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/Assets" "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/Debug"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -176,9 +185,18 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message></Message>
+      <Message>	</Message>
       <Command>setlocal
 "C:\Program Files\CMake\bin\cmake.exe" -E copy_directory "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/Shaders" "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/Release"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_directory "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/Assets" "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/Release"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -235,9 +253,18 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message></Message>
+      <Message>	</Message>
       <Command>setlocal
 "C:\Program Files\CMake\bin\cmake.exe" -E copy_directory "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/Shaders" "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/MinSizeRel"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_directory "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/Assets" "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/MinSizeRel"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -293,9 +320,18 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <PostBuildEvent>
-      <Message></Message>
+      <Message>	</Message>
       <Command>setlocal
 "C:\Program Files\CMake\bin\cmake.exe" -E copy_directory "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/Shaders" "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/RelWithDebInfo"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_directory "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/Assets" "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/RelWithDebInfo"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
