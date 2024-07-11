@@ -11,6 +11,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # Specify the path to GLFW
 set(GLFW_PATH "GLFW")
 set(GLEW_PATH "GLEW")
+set(GLM_PATH "GLM")
 add_definitions(-DGLEW_STATIC)
 
 
@@ -18,12 +19,13 @@ add_definitions(-DGLEW_STATIC)
 # Add the GLFW include directory
 include_directories(${GLFW_PATH}/include)
 include_directories(${GLEW_PATH}/include)
-
+include_directories(${GLM_PATH})
 
 # Add the GLFW library directory
 
 link_directories(${GLEW_PATH}/lib/Release/x64)
 link_directories(${GLFW_PATH}/lib-vc2022)
+
 
 
 

@@ -1,7 +1,11 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "shader.h"
 
+
 #include <GLFW/stb_image.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 
 
@@ -192,9 +196,19 @@ public:
         glBindBuffer(GL_ARRAY_BUFFER, 0); // unbind the buffer
 
         glBindVertexArray(0); // unbind the VAO
-        
-        
 
+        glm::vec4 vec(1.0f, 0.0f, 0.0f, 1.0f);
+        glm::mat4 trans = glm::mat4(1.0f);
+        //trans = glm::translate(trans, glm::vec3(1.0f, 1.0f, 0.0f));
+        vec = trans * vec;
+        std::cout << vec.x << vec.y << vec.z << std::endl;
+
+        
+        
+        
+        
+        //tran = glm::scale(tran, glm::vec3(0.5, 0.5, 0.5));
+        //trans = glm::translate(trans, glm::vec3(1.0f, 1.0f, 0.0f));
 
 
         while (!glfwWindowShouldClose(window)) {
@@ -202,6 +216,9 @@ public:
             // glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT);
             basicshader -> use();
+
+            
+
             glActiveTexture(GL_TEXTURE0);
             glBindTexture(GL_TEXTURE_2D, LoadTextureJPG("container.jpg"));
 
@@ -209,9 +226,21 @@ public:
             glBindTexture(GL_TEXTURE_2D, LoadTexturePNG("awesomeface.png"));
             basicshader -> setInt("ourTexture", 0);
             basicshader -> setInt("ourTexture2", 1);
+            glm::mat4 trans = glm::mat4(1.0f);
+            trans = glm::translate(trans, glm::vec3(0.5f, -0.5f, 0.0f));
 
+            trans = glm::rotate(trans, (float) glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
+            
+            unsigned int transformLoc = glGetUniformLocation(basicshader -> ID, "transform");
+            glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
 
             glBindVertexArray(VAO);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+            trans = glm::mat4(1.0f);
+            trans = glm::translate(trans, glm::vec3(-0.5f, -0.5f, 0.0f));
+            trans = glm::rotate(trans, (float) glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
+            glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
             glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
             glBindVertexArray(0);
