@@ -33,9 +33,13 @@ link_directories(${GLFW_PATH}/lib-vc2022)
 
 
 # Add the executable
-add_executable(DATAVISUALIZER main.cpp
-                              shader.cpp
-                              shader.h)
+add_executable(DATAVISUALIZER Code/main.cpp
+                              Code/shader.cpp
+                              Code/shader.h
+                              Code/Texture.cpp
+                              Code/Texture.h
+                              Code/Camera.cpp
+                              Code/Camera.h)
 
 
 # Link against GLFW and other necessary libraries
