@@ -86,7 +86,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLEW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLEW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;G:\Code\HCMUS\Code\Data-Visualizer\FreeType\include;G:\Code\HCMUS\Code\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -103,10 +103,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;GLEW_STATIC;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLEW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLEW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;G:\Code\HCMUS\Code\Data-Visualizer\FreeType\include;G:\Code\HCMUS\Code\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLEW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLEW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;G:\Code\HCMUS\Code\Data-Visualizer\FreeType\include;G:\Code\HCMUS\Code\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -135,8 +135,8 @@ exit /b %1
 if %errorlevel% neq 0 goto :VCEnd</Command>
     </PostBuildEvent>
     <Link>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;opengl32.lib;glew32s.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>G:/Code/HCMUS/Code/Data-Visualizer/GLEW/lib/Release/x64;G:/Code/HCMUS/Code/Data-Visualizer/GLEW/lib/Release/x64/$(Configuration);G:/Code/HCMUS/Code/Data-Visualizer/GLFW/lib-vc2022;G:/Code/HCMUS/Code/Data-Visualizer/GLFW/lib-vc2022/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;opengl32.lib;freetype.lib;glew32s.lib;freetype.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>G:/Code/HCMUS/Code/Data-Visualizer/GLEW/lib/Release/x64;G:/Code/HCMUS/Code/Data-Visualizer/GLEW/lib/Release/x64/$(Configuration);G:/Code/HCMUS/Code/Data-Visualizer/GLFW/lib-vc2022;G:/Code/HCMUS/Code/Data-Visualizer/GLFW/lib-vc2022/$(Configuration);G:/Code/HCMUS/Code/Data-Visualizer/FreeType/objs/x64/Release;G:/Code/HCMUS/Code/Data-Visualizer/FreeType/objs/x64/Release/$(Configuration);G:/Code/HCMUS/Code/Data-Visualizer/Static;G:/Code/HCMUS/Code/Data-Visualizer/Static/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -150,7 +150,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLEW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLEW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;G:\Code\HCMUS\Code\Data-Visualizer\FreeType\include;G:\Code\HCMUS\Code\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
@@ -167,10 +167,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;GLEW_STATIC;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLEW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLEW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;G:\Code\HCMUS\Code\Data-Visualizer\FreeType\include;G:\Code\HCMUS\Code\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLEW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLEW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;G:\Code\HCMUS\Code\Data-Visualizer\FreeType\include;G:\Code\HCMUS\Code\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -199,8 +199,8 @@ exit /b %1
 if %errorlevel% neq 0 goto :VCEnd</Command>
     </PostBuildEvent>
     <Link>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;opengl32.lib;glew32s.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>G:/Code/HCMUS/Code/Data-Visualizer/GLEW/lib/Release/x64;G:/Code/HCMUS/Code/Data-Visualizer/GLEW/lib/Release/x64/$(Configuration);G:/Code/HCMUS/Code/Data-Visualizer/GLFW/lib-vc2022;G:/Code/HCMUS/Code/Data-Visualizer/GLFW/lib-vc2022/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;opengl32.lib;freetype.lib;glew32s.lib;freetype.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>G:/Code/HCMUS/Code/Data-Visualizer/GLEW/lib/Release/x64;G:/Code/HCMUS/Code/Data-Visualizer/GLEW/lib/Release/x64/$(Configuration);G:/Code/HCMUS/Code/Data-Visualizer/GLFW/lib-vc2022;G:/Code/HCMUS/Code/Data-Visualizer/GLFW/lib-vc2022/$(Configuration);G:/Code/HCMUS/Code/Data-Visualizer/FreeType/objs/x64/Release;G:/Code/HCMUS/Code/Data-Visualizer/FreeType/objs/x64/Release/$(Configuration);G:/Code/HCMUS/Code/Data-Visualizer/Static;G:/Code/HCMUS/Code/Data-Visualizer/Static/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -214,7 +214,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLEW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLEW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;G:\Code\HCMUS\Code\Data-Visualizer\FreeType\include;G:\Code\HCMUS\Code\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
@@ -231,10 +231,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;GLEW_STATIC;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLEW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLEW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;G:\Code\HCMUS\Code\Data-Visualizer\FreeType\include;G:\Code\HCMUS\Code\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLEW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLEW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;G:\Code\HCMUS\Code\Data-Visualizer\FreeType\include;G:\Code\HCMUS\Code\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -263,8 +263,8 @@ exit /b %1
 if %errorlevel% neq 0 goto :VCEnd</Command>
     </PostBuildEvent>
     <Link>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;opengl32.lib;glew32s.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>G:/Code/HCMUS/Code/Data-Visualizer/GLEW/lib/Release/x64;G:/Code/HCMUS/Code/Data-Visualizer/GLEW/lib/Release/x64/$(Configuration);G:/Code/HCMUS/Code/Data-Visualizer/GLFW/lib-vc2022;G:/Code/HCMUS/Code/Data-Visualizer/GLFW/lib-vc2022/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;opengl32.lib;freetype.lib;glew32s.lib;freetype.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>G:/Code/HCMUS/Code/Data-Visualizer/GLEW/lib/Release/x64;G:/Code/HCMUS/Code/Data-Visualizer/GLEW/lib/Release/x64/$(Configuration);G:/Code/HCMUS/Code/Data-Visualizer/GLFW/lib-vc2022;G:/Code/HCMUS/Code/Data-Visualizer/GLFW/lib-vc2022/$(Configuration);G:/Code/HCMUS/Code/Data-Visualizer/FreeType/objs/x64/Release;G:/Code/HCMUS/Code/Data-Visualizer/FreeType/objs/x64/Release/$(Configuration);G:/Code/HCMUS/Code/Data-Visualizer/Static;G:/Code/HCMUS/Code/Data-Visualizer/Static/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -278,7 +278,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLEW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLEW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;G:\Code\HCMUS\Code\Data-Visualizer\FreeType\include;G:\Code\HCMUS\Code\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -294,10 +294,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;GLEW_STATIC;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLEW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLEW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;G:\Code\HCMUS\Code\Data-Visualizer\FreeType\include;G:\Code\HCMUS\Code\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLEW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLEW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;G:\Code\HCMUS\Code\Data-Visualizer\FreeType\include;G:\Code\HCMUS\Code\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -326,8 +326,8 @@ exit /b %1
 if %errorlevel% neq 0 goto :VCEnd</Command>
     </PostBuildEvent>
     <Link>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;opengl32.lib;glew32s.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>G:/Code/HCMUS/Code/Data-Visualizer/GLEW/lib/Release/x64;G:/Code/HCMUS/Code/Data-Visualizer/GLEW/lib/Release/x64/$(Configuration);G:/Code/HCMUS/Code/Data-Visualizer/GLFW/lib-vc2022;G:/Code/HCMUS/Code/Data-Visualizer/GLFW/lib-vc2022/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;opengl32.lib;freetype.lib;glew32s.lib;freetype.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>G:/Code/HCMUS/Code/Data-Visualizer/GLEW/lib/Release/x64;G:/Code/HCMUS/Code/Data-Visualizer/GLEW/lib/Release/x64/$(Configuration);G:/Code/HCMUS/Code/Data-Visualizer/GLFW/lib-vc2022;G:/Code/HCMUS/Code/Data-Visualizer/GLFW/lib-vc2022/$(Configuration);G:/Code/HCMUS/Code/Data-Visualizer/FreeType/objs/x64/Release;G:/Code/HCMUS/Code/Data-Visualizer/FreeType/objs/x64/Release/$(Configuration);G:/Code/HCMUS/Code/Data-Visualizer/Static;G:/Code/HCMUS/Code/Data-Visualizer/Static/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -398,12 +398,37 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\main.cpp" />
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\shader.cpp" />
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\shader.h" />
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Texture.cpp" />
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Texture.h" />
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Algorithms\shader.cpp" />
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Algorithms\shader.h" />
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Algorithms\Texture.cpp" />
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Algorithms\Texture.h" />
     <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Camera.cpp" />
     <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Camera.h" />
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\button.h" />
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\button.cpp" />
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\node.cpp" />
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\node.h" />
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\Tool.cpp" />
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\Tool.h" />
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\UpdateTool.cpp" />
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\UpdateTool.h" />
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\Search.cpp" />
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\Search.h" />
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\delete.cpp" />
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\delete.h" />
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\NewTool.cpp" />
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\NewTool.h" />
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\algorithmTool.cpp" />
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\algorithmTool.h" />
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\darkmode.h" />
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\data.cpp" />
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\data.h" />
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\animation.cpp" />
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\animation.h" />
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\lightbulb.cpp" />
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\lightbulb.h" />
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\ui.cpp" />
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\ui.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="G:\Code\HCMUS\Code\Data-Visualizer\build\ZERO_CHECK.vcxproj">

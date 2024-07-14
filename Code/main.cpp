@@ -1,9 +1,9 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "Camera.h"
-#include "Texture.h"
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
+#include "Tool/Tool.h"
+#include "UI/darkmode.h"
+#include "UI/ui.h"
+
 
 class Program {
 
@@ -11,17 +11,20 @@ class Program {
 private :
     GLFWwindow* window;   
     Shader * basicshader;
-    TextureLoader * texture;
     Camera * camera;
+    Tools * toolbar;
+    UI * ui;
+    
+    
 
 public:
     Program()
     {
         window = nullptr;
         basicshader = nullptr;
-        texture = nullptr;
         camera = nullptr;
-
+        toolbar = nullptr;
+        ui = nullptr;
     }
 
     ~Program()
@@ -32,15 +35,20 @@ public:
         }
 
         delete basicshader;
-        delete texture;
         delete camera;
+        delete toolbar;
+        delete ui;
     }
 
     void Initialize()
     {
+        // Initialize the library
         if (!glfwInit()) {
             return;
         }
+        glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);  // Disable window resizing
+        glfwWindowHint(GLFW_DECORATED, GLFW_FALSE); // Disable window decorations (border/title bar)
+
 
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
@@ -48,7 +56,7 @@ public:
 
         
        
-        glfwWindowHint(GLFW_SAMPLES, 8 );  // defined samples for  GLFW Window
+        glfwWindowHint(GLFW_SAMPLES, 64);  // defined samples for  GLFW Window
 
         camera = new Camera();
 
@@ -62,7 +70,7 @@ public:
         image[0].pixels = stbi_load("icon.png", &image[0].width, &image[0].height, 0, 4); //rgba channels
         glfwSetWindowIcon(window, 1, image);
         stbi_image_free(image[0].pixels);
-           
+        
 
 
         
@@ -79,39 +87,54 @@ public:
             return ;
         }
         glEnable(GL_MULTISAMPLE);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-        camera -> DisplayViewPort();
+       
         glEnable(GL_DEPTH_TEST);
+        ColorMode::darkMode = 0;               // Light Mode for default
+        // Initialize UI
+        toolbar = new Tools(camera);
+        ui = new UI(camera);
     }
 
     
 
     
-
+    
 
     
     void Run() {
 
         Initialize();
-        
-        unsigned int VAO;
-        glGenVertexArrays(1, &VAO);
-        glBindVertexArray(VAO);
-
         float currentFrame = 0;
         float lastFrame = 0;
+
+        glfwSetScrollCallback(window, Camera::ScrollCallback);
+         glfwSetFramebufferSizeCallback(window, Camera::framebuffer_size_callback);
         while (!glfwWindowShouldClose(window)) {
             currentFrame = glfwGetTime();
             float deltaTime = currentFrame - lastFrame;
-            lastFrame = currentFrame;
             
-            glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+            // Updating
+            toolbar -> Update(deltaTime);
+            ui -> Update(deltaTime);
+            
+            lastFrame = currentFrame;
+            glClearColor(234.f/255.f, 253.0f/255.0f, 252.f / 255.f, 1.0f);
+            glClearColor(ColorMode::GetbackgroundColor().x, ColorMode::GetbackgroundColor().y, ColorMode::GetbackgroundColor().z, ColorMode::GetbackgroundColor().w);   
             glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            
+            // Drawing 
 
+            toolbar -> Draw();
+            ui -> Draw();
 
+            
             glfwSwapBuffers(window);
             glfwPollEvents();
         }
+
     }
 
 

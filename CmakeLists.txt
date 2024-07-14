@@ -12,20 +12,25 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(GLFW_PATH "GLFW")
 set(GLEW_PATH "GLEW")
 set(GLM_PATH "GLM")
-add_definitions(-DGLEW_STATIC)
+set(FreeType_PATH "FreeType")
 
+
+add_definitions(-DGLEW_STATIC)
+set(Code "Code")
 
 
 # Add the GLFW include directory
 include_directories(${GLFW_PATH}/include)
 include_directories(${GLEW_PATH}/include)
 include_directories(${GLM_PATH})
+include_directories(${FreeType_PATH}/include)
+include_directories(${Code})
 
-# Add the GLFW library directory
+    # Add the GLFW library directory
 
 link_directories(${GLEW_PATH}/lib/Release/x64)
 link_directories(${GLFW_PATH}/lib-vc2022)
-
+link_directories(${FreeType_PATH}/objs/x64/Release Static)
 
 
 
@@ -34,12 +39,38 @@ link_directories(${GLFW_PATH}/lib-vc2022)
 
 # Add the executable
 add_executable(DATAVISUALIZER Code/main.cpp
-                              Code/shader.cpp
-                              Code/shader.h
-                              Code/Texture.cpp
-                              Code/Texture.h
+                              Code/Algorithms/shader.cpp
+                              Code/Algorithms/shader.h
+                              Code/Algorithms/Texture.cpp
+                              Code/Algorithms/Texture.h
                               Code/Camera.cpp
-                              Code/Camera.h)
+                              Code/Camera.h
+                              Code/Tool/button.h
+                              Code/Tool/button.cpp
+                              Code/node.cpp
+                              Code/node.h
+                              Code/Tool/Tool.cpp
+                              Code/Tool/Tool.h
+                              Code/Tool/UpdateTool.cpp
+                              Code/Tool/UpdateTool.h
+                              Code/Tool/Search.cpp
+                              Code/Tool/Search.h
+                              Code/Tool/delete.cpp
+                              Code/Tool/delete.h
+                              Code/Tool/NewTool.cpp
+                              Code/Tool/NewTool.h
+                              Code/Tool/algorithmTool.cpp
+                              Code/Tool/algorithmTool.h
+                              Code/UI/darkmode.h
+                              Code/Tool/data.cpp
+                              Code/Tool/data.h
+                              Code/UI/animation.cpp
+                              Code/UI/animation.h
+                              Code/UI/lightbulb.cpp
+                              Code/UI/lightbulb.h
+                              Code/UI/ui.cpp
+                              Code/UI/ui.h
+                              )
 
 
 # Link against GLFW and other necessary libraries
@@ -47,15 +78,22 @@ add_executable(DATAVISUALIZER Code/main.cpp
 target_compile_definitions(DATAVISUALIZER PRIVATE GLEW_STATIC)
 target_link_libraries(DATAVISUALIZER glfw3 opengl32)
 target_link_libraries(DATAVISUALIZER glew32s opengl32)
+target_link_libraries(DATAVISUALIZER freetype)
+
 
 # Copy the shader files to the build directory
 set(SHADERDIR "${CMAKE_CURRENT_SOURCE_DIR}/Shaders")
 set(ASSETS "${CMAKE_CURRENT_SOURCE_DIR}/Assets")
+
+
+
+
 add_custom_command(TARGET DATAVISUALIZER POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
     ${SHADERDIR} $<TARGET_FILE_DIR:DATAVISUALIZER>)
 add_custom_command(TARGET DATAVISUALIZER POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
     ${ASSETS} $<TARGET_FILE_DIR:DATAVISUALIZER>)
+
 
 

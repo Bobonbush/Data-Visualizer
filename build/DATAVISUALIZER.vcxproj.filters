@@ -4,24 +4,99 @@
     <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\shader.cpp">
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Algorithms\shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Texture.cpp">
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Algorithms\Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\button.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\node.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\Tool.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\UpdateTool.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\Search.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\delete.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\NewTool.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\algorithmTool.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\data.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\animation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\lightbulb.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\ui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\shader.h">
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Algorithms\shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Texture.h">
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Algorithms\Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\button.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\node.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\Tool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\UpdateTool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\Search.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\delete.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\NewTool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\algorithmTool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\darkmode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\animation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\lightbulb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\ui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

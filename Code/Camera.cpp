@@ -1,12 +1,12 @@
 #include "Camera.h"
 
+float Camera::fov = 45.0f;
 
 Camera::Camera()
 {
     lastX = 400;
     lastY = 300;
     firstMouse = true;
-    fov = 45.0f;
     cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
     cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
     cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
@@ -63,4 +63,12 @@ void Camera::DisplayViewPort(float x, float y, float width, float height)
 {
     glViewport(x, y, width, height);
 }
+
+void Camera::framebuffer_size_callback(GLFWwindow* window, int width, int height)
+{
+    // make sure the viewport matches the new window dimensions; note that width and 
+    // height will be significantly larger than specified on retina displays.
+    glViewport(0, 0, width, height);
+}
+
 

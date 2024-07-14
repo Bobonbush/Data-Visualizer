@@ -1,0 +1,1 @@
+G:\Code\HCMUS\Code\Data-Visualizer\freetype-2.13.2\objs\Win32\Release Static\freetype.lib
