@@ -10,9 +10,9 @@ LightBulb::~LightBulb()
 {
 }
 
-void LightBulb::Update(float deltaTime)
+void LightBulb::Update(float deltaTime , float x , float y)
 {
-    Button::Update(deltaTime);
+    Button::Update(deltaTime,  x , y);
 }
 
 

@@ -14,7 +14,7 @@ class Tools {
     public :
         Tools(Camera * camera);
         ~Tools();
-        void Update(float deltaTime);
+        void Update(float deltaTime, float x, float y);
         void Draw();
 };
 

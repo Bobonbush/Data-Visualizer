@@ -4,7 +4,7 @@
 
 Tools::Tools(Camera * camera)
 {
-    Delete * del = new Delete(glm::vec3(-0.93f , -0.75f , 0.0f) , glm::vec3(0.2f , 0.2f , 0.0f) , "delete.png" , camera);
+    Delete * del = new Delete(glm::vec3(-0.92f , -0.75f , 0.0f) , glm::vec3(0.2f , 0.2f , 0.0f) , "delete.png" , camera);
     DataStructure * dataStructure = new DataStructure(glm::vec3(-0.92f , -0.45f , 0.0f) , glm::vec3(0.2f , 0.2f , 0.0f) , "data.png" , camera);
    
     Search * search = new Search(glm::vec3(-0.92f , -0.15f , 0.0f) , glm::vec3(0.2f , 0.2f , 0.0f) , "search.png" , camera);
@@ -28,11 +28,11 @@ Tools::~Tools()
     }
 }
 
-void Tools::Update(float deltaTime)
+void Tools::Update(float deltaTime, float x, float y)
 {
     
     for(Button * b : button){
-        b -> Update(deltaTime);
+        b -> Update(deltaTime, x, y);
     }
 }
 

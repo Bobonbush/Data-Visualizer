@@ -111,17 +111,21 @@ public:
         float lastFrame = 0;
 
         glfwSetScrollCallback(window, Camera::ScrollCallback);
-         glfwSetFramebufferSizeCallback(window, Camera::framebuffer_size_callback);
+        glfwSetFramebufferSizeCallback(window, Camera::framebuffer_size_callback);
         while (!glfwWindowShouldClose(window)) {
             currentFrame = glfwGetTime();
             float deltaTime = currentFrame - lastFrame;
             
             // Updating
-            toolbar -> Update(deltaTime);
-            ui -> Update(deltaTime);
+            double xpos, ypos;
+            glfwGetCursorPos(window, &xpos, &ypos);
+
+            toolbar -> Update(deltaTime, static_cast<float>(xpos), static_cast<float>(ypos));
+
+            ui -> Update(deltaTime, static_cast<float>(xpos), static_cast<float>(ypos));
             
             lastFrame = currentFrame;
-            glClearColor(234.f/255.f, 253.0f/255.0f, 252.f / 255.f, 1.0f);
+
             glClearColor(ColorMode::GetbackgroundColor().x, ColorMode::GetbackgroundColor().y, ColorMode::GetbackgroundColor().z, ColorMode::GetbackgroundColor().w);   
             glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             

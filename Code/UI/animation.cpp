@@ -12,9 +12,9 @@ Animation::~Animation()
     delete play;
 }
 
-void Animation::Update(float deltaTime)
+void Animation::Update(float deltaTime , float x , float y)
 {
-    play->Update(deltaTime);
+    play->Update(deltaTime, x , y);
 }
 
 

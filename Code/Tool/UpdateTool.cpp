@@ -10,9 +10,9 @@ UpdateTool::~UpdateTool()
 {
 }
 
-void UpdateTool::Update(float deltaTime)
+void UpdateTool::Update(float deltaTime, float x, float y)
 {
-    Button::Update(deltaTime);
+    Button::Update(deltaTime , x , y);
 }
 
 

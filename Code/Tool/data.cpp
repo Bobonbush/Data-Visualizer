@@ -22,10 +22,10 @@ DataStructure::~DataStructure()
     delete _camera;
 }
 
-void DataStructure::Update(float deltaTime)
+void DataStructure::Update(float deltaTime, float x, float y)
 {
     text = current;
-    Button::Update(deltaTime);
+    Button::Update(deltaTime, x, y);
 }
 
 

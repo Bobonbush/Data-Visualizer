@@ -11,7 +11,7 @@ class DataStructure : public Button {
     public:
         DataStructure( glm::vec3 _position , glm::vec3 _size , char * path , Camera * camera);
         ~DataStructure();
-        void Update(float deltaTime);
+        void Update(float deltaTime, float x, float y);
         void Draw();
     
 };

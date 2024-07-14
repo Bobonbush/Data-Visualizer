@@ -76,6 +76,8 @@
         "string_view": "cpp",
         "numbers": "cpp",
         "cinttypes": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "map": "cpp",
+        "text_encoding": "cpp"
     }
 }

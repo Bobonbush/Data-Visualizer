@@ -7,7 +7,7 @@ class Search : public Button {
     public :
         Search( glm::vec3 _position , glm::vec3 _size , char * path , Camera * camera);
         ~Search();
-        void Update(float deltaTime);
+        void Update(float deltaTime, float x, float y);
         void Draw();
 };
 

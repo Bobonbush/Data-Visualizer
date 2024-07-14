@@ -11,7 +11,7 @@ class UI {
     public:
         UI(Camera* camera);
         ~UI();
-        void Update(float deltaTime);
+        void Update(float deltaTime, float x, float y);
         void Draw();
         
 };

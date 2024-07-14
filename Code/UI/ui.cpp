@@ -15,11 +15,11 @@ UI::~UI()
     }
 }
 
-void UI::Update(float deltaTime)
+void UI::Update(float deltaTime, float x, float y)
 {
     for (int i = 0; i < buttons.size(); i++)
     {
-        buttons[i]->Update(deltaTime);
+        buttons[i]->Update(deltaTime, x, y);
     }
 }
 

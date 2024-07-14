@@ -12,9 +12,9 @@ NewTool::~NewTool()
 {
 }
 
-void NewTool::Update(float deltaTime)
+void NewTool::Update(float deltaTime, float x, float y)
 {
-    Button::Update(deltaTime);
+    Button::Update(deltaTime, x, y);
 }
 
 
