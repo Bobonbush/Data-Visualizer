@@ -2,13 +2,13 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>G:\Code\HCMUS\Code\Data-Visualizer\build\x64\Debug\ZERO_CHECK</FullPath>
+      <FullPath>D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\build\x64\Debug\ZERO_CHECK</FullPath>
     </ProjectOutput>
     <ProjectOutput>
-      <FullPath>G:\Code\HCMUS\Code\Data-Visualizer\build\Debug\DATAVISUALIZER.exe</FullPath>
+      <FullPath>D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\build\Debug\DATAVISUALIZER.exe</FullPath>
     </ProjectOutput>
     <ProjectOutput>
-      <FullPath>G:\Code\HCMUS\Code\Data-Visualizer\build\x64\Debug\ALL_BUILD</FullPath>
+      <FullPath>D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\build\x64\Debug\ALL_BUILD</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

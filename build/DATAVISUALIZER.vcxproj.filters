@@ -1,120 +1,120 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\main.cpp">
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Algorithms\shader.cpp">
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Algorithms\shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Algorithms\Texture.cpp">
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Algorithms\Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Camera.cpp">
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\button.cpp">
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Tool\button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\node.cpp">
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\UI\node.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\Tool.cpp">
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Tool\Tool.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\UpdateTool.cpp">
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Tool\UpdateTool.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\Search.cpp">
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Tool\Search.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\delete.cpp">
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Tool\delete.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\NewTool.cpp">
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Tool\NewTool.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\algorithmTool.cpp">
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Tool\algorithmTool.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\data.cpp">
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Tool\data.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\animation.cpp">
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\UI\animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\lightbulb.cpp">
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\UI\lightbulb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\ui.cpp">
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\UI\ui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\stretchbar.cpp">
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\UI\stretchbar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Algorithms\shader.h">
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Algorithms\shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Algorithms\Texture.h">
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Algorithms\Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Camera.h">
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\button.h">
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Tool\button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\node.h">
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\UI\node.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\Tool.h">
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Tool\Tool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\UpdateTool.h">
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Tool\UpdateTool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\Search.h">
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Tool\Search.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\delete.h">
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Tool\delete.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\NewTool.h">
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Tool\NewTool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\algorithmTool.h">
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Tool\algorithmTool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\darkmode.h">
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\UI\darkmode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\data.h">
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Tool\data.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\animation.h">
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\UI\animation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\lightbulb.h">
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\UI\lightbulb.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\ui.h">
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\UI\ui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\stretchbar.h">
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\UI\stretchbar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="G:\Code\HCMUS\Code\Data-Visualizer\CmakeLists.txt" />
+    <CustomBuild Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\CmakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{D765A4C3-2E8B-37A3-B8C8-DAB52082F648}</UniqueIdentifier>
+      <UniqueIdentifier>{B1F70365-414E-323F-BDA7-4BD08EA5C1B0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{887A75B5-B150-3840-94CA-3C9B364CB7F8}</UniqueIdentifier>
+      <UniqueIdentifier>{C9DBFBD0-642E-3000-9D54-F3E00FA7881C}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

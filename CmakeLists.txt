@@ -19,6 +19,7 @@ add_definitions(-DGLEW_STATIC)
 set(Code "Code")
 
 
+
 # Add the GLFW include directory
 include_directories(${GLFW_PATH}/include)
 include_directories(${GLEW_PATH}/include)
@@ -30,10 +31,7 @@ include_directories(${Code})
 
 link_directories(${GLEW_PATH}/lib/Release/x64)
 link_directories(${GLFW_PATH}/lib-vc2022)
-link_directories(${FreeType_PATH}/objs/x64/Release Static)
-
-
-
+link_directories(${FreeType_PATH}/objs)
 
 
 
@@ -85,8 +83,7 @@ target_link_libraries(DATAVISUALIZER freetype)
 # Copy the shader files to the build directory
 set(SHADERDIR "${CMAKE_CURRENT_SOURCE_DIR}/Shaders")
 set(ASSETS "${CMAKE_CURRENT_SOURCE_DIR}/Assets")
-
-
+set(FREETYPE "${CMAKE_CURRENT_SOURCE_DIR}/FreeType/objs")
 
 
 add_custom_command(TARGET DATAVISUALIZER POST_BUILD
@@ -96,5 +93,7 @@ add_custom_command(TARGET DATAVISUALIZER POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
     ${ASSETS} $<TARGET_FILE_DIR:DATAVISUALIZER>)
 
-
+add_custom_command(TARGET DATAVISUALIZER POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${FREETYPE} $<TARGET_FILE_DIR:DATAVISUALIZER>)
 
