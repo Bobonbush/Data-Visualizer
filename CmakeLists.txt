@@ -47,8 +47,8 @@ add_executable(DATAVISUALIZER Code/main.cpp
                               Code/Camera.h
                               Code/Tool/button.h
                               Code/Tool/button.cpp
-                              Code/node.cpp
-                              Code/node.h
+                              Code/UI/node.cpp
+                              Code/UI/node.h
                               Code/Tool/Tool.cpp
                               Code/Tool/Tool.h
                               Code/Tool/UpdateTool.cpp
@@ -70,7 +70,8 @@ add_executable(DATAVISUALIZER Code/main.cpp
                               Code/UI/lightbulb.h
                               Code/UI/ui.cpp
                               Code/UI/ui.h
-                              )
+                              Code/UI/stretchbar.cpp
+                              Code/UI/stretchbar.h)
 
 
 # Link against GLFW and other necessary libraries

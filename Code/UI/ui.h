@@ -4,12 +4,21 @@
 #include "lightbulb.h"
 #include <vector>
 #include <iostream>
+#include "node.h"
 
 class UI {
     private:
         std::vector<Button*> buttons;
+        std::vector <Node*> nodes;
+        TextHandler * waiting;
+        Shader * textShader;
+        Camera * camera;
+        float waitingTime = 0.0f;
+        float maximumWaitingTime = 0.5f;
+        std::string waitingText = "Waiting for data";
+        float maximal_up = 0.01f;
     public:
-        UI(Camera* camera);
+        UI(Camera* _camera);
         ~UI();
         void Update(float deltaTime, float x, float y);
         void Draw();

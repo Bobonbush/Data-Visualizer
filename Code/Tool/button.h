@@ -4,6 +4,7 @@
 #include "Algorithms/Texture.h"
 #include "Algorithms/shader.h"
 #include "Camera.h"
+#include "UI/stretchbar.h"
 #include <iostream>
 #include <algorithm>
 
@@ -12,7 +13,7 @@
 
 class Button {
     private:
-        Shader * shader;
+        
         
         //float * vertices;
         //float * indices;
@@ -29,6 +30,7 @@ class Button {
         float minimal_up = -0.01f;
 
         glm::vec3 pivot;
+        StretchBar * stretchbar;
 
         bool MouseOver(float x, float y);
 
@@ -38,12 +40,14 @@ class Button {
         float texture_height;
         glm::vec3 position;
         glm::vec3 size;
-        Shader * outline;
+        Shader * shader;
+        float sizeConst = 3.f;
         
 
 
 
     public:
+    
         
         
         Button(glm::vec3 _position , glm::vec3 _size , char * path , Camera * camera);

@@ -55,8 +55,10 @@ class TextHandler {
     public:
     TextHandler();
     ~TextHandler();
-    void RenderText(Shader* s, std::string text, float x, float y, float scale, glm::vec3 color , Camera * camera);
+    void RenderText(Shader* s, std::string text, float x, float y, float scale, glm::vec3 color , Camera * camera, float offset);
     void LoadFont(char* fontPath, unsigned int fontSize);
+    void RenderMiddleText(Shader* s, std::string text, float x, float y, float scale, glm::vec3 color , Camera * camera, float offset);
+    
 };
 
 #endif

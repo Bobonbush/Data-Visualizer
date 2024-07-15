@@ -406,8 +406,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Camera.h" />
     <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\button.h" />
     <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\button.cpp" />
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\node.cpp" />
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\node.h" />
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\node.cpp" />
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\node.h" />
     <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\Tool.cpp" />
     <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\Tool.h" />
     <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\UpdateTool.cpp" />
@@ -429,6 +429,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\lightbulb.h" />
     <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\ui.cpp" />
     <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\ui.h" />
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\stretchbar.cpp" />
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\stretchbar.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="G:\Code\HCMUS\Code\Data-Visualizer\build\ZERO_CHECK.vcxproj">

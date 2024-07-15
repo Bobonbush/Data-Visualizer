@@ -5,11 +5,35 @@ Button::Button(glm::vec3 _position , glm::vec3 _size , char* path , Camera * cam
     shader = new Shader("button.vs","button.fs");
     position = _position;
     size = _size;
+    
+    
+    
+
     texture_width = static_cast<float>(TextureLoader::GetTextureSize(path).first) / static_cast<float>(camera -> width);
     texture_height = static_cast<float>(TextureLoader::GetTextureSize(path).second) / static_cast<float>(camera -> height);
     texture_width *= size.x;
     texture_height *= size.y;
+
+    texture_width *= sizeConst;
+    float offset = 0.75f;
+    position.y -= texture_height /2.f;
+    texture_height *= offset;
+    position.y += texture_height /2.f;
+
+
+    position.x += texture_width /8.f ;
     
+
+    
+
+    stretchbar = new StretchBar(position, glm::vec3(texture_width, texture_height , 0.f) , "stretch bar.png", camera);
+    
+    position.x -= texture_width /8.f;
+    position.y -= texture_height /2.f;
+    texture_height /= offset;
+    position.y += texture_height /2.f;
+    texture_width /= sizeConst;
+
     float vertices[] = {
         // position                                                            // texture
         position.x + texture_width, position.y , position.z ,           1.0f , 1.0f,   // top right
@@ -100,12 +124,15 @@ Button::~Button() {
     glDeleteBuffers(1, &outline_EBO);
     glDeleteVertexArrays(1, &outline_VAO);
 
+    delete stretchbar;
+
     //delete[] vertices;
     //delete[] indices;
 }
 
 void Button::Update(float deltaTime, float mouseX, float mouseY) {
     // Update button
+    stretchbar -> Update(deltaTime, mouseX, mouseY);
     shader -> use();
     shader -> setInt("texture1", 0);
     glm::mat4 view =   glm::mat4(1.0f);
@@ -114,9 +141,9 @@ void Button::Update(float deltaTime, float mouseX, float mouseY) {
     glm::mat4 projection = glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f);
     model = glm::translate(model , glm::vec3(sin(glfwGetTime()) * minimal_up, std::max(static_cast<float>(sin(glfwGetTime() )* maximal_up), minimal_up ), 0.0f));
     if(MouseOver(mouseX, mouseY)) {
-    model = glm::translate(model, pivot);
-    model = glm::scale(model, glm::vec3(1.25f, 1.25f, 1.25f));
-    model = glm::translate(model, -pivot);
+        model = glm::translate(model, pivot);
+        model = glm::scale(model, glm::vec3(1.25f, 1.25f, 1.25f));
+        model = glm::translate(model, -pivot);
     }
     
     shader -> setMat4("model", model);
@@ -134,6 +161,8 @@ bool Button::MouseOver(float x, float y) {
 }
 
 void Button::Draw() {
+
+    stretchbar -> Draw();
     shader ->use();
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture);

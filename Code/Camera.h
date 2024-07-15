@@ -9,11 +9,13 @@ class Camera {
         bool firstMouse;
         
 
+        
+
+    public:
+        Shader * shader;
         glm::vec3 cameraPos;
         glm::vec3 cameraFront;
         glm::vec3 cameraUp;
-
-    public:
         static float fov;
         float width;
         float height;

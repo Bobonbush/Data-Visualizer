@@ -159,7 +159,7 @@ TextHandler::~TextHandler(){
 }
 
 
-void TextHandler::RenderText(Shader* s, std::string text, float x, float y, float scale, glm::vec3 color, Camera * camera){
+void TextHandler::RenderText(Shader* s, std::string text, float x, float y, float scale, glm::vec3 color, Camera * camera, float offset){
     s -> use();
     glUniform3f(glGetUniformLocation(s-> ID, "textColor"), color.x, color.y, color.z);
     glActiveTexture(GL_TEXTURE0);
@@ -169,7 +169,7 @@ void TextHandler::RenderText(Shader* s, std::string text, float x, float y, floa
     float maximum_y = y;
     for(p = text.begin() ; p != text.end(); p++) {
         Character ch = Characters[*p];
-        maximum += ((ch.Advance >> 6) * scale ) / camera -> width;
+        maximum += ((ch.Advance >> 6) * scale ) / camera -> width + offset;
         float h = ch.Size.y * scale;
         h = h / camera -> height;
         if(y + h > maximum_y){
@@ -188,7 +188,7 @@ void TextHandler::RenderText(Shader* s, std::string text, float x, float y, floa
     for(c = text.begin(); c != text.end(); c++){
         Character ch = Characters[*c];
         float xpos = x + (ch.Bearing.x * scale)/ camera -> width;
-        float ypos = y - ((ch.Size.y - ch.Bearing.y) * scale)/ camera -> height;
+        float ypos = y - ((ch.Size.y - ch.Bearing.y) * scale)/ camera -> height +offset;
 
         float w = ch.Size.x * scale;
         float h = ch.Size.y * scale;
@@ -213,11 +213,78 @@ void TextHandler::RenderText(Shader* s, std::string text, float x, float y, floa
 
         glDrawArrays(GL_TRIANGLES, 0, 6);
 
-        x += ((ch.Advance >> 6) * scale)/ camera -> width;
+        x += ((ch.Advance >> 6) * scale)/ camera -> width + offset;
     }
     glBindVertexArray(0);
     glBindTexture(GL_TEXTURE_2D, 0);
 }
+
+
+void TextHandler::RenderMiddleText(Shader* s, std::string text, float x, float y, float scale, glm::vec3 color, Camera * camera, float offset){
+    s -> use();
+    glUniform3f(glGetUniformLocation(s-> ID, "textColor"), color.x, color.y, color.z);
+    glActiveTexture(GL_TEXTURE0);
+    glBindVertexArray(VAO);
+    std::string::const_iterator p;
+    float maximum = x;
+    float maximum_y = y;
+    for(p = text.begin() ; p != text.end(); p++) {
+        Character ch = Characters[*p];
+        maximum += ((ch.Advance >> 6) * scale ) / camera -> width + offset;
+        float h = ch.Size.y * scale;
+        h = h / camera -> height;
+        if(y + h > maximum_y){
+            maximum_y = y +  h;
+        }
+    }
+    if(maximum_y > 0.95f)
+    {
+        y -= (maximum_y - 0.95f);
+    }
+    if(maximum > 0.95f)
+    {
+        x -= (maximum - 0.95f);
+    }
+
+    x -= maximum / 2;
+    y += maximum_y /4;
+
+    
+    std::string::const_iterator c;
+    for(c = text.begin(); c != text.end(); c++){
+        Character ch = Characters[*c];
+        float xpos = x + (ch.Bearing.x * scale)/ camera -> width;
+        float ypos = y - ((ch.Size.y - ch.Bearing.y) * scale)/ camera -> height +offset;
+
+        float w = ch.Size.x * scale;
+        float h = ch.Size.y * scale;
+
+        w = w / camera -> width;
+        h = h / camera -> height;
+        
+        float vertices[6][4] = {
+            {xpos, ypos + h, 0.0, 0.0},        // Top left
+            {xpos, ypos, 0.0, 1.0},            // Bottom left
+            {xpos + w, ypos, 1.0, 1.0},        // Bottom right
+
+            {xpos, ypos + h, 0.0, 0.0},        // Top left
+            {xpos + w, ypos, 1.0, 1.0},        // Bottom right
+            {xpos + w, ypos + h, 1.0, 0.0}      // Top right
+        };
+
+        glBindTexture(GL_TEXTURE_2D, ch.TextureID);
+        glBindBuffer(GL_ARRAY_BUFFER, VBO);
+        glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+        glDrawArrays(GL_TRIANGLES, 0, 6);
+
+        x += ((ch.Advance >> 6) * scale)/ camera -> width + offset;
+    }
+    glBindVertexArray(0);
+    glBindTexture(GL_TEXTURE_2D, 0);
+}
+
 
 
 void TextHandler::LoadFont(char* font , unsigned int Size) {

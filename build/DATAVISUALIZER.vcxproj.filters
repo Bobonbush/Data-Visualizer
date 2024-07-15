@@ -16,7 +16,7 @@
     <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\node.cpp">
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\node.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\Tool.cpp">
@@ -49,6 +49,9 @@
     <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\ui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\stretchbar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Algorithms\shader.h">
@@ -63,7 +66,7 @@
     <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\node.h">
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\node.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tool\Tool.h">
@@ -97,6 +100,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\ui.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\UI\stretchbar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
