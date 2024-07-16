@@ -133,7 +133,6 @@ bool Button::isMouseRelease(float x, float y) {
 
 int Button::Update(float deltaTime, float mouseX, float mouseY) {
     // Update button
-    if(isMouseRelease(mouseX, mouseY)) Hold = false;
 
     
     if(Choose && isMouseClicked(mouseX, mouseY)) Choose = false;
@@ -146,7 +145,6 @@ int Button::Update(float deltaTime, float mouseX, float mouseY) {
     model = glm::translate(model , glm::vec3(sin(glfwGetTime()) * minimal_up, std::max(static_cast<float>(sin(glfwGetTime() )* maximal_up), minimal_up ), 0.0f));
     if(MouseOver(mouseX, mouseY) || Choose) {
         if(isMouseClicked(mouseX, mouseY)) { 
-            Hold = true;
             Choose = true;
         }
         model = glm::translate(model, pivot);
@@ -154,7 +152,6 @@ int Button::Update(float deltaTime, float mouseX, float mouseY) {
         model = glm::translate(model, -pivot);
     }
 
-    old_Click = isMouseRelease(mouseX, mouseY);
     
     
     shader -> setMat4("model", model);

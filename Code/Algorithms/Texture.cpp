@@ -138,6 +138,29 @@ void TextureLoader::buildCircle(float radius, int vCount , std::vector<glm::vec3
 
 
 
+GLFWcursor* TextureLoader::createCustomCursor(const char* imagePath) {
+    stbi_set_flip_vertically_on_load(false); // Flip the image vertically
+    
+    int width, height, channels;
+    unsigned char* data = stbi_load(imagePath, &width, &height, &channels, 0);
+    if (!data) {
+        std::cerr << "Failed to load cursor image: " << imagePath << std::endl;
+        return nullptr;
+    }
+
+    GLFWimage cursorImage;
+    cursorImage.width = width;
+    cursorImage.height = height;
+    cursorImage.pixels = data;
+
+    GLFWcursor* cursor = glfwCreateCursor(&cursorImage, 0, 0);
+    stbi_image_free(data);
+
+    return cursor;
+}
+
+
+
 // TextHandler
 
 

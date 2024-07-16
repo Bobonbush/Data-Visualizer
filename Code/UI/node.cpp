@@ -1,5 +1,8 @@
 #include "node.h"
 
+bool Node::Chosen = false;
+bool Node::Over = false;
+
 Node::Node(glm::vec3 _position, glm::vec3 _size, char* path, Camera* _camera ,int _id) : Button(_position, _size, path, _camera)
 {
     id = _id;
@@ -18,14 +21,32 @@ Node::~Node()
 }
 
 
-bool Node::MouseOver(glm::vec2 hitbox[], float x, float y)
+bool Node::MouseOver( float x, float y)
 {
-    glm::vec2 bottomLeft = hitbox[0];
-    glm::vec2 topRight = hitbox[2];
-    if(x >= bottomLeft.x && x <= topRight.x && y >= bottomLeft.y && y <= topRight.y)
+    glm::vec3 _position = position;
+    if(position.x < 0)
     {
+        position.x = half_x - abs(position.x) * half_x ;
+    }else
+    {
+        position.x = position.x * half_x + half_x;
+    }
+    
+
+    if(position.y < 0)
+    {
+        position.y = half_y + abs(position.y) * half_y;
+    }else
+    {
+        position.y = half_y - position.y * half_y;
+    }
+    
+    
+    if (x >= position.x && x <= position.x + size.x && y >= position.y && y <= position.y + size.y) {
+        position = _position;
         return true;
     }
+    position = _position;
     return false;
 }
 
@@ -38,10 +59,74 @@ bool Node::isMouseClicked(float x, float y)
     return false;
 }
 
+
+bool Node::isMouseRelease(float x, float y)
+{
+    if(glfwGetMouseButton(glfwGetCurrentContext(), GLFW_MOUSE_BUTTON_LEFT) == GLFW_RELEASE)
+    {
+        return true;
+    }
+    return false;
+}
+
 int Node::Update(float deltaTime, float x, float y)
 {
 
-    Button::Update(deltaTime, x, y);
+    
+    
+    glm::mat4 view = glm::mat4(1.0f);
+    //view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+    //view = glm::lookAt(camera->cameraPos, camera->cameraPos + camera->cameraFront, camera->cameraUp);
+    glm ::mat4 projection = glm::mat4(1.0f);
+    //projection = glm::perspective(glm::radians(camera-> fov), 1.f, 0.1f, 100.0f);
+    glm::mat4 model = glm::mat4(1.0f);
+
+    float scale =  45.f/camera ->fov;
+    
+    //model = glm::translate(model , glm::vec3(sin(glfwGetTime()) * minimal_up, std::max(static_cast<float>(sin(glfwGetTime() )* maximal_up), minimal_up ), 0.0f));
+    
+    
+    
+
+    if(MouseOver(x , y) && !Node::Chosen && !Node::Over) {
+        Cursor::CurrentCursor = Cursor::ReadyCursor;
+        Node::Over = true;
+            
+        if(isMouseClicked(x, y)) { 
+            Hold = true;
+            Node::Chosen = true;
+        }
+    }
+
+    if(Node::Chosen) {
+        Cursor::CurrentCursor = Cursor::HoldCursor;
+    }else if(Node::Over) {
+        Cursor::CurrentCursor = Cursor::ReadyCursor;
+    }else {
+        Cursor::CurrentCursor = Cursor::normalCursor;
+    }
+
+    if(isMouseRelease(x, y)) {
+        Hold = false;
+        
+        Node::Chosen = false;
+        
+    }
+    
+
+
+    
+    
+    shader->use();
+    shader->setMat4("view", view);
+    shader->setMat4("projection", projection);
+    shader->setMat4("model", model);
+
+    textShader->use();
+    textShader->setMat4("view", view);
+    textShader -> setMat4("model" , model);
+    textShader->setMat4("projection", projection);
+    
 
     if(Hold) {
         
@@ -66,29 +151,6 @@ int Node::Update(float deltaTime, float x, float y)
         origin.x += LastMouseX - origin.x ;
         origin.y += LastMouseY - origin.y ;
     }
-    
-    glm::mat4 view = glm::mat4(1.0f);
-    //view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
-    //view = glm::lookAt(camera->cameraPos, camera->cameraPos + camera->cameraFront, camera->cameraUp);
-    glm ::mat4 projection = glm::mat4(1.0f);
-    //projection = glm::perspective(glm::radians(camera-> fov), 1.f, 0.1f, 100.0f);
-    glm::mat4 model = glm::mat4(1.0f);
-
-    float scale =  45.f/camera ->fov;
-    
-    model = glm::translate(model , glm::vec3(sin(glfwGetTime()) * minimal_up, std::max(static_cast<float>(sin(glfwGetTime() )* maximal_up), minimal_up ), 0.0f));
-    
-    
-    shader->use();
-    shader->setMat4("view", view);
-    shader->setMat4("projection", projection);
-    shader->setMat4("model", model);
-
-    textShader->use();
-    textShader->setMat4("view", view);
-    textShader -> setMat4("model" , model);
-    textShader->setMat4("projection", projection);
-    
     return Choose;
 
 }

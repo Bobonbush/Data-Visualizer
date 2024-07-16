@@ -71,7 +71,13 @@ add_executable(DATAVISUALIZER Code/main.cpp
                               Code/UI/edge.cpp
                               Code/UI/edge.h
                               Code/Utils/FileDialog.cpp
-                              Code/Utils/FileDialog.h)
+                              Code/Utils/FileDialog.h
+                              Code/Utils/Cursor.cpp
+                              Code/Utils/Cursor.h
+                              Code/Algorithms/graph.cpp
+                              Code/Algorithms/graph.h
+                              Code/Algorithms/AlgorithmManager.cpp
+                              Code/Algorithms/AlgorithmManager.h)
 
 
 # Link against GLFW and other necessary libraries

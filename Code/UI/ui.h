@@ -4,13 +4,13 @@
 #include "lightbulb.h"
 #include <vector>
 #include <iostream>
-#include "edge.h"
+#include "Algorithms/AlgorithmManager.h"
 
 class UI {
     private:
         std::vector<Button*> buttons;
-        std::vector <Node*> nodes;
-        std::vector<Edge*> edges;
+
+        AlgorithmManager * algo;
         TextHandler * waiting;
         Shader * textShader;
         Camera * camera;

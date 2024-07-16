@@ -24,6 +24,7 @@ class TextureLoader{
     static unsigned int LoadTexturePNG(char* path);
     static unsigned int LoadTextureJPG(char* path);
     static std::string prefix[2];
+    
 
 
     public:
@@ -36,7 +37,7 @@ class TextureLoader{
     static std::pair<int ,int> GetTextureSize(char* path);
 
     static void buildCircle(float radius, int vCount, std::vector<glm::vec3> &vertices, std::vector<unsigned int> &indices);
-
+    static GLFWcursor* createCustomCursor(const char* imagePath);
 };
 
 struct Character {

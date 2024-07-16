@@ -40,8 +40,6 @@ class Button {
         bool isMouseClicked(float x, float y);
         bool isMouseRelease(float x, float y);
         bool Choose = false;
-        bool Hold = false;
-        bool old_Click = false;
         unsigned int texture;
         float texture_width;
         float texture_height;

@@ -12,21 +12,7 @@ UI::UI(Camera* _camera)
     waiting->LoadFont("Font/wheaton capitals.otf", 48);
 
     textShader = new Shader("Revamped.vs", "Revamped.fs");
-    
-    Node* node = new Node(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.f, 1.f, 0.0f), "node.png", camera, 1);
-    nodes.push_back(node);
-    Node * node2 = new Node(glm::vec3(0.5f, 0.5f, 0.0f), glm::vec3(1.f, 1.f, 0.0f), "node.png", camera, 2);
-    nodes.push_back(node2);
 
-    Edge * edge = new Edge(node, node2, false, _camera);
-    edges.push_back(edge);
-    Node * node3 = new Node(glm::vec3(0.5f, -0.5f, 0.0f), glm::vec3(1.f, 1.f, 0.0f), "node.png", camera , 3);
-    nodes.push_back(node3);
-
-    Edge* edge2 = new Edge(node2, node3, false, _camera);
-    edges.push_back(edge2);
-    Edge* edge3 = new Edge(node3, node, false, _camera);
-    edges.push_back(edge3);
 
     
 
@@ -39,31 +25,12 @@ UI::~UI()
     {
         delete buttons[i];
     }
-    for(int i = 0; i < nodes.size(); i++)
-    {
-        delete nodes[i];
-    }
-
-    for(int i = 0 ; i < edges.size(); i++)
-    {
-        delete edges[i];
-    }
 
     delete waiting;
 }
 
 void UI::Update(float deltaTime, float x, float y)
 {
-    for (int i = 0; i < nodes.size(); i++)
-    {
-        nodes[i]->Update(deltaTime, x, y);
-    }
-    
-    for(int i = 0; i < edges.size(); i++)
-    {
-        edges[i]->Update(deltaTime);
-    }
-
 
     for (int i = 0; i < buttons.size(); i++)
     {
@@ -93,6 +60,8 @@ void UI::Update(float deltaTime, float x, float y)
     textShader->setMat4("view", view);
     textShader->setMat4("projection", projection);
     textShader->setMat4("model", model);
+
+    Node::Over = false;
     
 }
 
@@ -105,18 +74,10 @@ void UI::Draw()
         buttons[i]->Draw();
     }
 
-    for (int i = 0; i < nodes.size(); i++)
-    {
-        nodes[i]->Draw();
-    }
-
-    for(int i = 0; i < edges.size(); i++)
-    {
-        edges[i]->Draw();
-    }
+    float scale = camera -> width / camera -> height * 2.f;
     
 
-    if(nodes.empty()) waiting -> RenderText(textShader, waitingText,-0.5f, -0.05f, 3.f, glm::vec3(0.2f, 0.4f, 0.4f), camera, 0.03f);
+    if(AlgorithmManager::status == 0) waiting -> RenderText(textShader, waitingText,-0.5f, -0.1f, scale, glm::vec3(0.2f, 0.4f, 0.4f), camera, 0.03f);
 
 }
 

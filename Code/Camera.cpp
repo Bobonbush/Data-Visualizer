@@ -2,6 +2,7 @@
 
 float Camera::fov = 45.0f;
 
+
 Camera::Camera()
 {
     lastX = 400;

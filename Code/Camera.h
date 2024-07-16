@@ -30,6 +30,7 @@ class Camera {
         void SetPointView(Shader * shader, std::string projection, std::string view);
 
         void DisplayViewPort();
+
         
         void DisplayViewPort(float x, float y, float width, float height);
 

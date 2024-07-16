@@ -1,27 +1,28 @@
 #include "graph.h"
 
 
-GRAPH::GRAPH(std::vector<Node*> _nodes, std::vector<Edge*> _edges, bool _Directed) {
-    nodes = _nodes;
-    edges = _edges;
+GRAPH::GRAPH( bool _Directed , Camera * _camera) {
+    
     Directed = _Directed;
-    int maxx_Node = 0;
-    for(int i = 0 ; i < nodes.size(); i++) {
-        maxx_Node = std::max(maxx_Node, nodes[i] -> id);
-    }
-    label.resize(maxx_Node+1);
-    rank.resize(maxx_Node+1);
-    degree.resize(maxx_Node+1);
-
-    for(int i = 0 ; i < edges.size(); i++) {
-        int u = edges[i] -> getStart();
-        int v = edges[i] -> getEnd();
-        degree[u]++;
-        if(!Directed) {
-            degree[v]++;
-        }
-    }
+    camera = _camera;
 }
+
+void GRAPH::AddEdge(int u , int v) {
+    Node * node1 = nullptr;
+    Node * node2 = nullptr;
+    
+    if(++dict[u] == 1) {
+        glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f);
+        node1 = new Node(position, glm::vec3(1.f ,1.f ,1.f), "node",camera ,u);
+        nodes.push_back(node1);
+    }
+    if(++dict[v] == 1) {
+        glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f);
+        nodes.push_back(node2);
+        node2 = new Node(position, glm::vec3(1.f ,1.f ,1.f), "node",camera ,v);
+    }
+    edges.push_back(new Edge(node1 , node2 , Directed, camera));
+} 
 
 
 GRAPH::~GRAPH() {
@@ -122,5 +123,24 @@ void GRAPH::HubLabeling(int s) {
                 }
             }
         }
+    }
+}
+
+
+void GRAPH::Update(float deltaTime , float x , float y) {
+    for(Node* node : nodes) {
+        node -> Update(deltaTime , x , y);
+    }
+    for(Edge*  edge : edges) {
+        edge -> Update(deltaTime);
+    }
+}
+
+void GRAPH::Draw() {
+    for(Node* node : nodes) {
+        node -> Draw();
+    }
+    for(Edge* edge : edges) {
+        edge -> Draw();
     }
 }

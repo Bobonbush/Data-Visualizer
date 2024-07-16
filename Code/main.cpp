@@ -3,6 +3,7 @@
 #include "Tool/Tool.h"
 #include "UI/darkmode.h"
 #include "UI/ui.h"
+#include "Utils/Cursor.h"
 
 
 class Program {
@@ -70,9 +71,8 @@ public:
         image[0].pixels = stbi_load("icon.png", &image[0].width, &image[0].height, 0, 4); //rgba channels
         glfwSetWindowIcon(window, 1, image);
         stbi_image_free(image[0].pixels);
+
         
-
-
         
         
 
@@ -95,6 +95,11 @@ public:
         // Initialize UI
         toolbar = new Tools(camera);
         ui = new UI(camera);
+        Cursor::normalCursor = TextureLoader::createCustomCursor("cursor_none.png");
+        Cursor::CurrentCursor = Cursor::normalCursor;
+        Cursor::ReadyCursor = TextureLoader::createCustomCursor("hand_open.png");
+        Cursor::HoldCursor = TextureLoader::createCustomCursor("hand_closed.png");
+        
     }
 
     
@@ -112,7 +117,10 @@ public:
 
         glfwSetScrollCallback(window, Camera::ScrollCallback);
         glfwSetFramebufferSizeCallback(window, Camera::framebuffer_size_callback);
+
+
         while (!glfwWindowShouldClose(window)) {
+            Cursor::SetCursor(window);
             currentFrame = glfwGetTime();
             float deltaTime = currentFrame - lastFrame;
             
