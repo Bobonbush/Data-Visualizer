@@ -5,6 +5,6 @@ class LightBulb : public Button {
         LightBulb( glm::vec3 _position , glm::vec3 _size , char * path , Camera * camera);
         ~LightBulb();
         
-        void Update(float deltaTime, float x, float y);
+        int Update(float deltaTime, float x, float y);
         void Draw();
 };

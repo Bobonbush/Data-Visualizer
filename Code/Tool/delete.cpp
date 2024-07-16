@@ -10,9 +10,9 @@ Delete::~Delete()
 {
 }
 
-void Delete::Update(float deltaTime, float x, float y)
+int Delete::Update(float deltaTime, float x, float y)
 {
-    Button::Update(deltaTime, x, y);
+    return Button::Update(deltaTime, x, y);
 }
 
 void Delete::Draw()

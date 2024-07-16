@@ -22,19 +22,20 @@ DataStructure::~DataStructure()
     delete _camera;
 }
 
-void DataStructure::Update(float deltaTime, float x, float y)
+int DataStructure::Update(float deltaTime, float x, float y)
 {
     glm:: mat4 view = glm::mat4(1.0f);
   
     glm::mat4 projection = glm::mat4(1.0f);
     glm::mat4 model = glm::mat4(1.0f);
     text = current;
-    Button::Update(deltaTime, x, y);
-
     textShader -> use();
     textShader -> setMat4("view", view);
     textShader -> setMat4("projection", projection);
     textShader -> setMat4("model", model);
+
+    return Button::Update(deltaTime, x, y);
+
 }
 
 

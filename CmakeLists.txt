@@ -68,8 +68,10 @@ add_executable(DATAVISUALIZER Code/main.cpp
                               Code/UI/lightbulb.h
                               Code/UI/ui.cpp
                               Code/UI/ui.h
-                              Code/UI/stretchbar.cpp
-                              Code/UI/stretchbar.h)
+                              Code/UI/edge.cpp
+                              Code/UI/edge.h
+                              Code/Utils/FileDialog.cpp
+                              Code/Utils/FileDialog.h)
 
 
 # Link against GLFW and other necessary libraries
@@ -78,6 +80,7 @@ target_compile_definitions(DATAVISUALIZER PRIVATE GLEW_STATIC)
 target_link_libraries(DATAVISUALIZER glfw3 opengl32)
 target_link_libraries(DATAVISUALIZER glew32s opengl32)
 target_link_libraries(DATAVISUALIZER freetype)
+target_link_libraries(DATAVISUALIZER comdlg32)
 
 
 # Copy the shader files to the build directory

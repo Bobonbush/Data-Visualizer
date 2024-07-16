@@ -6,10 +6,12 @@
 
 
 class NewTool : public Button {
+    private:
+        std::vector<Button *> button;
     public :
         NewTool( glm::vec3 _position , glm::vec3 _size , char * path , Camera * camera);
         ~NewTool();
-        void Update(float deltaTime, float x, float y);
+        int Update(float deltaTime, float x, float y);
         void Draw();
 };
 

@@ -11,9 +11,9 @@ Search::~Search()
 {
 }
 
-void Search::Update(float deltaTime, float x, float y )
+int Search::Update(float deltaTime, float x, float y )
 {
-    Button::Update(deltaTime, x, y);
+    return Button::Update(deltaTime, x, y);
 }
 
 

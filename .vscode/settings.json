@@ -78,6 +78,7 @@
         "cinttypes": "cpp",
         "variant": "cpp",
         "map": "cpp",
-        "text_encoding": "cpp"
+        "text_encoding": "cpp",
+        "xtree": "cpp"
     }
 }

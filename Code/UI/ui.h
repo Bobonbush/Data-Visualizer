@@ -4,12 +4,13 @@
 #include "lightbulb.h"
 #include <vector>
 #include <iostream>
-#include "node.h"
+#include "edge.h"
 
 class UI {
     private:
         std::vector<Button*> buttons;
         std::vector <Node*> nodes;
+        std::vector<Edge*> edges;
         TextHandler * waiting;
         Shader * textShader;
         Camera * camera;
@@ -17,6 +18,8 @@ class UI {
         float maximumWaitingTime = 0.5f;
         std::string waitingText = "Waiting for data";
         float maximal_up = 0.01f;
+
+        
     public:
         UI(Camera* _camera);
         ~UI();

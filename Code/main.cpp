@@ -89,7 +89,6 @@ public:
         glEnable(GL_MULTISAMPLE);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
        
         glEnable(GL_DEPTH_TEST);
         ColorMode::darkMode = 0;               // Light Mode for default
@@ -105,7 +104,8 @@ public:
 
     
     void Run() {
-
+        
+        
         Initialize();
         float currentFrame = 0;
         float lastFrame = 0;

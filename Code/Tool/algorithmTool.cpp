@@ -9,9 +9,9 @@ Algorithm::~Algorithm()
 {
 }
 
-void Algorithm::Update(float deltaTime, float x, float y)
+int Algorithm::Update(float deltaTime, float x, float y)
 {
-    Button::Update(deltaTime, x, y);
+    return Button::Update(deltaTime, x, y);
 }
 
 

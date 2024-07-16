@@ -246,8 +246,8 @@ void TextHandler::RenderMiddleText(Shader* s, std::string text, float x, float y
         x -= (maximum - 0.95f);
     }
 
-    x -= maximum / 2;
-    y += maximum_y /4;
+    x -= (maximum -x ) / 2;
+    y -= (maximum_y -y ) /2;
 
     
     std::string::const_iterator c;

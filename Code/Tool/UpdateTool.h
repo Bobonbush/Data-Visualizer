@@ -12,7 +12,7 @@ class UpdateTool : public Button
         UpdateTool(glm::vec3 _position , glm::vec3 _size , char * path , Camera * camera);
         ~UpdateTool();
 
-        void Update(float deltaTime, float x, float y);
+        int Update(float deltaTime, float x, float y);
         void Draw();
 
 
