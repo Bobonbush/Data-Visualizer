@@ -37,6 +37,8 @@ void UI::Update(float deltaTime, float x, float y)
         buttons[i]->Update(deltaTime, x, y);
     }
 
+
+
     
 
     waitingTime -= deltaTime;
@@ -68,6 +70,7 @@ void UI::Update(float deltaTime, float x, float y)
 
 void UI::Draw()
 {
+    
 
     for (int i = 0; i < buttons.size(); i++)
     {
@@ -78,7 +81,6 @@ void UI::Draw()
     
 
     if(AlgorithmManager::status == 0) waiting -> RenderText(textShader, waitingText,-0.5f, -0.1f, scale, glm::vec3(0.2f, 0.4f, 0.4f), camera, 0.03f);
-
 }
 
 

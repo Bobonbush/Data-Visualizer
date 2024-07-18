@@ -490,6 +490,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Algorithms\graph.h" />
     <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Algorithms\AlgorithmManager.cpp" />
     <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Algorithms\AlgorithmManager.h" />
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\UI\Textbox.cpp" />
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\UI\Textbox.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\build\ZERO_CHECK.vcxproj">

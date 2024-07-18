@@ -64,6 +64,9 @@
     <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Algorithms\AlgorithmManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\UI\Textbox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Algorithms\shader.h">
@@ -127,6 +130,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Algorithms\AlgorithmManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\UI\Textbox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

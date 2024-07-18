@@ -1,6 +1,9 @@
+#ifndef NODE_H
+#define NODE_H
 #include "Algorithms/shader.h"
 #include "Tool/button.h"
 #include "Utils/Cursor.h"
+
 
 
 class Node : public Button {
@@ -30,3 +33,5 @@ public:
 
     void Draw();
 };
+
+#endif

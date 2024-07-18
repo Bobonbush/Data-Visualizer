@@ -41,12 +41,15 @@ int NewTool::Update(float deltaTime, float x, float y)
             int decide = but -> Update(deltaTime, x, y);
             if(decide)
             {
+                std::cout << "YES" << ' ' << index << '\n';
                 Choose = false; 
+
                 return index;
             }
         }
     }
-    return Button::Update(deltaTime, x, y);
+    Button::Update(deltaTime, x, y);
+    return 0;
 }
 
 

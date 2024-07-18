@@ -5,6 +5,7 @@
 #include <vector>
 #include <iostream>
 #include "Algorithms/AlgorithmManager.h"
+#include "Textbox.h"
 
 class UI {
     private:
@@ -18,6 +19,8 @@ class UI {
         float maximumWaitingTime = 0.5f;
         std::string waitingText = "Waiting for data";
         float maximal_up = 0.01f;
+        int status = 0;
+        
 
         
     public:

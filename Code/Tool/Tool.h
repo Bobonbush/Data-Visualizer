@@ -7,9 +7,13 @@
 #include "algorithmTool.h"
 #include "data.h"
 #include <vector>
+#include "UI/Textbox.h"
 class Tools {
     private :
         std::vector<Button*> button;
+        int status = 0;
+        TextBox* textBox;
+        
     
     public :
         Tools(Camera * camera);

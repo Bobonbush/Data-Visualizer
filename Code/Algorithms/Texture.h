@@ -59,7 +59,7 @@ class TextHandler {
     void RenderText(Shader* s, std::string text, float x, float y, float scale, glm::vec3 color , Camera * camera, float offset);
     void LoadFont(char* fontPath, unsigned int fontSize);
     void RenderMiddleText(Shader* s, std::string text, float x, float y, float scale, glm::vec3 color , Camera * camera, float offset);
-    
+    void RenderTextInRangeX(Shader* s, std::string text, float x, float y, float scale, glm::vec3 color , Camera * camera, float offsetX,float offsetY, float rangeX , float rangeY);
 };
 
 #endif

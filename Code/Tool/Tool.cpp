@@ -22,6 +22,8 @@ Tools::Tools(Camera * camera)
     button.push_back(AlgorithmTool);
     button.push_back(dataStructure);
 
+    textBox = new TextBox(camera);
+
 }
 
 Tools::~Tools()
@@ -30,21 +32,37 @@ Tools::~Tools()
     {
         delete b;
     }
+    delete textBox;
 }
 
 void Tools::Update(float deltaTime, float x, float y)
 {
-    
     for(Button * b : button){
-        b -> Update(deltaTime, x, y);
+        if(status != 0) break;
+        status = b -> Update(deltaTime, x, y);
+    }
+
+    if(status != 0) {
+        for(Button * b : button){
+            //b -> Update(deltaTime, x , y);
+        }
+    }
+
+    if(status == 3) {
+        textBox -> Update(deltaTime, x, y);
     }
 }
 
 void Tools::Draw()
 {
+    if(status == 3) {
+        textBox -> Draw();
+    }
+    
     for(Button * b : button)
     {
         
         b -> Draw();
     }
+    
 }

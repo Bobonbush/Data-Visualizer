@@ -41,13 +41,6 @@ Button::Button(glm::vec3 _position , glm::vec3 _size , char* path , Camera * cam
         position.x , position.y - texture_height, position.z,            0.0f ,0.0f, // bottom left
         position.x , position.y , position.z,                    0.0f , 1.0f // top left
     };
-
-    HitBox  = {
-        glm::vec3 {position.x, position.y, position.z},
-        glm::vec3 {position.x + texture_width, position.y, position.z},
-        glm::vec3 {position.x + texture_width, position.y - texture_height, position.z},
-        glm::vec3 {position.x, position.y - texture_height, position.z}
-    };
     origin.x = position.x + texture_width /2.f;
     origin.y = position.y - texture_height/2.f;
     origin.z = position.z;

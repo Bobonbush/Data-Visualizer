@@ -1,3 +1,5 @@
+#ifndef GRAPH_H
+#define GRAPH_H
 #include "UI/edge.h"
 #include <algorithm>
 #include <queue>
@@ -33,3 +35,5 @@ public:
 
 
 };
+
+#endif
