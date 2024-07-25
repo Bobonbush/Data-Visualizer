@@ -1,14 +1,16 @@
-#version 330 core
-out vec4 FragColor;
+#version 330
 
 in vec2 TexCoord;
 
-uniform sampler2D ourTexture;
+
+out vec4 fragColor;
+
+uniform sampler2D texture1;
+
 void main()
 {
-    vec4 texcolor = texture(ourTexture, TexCoord);
-    if(texcolor.a < 0.1)
+    fragColor = texture(texture1, TexCoord);
+    if(fragColor.a < 0.1)
         discard;
-
-    FragColor = texcolor;
+    
 }

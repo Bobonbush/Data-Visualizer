@@ -1,6 +1,6 @@
 #ifndef CURSOR_H
 #define CURSOR_H
-#include <Algorithms/Texture.h>
+#include <Utils/Texture.h>
 #include <iostream>
 #include <string>
 

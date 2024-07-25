@@ -1,9 +1,8 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "Camera.h"
-#include "Tool/Tool.h"
-#include "UI/darkmode.h"
-#include "UI/ui.h"
 #include "Utils/Cursor.h"
+#include "Tools/slideTools.h"
+#include "Tools/ToolBar.h"
 
 
 class Program {
@@ -13,10 +12,10 @@ private :
     GLFWwindow* window;   
     Shader * basicshader;
     Camera * camera;
-    Tools * toolbar;
-    UI * ui;
-    
-    
+
+    ToolBar * toolbar;
+
+    SlideTools * slideTools;
 
 public:
     Program()
@@ -25,7 +24,7 @@ public:
         basicshader = nullptr;
         camera = nullptr;
         toolbar = nullptr;
-        ui = nullptr;
+        slideTools = nullptr;
     }
 
     ~Program()
@@ -38,7 +37,7 @@ public:
         delete basicshader;
         delete camera;
         delete toolbar;
-        delete ui;
+        delete slideTools;
     }
 
     void Initialize()
@@ -47,8 +46,8 @@ public:
         if (!glfwInit()) {
             return;
         }
-        glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);  // Disable window resizing
-        glfwWindowHint(GLFW_DECORATED, GLFW_FALSE); // Disable window decorations (border/title bar)
+        //glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);  // Disable window resizing
+        //glfwWindowHint(GLFW_DECORATED, GLFW_FALSE); // Disable window decorations (border/title bar)
 
 
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
@@ -81,25 +80,25 @@ public:
         
         glfwMakeContextCurrent(window);
 
-        if(glewInit() != GLEW_OK)
-        {
-            std::cout << "Error!" << std::endl;
-            return ;
+        if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+            std::cout << "Error: GLAD not initialized" << std::endl;
+            glfwTerminate();
+            return;
         }
         glEnable(GL_MULTISAMPLE);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
        
         glEnable(GL_DEPTH_TEST);
-        ColorMode::darkMode = 0;               // Light Mode for default
         // Initialize UI
-        toolbar = new Tools(camera);
-        ui = new UI(camera);
         Cursor::normalCursor = TextureLoader::createCustomCursor("cursor_none.png");
         Cursor::CurrentCursor = Cursor::normalCursor;
         Cursor::ReadyCursor = TextureLoader::createCustomCursor("hand_open.png");
         Cursor::HoldCursor = TextureLoader::createCustomCursor("hand_closed.png");
-        
+
+        toolbar = new ToolBar(camera);
+        slideTools = new SlideTools(camera);
+
     }
 
     
@@ -115,9 +114,6 @@ public:
         float currentFrame = 0;
         float lastFrame = 0;
 
-        glfwSetScrollCallback(window, Camera::ScrollCallback);
-        glfwSetFramebufferSizeCallback(window, Camera::framebuffer_size_callback);
-
 
         while (!glfwWindowShouldClose(window)) {
             Cursor::SetCursor(window);
@@ -127,20 +123,19 @@ public:
             // Updating
             double xpos, ypos;
             glfwGetCursorPos(window, &xpos, &ypos);
-
-            toolbar -> Update(deltaTime, static_cast<float>(xpos), static_cast<float>(ypos));
-
-            ui -> Update(deltaTime, static_cast<float>(xpos), static_cast<float>(ypos));
-            
             lastFrame = currentFrame;
-
-            glClearColor(ColorMode::GetbackgroundColor().x, ColorMode::GetbackgroundColor().y, ColorMode::GetbackgroundColor().z, ColorMode::GetbackgroundColor().w);   
-            glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            slideTools -> Update(xpos, ypos);
+            toolbar -> Update();
             
-            // Drawing 
+            
 
+            glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+            glClearColor(46.f/255.f, 35.f / 255.f, 108.f/ 255.f, 1.0f);
+
+            // Drawing 
             toolbar -> Draw();
-            ui -> Draw();
+            slideTools -> Draw();
 
             
             glfwSwapBuffers(window);

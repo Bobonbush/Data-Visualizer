@@ -13,82 +13,60 @@ set(GLFW_PATH "GLFW")
 set(GLEW_PATH "GLEW")
 set(GLM_PATH "GLM")
 set(FreeType_PATH "FreeType")
+set(GLAD_PATH "GLAD")
 
-
-add_definitions(-DGLEW_STATIC)
 set(Code "Code")
 
 
 
 # Add the GLFW include directory
 include_directories(${GLFW_PATH}/include)
-include_directories(${GLEW_PATH}/include)
+
+include_directories(${GLAD_PATH}/include)
 include_directories(${GLM_PATH})
 include_directories(${FreeType_PATH}/include)
 include_directories(${Code})
 
     # Add the GLFW library directory
 
-link_directories(${GLEW_PATH}/lib/Release/x64)
+
 link_directories(${GLFW_PATH}/lib-vc2022)
 link_directories(${FreeType_PATH}/objs)
 
 
 
 # Add the executable
-add_executable(DATAVISUALIZER Code/main.cpp
-                              Code/Algorithms/shader.cpp
-                              Code/Algorithms/shader.h
-                              Code/Algorithms/Texture.cpp
-                              Code/Algorithms/Texture.h
-                              Code/Camera.cpp
-                              Code/Camera.h
-                              Code/Tool/button.h
-                              Code/Tool/button.cpp
-                              Code/UI/node.cpp
-                              Code/UI/node.h
-                              Code/Tool/Tool.cpp
-                              Code/Tool/Tool.h
-                              Code/Tool/UpdateTool.cpp
-                              Code/Tool/UpdateTool.h
-                              Code/Tool/Search.cpp
-                              Code/Tool/Search.h
-                              Code/Tool/delete.cpp
-                              Code/Tool/delete.h
-                              Code/Tool/NewTool.cpp
-                              Code/Tool/NewTool.h
-                              Code/Tool/algorithmTool.cpp
-                              Code/Tool/algorithmTool.h
-                              Code/UI/darkmode.h
-                              Code/Tool/data.cpp
-                              Code/Tool/data.h
-                              Code/UI/animation.cpp
-                              Code/UI/animation.h
-                              Code/UI/lightbulb.cpp
-                              Code/UI/lightbulb.h
-                              Code/UI/ui.cpp
-                              Code/UI/ui.h
-                              Code/UI/edge.cpp
-                              Code/UI/edge.h
-                              Code/Utils/FileDialog.cpp
-                              Code/Utils/FileDialog.h
-                              Code/Utils/Cursor.cpp
-                              Code/Utils/Cursor.h
-                              Code/Algorithms/graph.cpp
-                              Code/Algorithms/graph.h
-                              Code/Algorithms/AlgorithmManager.cpp
-                              Code/Algorithms/AlgorithmManager.h
-                              Code/UI/Textbox.cpp
-                              Code/UI/Textbox.h)
+add_executable(DATAVISUALIZER   Code/main.cpp
+                                Code/Utils/shader.cpp
+                                Code/Utils/shader.h
+                                Code/Utils/Texture.cpp
+                                Code/Utils/Texture.h
+                                Code/Camera.h
+                                Code/Utils/Cursor.cpp
+                                Code/Utils/Cursor.h
+                                GLAD/src/glad.c
+                                Code/Tools/slideTools.cpp
+                                Code/Tools/slideTools.h
+                                Code/Tools/ToolBar.cpp
+                                Code/Tools/ToolBar.h
+                                Code/Tools/button.cpp
+                                Code/Tools/button.h
+                                Code/Algorithms/AVL.cpp
+                                Code/Algorithms/AVL.h
+                                Code/Algorithms/node.cpp
+                                Code/Algorithms/node.h
+                                Code/Algorithms/234-tree.cpp
+                                Code/Algorithms/234-tree.h
+                                Code/Algorithms/Trie.cpp
+                                Code/Algorithms/Trie.h
+                              )
 
 
 # Link against GLFW and other necessary libraries
 
-target_compile_definitions(DATAVISUALIZER PRIVATE GLEW_STATIC)
+
 target_link_libraries(DATAVISUALIZER glfw3 opengl32)
-target_link_libraries(DATAVISUALIZER glew32s opengl32)
 target_link_libraries(DATAVISUALIZER freetype)
-target_link_libraries(DATAVISUALIZER comdlg32)
 
 
 # Copy the shader files to the build directory
