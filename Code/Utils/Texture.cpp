@@ -10,7 +10,7 @@ TextureLoader::~TextureLoader(){
 std::string TextureLoader::prefix[2] = {"png", "jpg"}; // Add more file formats here
 
 unsigned int TextureLoader :: LoadTexturePNG(char* path){
-        stbi_set_flip_vertically_on_load(true);
+        //stbi_set_flip_vertically_on_load(true);
         unsigned int texture;
         glGenTextures(1, &texture);
         glBindTexture(GL_TEXTURE_2D, texture);

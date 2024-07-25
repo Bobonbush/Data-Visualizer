@@ -7,7 +7,7 @@ SlideTools::SlideTools(Camera * _camera) {
     buttons = std::vector<Button*>();
     glm::vec3 position = glm::vec3(-0.98, 0.75f, 0.0f);
     glm::vec3 size = glm::vec3(0.4f, 1.8f, 0.0f);
-    Button * add = new Button(position, glm::vec3(0.25f, 0.25f, 0.0f), "add.png", camera, "Add Data");
+    Button * add = new Button(position, glm::vec3(0.25f, 0.25f, 0.0f), "add.png", camera, "Add");
     buttons.push_back(add);
     texture = TextureLoader::LoadTexture("slide.png");
     
@@ -15,15 +15,20 @@ SlideTools::SlideTools(Camera * _camera) {
     
     
     position.y -= add ->GetBoxSize().y;
-    /*
-    Button * remove = new Button(position , glm::vec3(0.3f, 0.3f, 0.0f), "res/remove.png", camera);
+    float off_set = 0.05f;
+    position.y -= off_set;
+    position.x += off_set * 0.2f;
+    
+    Button * remove = new Button(position , glm::vec3(0.17f, 0.17f, 0.0f), "cancel.png", camera, "Delete");
     buttons.push_back(remove);
-
+    
     position.y -= add ->GetBoxSize().y;
 
-    Button * edit = new Button(position, glm::vec3(0.3f, 0.3f, 0.0f), "res/edit.png", camera);   
-    buttons.push_back(edit);
+    position.y -= off_set;
 
+    Button * edit = new Button(position, glm::vec3(0.2f, 0.2f, 0.0f), "Create.png", camera, "Update");   
+    buttons.push_back(edit);
+    /*
     position.y -= add ->GetBoxSize().y;
 
     Button * New = new Button(position, glm::vec3(0.3f, 0.3f, 0.0f), "res/new.png", camera);

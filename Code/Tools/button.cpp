@@ -5,7 +5,7 @@ Button::Button(glm::vec3 _position, glm::vec3 _size, char *path,  Camera * _came
     size = _size;
     camera = _camera;
     text = new TextHandler();
-    text->LoadFont("Font/AisyKhadijah.ttf", 48);
+    text->LoadFont("Font/Merriweather-Black.ttf", 32);
     textShader = new Shader("textShader.vs", "textShader.fs");
 
     
@@ -104,10 +104,10 @@ void Button::Draw() {
     textShader -> setMat4("projection", projection);
 
     float offset = 0.005f;
-    float scale =  1.75f;
+    float scale =  1.25f;
 
     if(outline -> isHovered) {
-        scale = 2.0f;
+        scale = 1.75f;
     }
 
     text -> RenderText(textShader, name, position.x + size.x * 1.2f , position.y - size.y /4.f, scale, glm::vec3(0.1f, 0.8f, 0.6f), camera, offset);
