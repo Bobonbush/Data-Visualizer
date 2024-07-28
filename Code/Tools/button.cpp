@@ -21,9 +21,9 @@ Button::Button(glm::vec3 _position, glm::vec3 _size, char *path,  Camera * _came
 
     texture_width *= size.x;
     texture_height *= size.y;
-    outline = new Outline(position, size, camera);
+    outline = new Outline(position, glm::vec3(texture_width, texture_height, 0.f), camera);
     position.y -= GetBoxSize().y /2.f;
-    float offset = GetBoxSize().x / 20.f;
+    float offset = GetBoxSize().x / 40.f;
     position.x -= offset;
     float vertices[] = {
         position.x , position.y + texture_height /2.f, 0.0f,               0.0f, 0.0f,         // top left
@@ -89,6 +89,10 @@ void Button::Draw() {
         model = glm::scale(model, glm::vec3(1.2f, 1.2f, 1.0f));
         model = glm::translate(model, -pivot);
     }
+
+    float radius = 0.005f;
+
+    model = glm::translate(model, glm::vec3(sin(glfwGetTime()) * radius, cos(glfwGetTime()) * radius , 0.0f));
     shader -> use();
     shader -> setMat4("projection", projection);
     shader -> setMat4("view", view);
@@ -107,18 +111,32 @@ void Button::Draw() {
     float scale =  1.25f;
 
     if(outline -> isHovered) {
-        scale = 1.75f;
+        scale = 1.f;
     }
 
-    text -> RenderText(textShader, name, position.x + size.x * 1.2f , position.y - size.y /4.f, scale, glm::vec3(0.1f, 0.8f, 0.6f), camera, offset);
+    float offset_x = camera -> height / camera->width * 0.15f;
+
+    if(outline -> isHovered) {
+        text -> RenderMiddleText(textShader, name, position.x + size.x +  offset_x  , position.y , scale, glm::vec3(221.f / 255.f, 235.f/255.f, 233.f/255.f), camera, offset);
+    }
     //outline -> Draw();
     
     
 }
 
+bool Button::isClicked(float mouseX , float mouseY) {
+    if(MouseWait > 0.f) return false;
+    MouseWait = MouseWaitLimit;
+    return glfwGetMouseButton(glfwGetCurrentContext(), GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS;
+}
 
-void Button::Update(float mouseX , float mouseY) {
+
+bool Button::Update(float deltaTime, float mouseX , float mouseY) {
+    MouseWait -= deltaTime;
     outline -> Update(mouseX, mouseY);
+    
+    return outline -> isHovered && isClicked(mouseX, mouseY);
+    
 }
 
 
@@ -142,7 +160,7 @@ Outline:: Outline(glm::vec3 _position, glm::vec3 _size, Camera * _camera) {
     size = _size;
     camera = _camera;
     shader = new Shader("button.vs", "button.fs");
-    size = glm::vec3(0.35f, 0.3f, 0.0f );
+    //size = glm::vec3(0.25f, 0.35f, 0.0f );
 
     float width = camera -> width;
     float height = camera -> height;
@@ -151,17 +169,14 @@ Outline:: Outline(glm::vec3 _position, glm::vec3 _size, Camera * _camera) {
     texture = TextureLoader::LoadTexture("outline.png");
     
 
-    texture_width = texture_width / width;
-    texture_height = texture_height / height;
-
-    texture_width *= size.x;
-    texture_height *= size.y;
+    texture_width = size.x;
+    texture_height = size.y;
 
     float vertices[] = {
-        position.x, position.y, 0.0f, 0.0f, 0.0f,         // top left
-        position.x + texture_width, position.y, 0.0f, 1.0f, 0.0f, // top right
-        position.x + texture_width, position.y - texture_height, 0.0f, 1.0f, 1.0f,  // bottom right
-        position.x, position.y - texture_height, 0.0f, 0.0f, 1.0f // bottom left
+        position.x, position.y + texture_height/2.f, 0.0f, 0.0f, 0.0f,         // top left
+        position.x + texture_width, position.y + texture_height/2.f, 0.0f, 1.0f, 0.0f, // top right
+        position.x + texture_width, position.y - texture_height/2.f, 0.0f, 1.0f, 1.0f,  // bottom right
+        position.x, position.y - texture_height/2.f, 0.0f, 0.0f, 1.0f // bottom left
     };
 
     size.x = texture_width;

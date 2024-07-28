@@ -23,4 +23,5 @@ class AVL {
     void InOrder();
     void PostOrder(Node* node);
     void PostOrder();
+    bool Empty();
 };

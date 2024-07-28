@@ -9,7 +9,7 @@ class BTree {
         BNode* root;
         int degree;
     public :
-        BTree(glm::vec3 _position, glm::vec3 _size, Camera * _camera, int _degree);
+        BTree(Camera * _camera, int _degree);
         ~BTree();
 
         void Draw();

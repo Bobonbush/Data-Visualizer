@@ -59,6 +59,16 @@ add_executable(DATAVISUALIZER   Code/main.cpp
                                 Code/Algorithms/234-tree.h
                                 Code/Algorithms/Trie.cpp
                                 Code/Algorithms/Trie.h
+                                Code/Interactive/bar.cpp
+                                Code/Interactive/bar.h
+                                Code/Tools/Manager.cpp 
+                                Code/Tools/Manager.h
+                                Code/Algorithms/graph.cpp 
+                                Code/Algorithms/graph.h
+                                Code/Tools/slidebox.cpp
+                                Code/Tools/slidebox.h
+                                Code/Interactive/Scroll.cpp 
+                                Code/Interactive/Scroll.h
                               )
 
 

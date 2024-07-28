@@ -1,3 +1,5 @@
+#ifndef NODE_H
+#define NODE_H
 #include "Utils/Texture.h"
 #include <vector>
 
@@ -82,3 +84,5 @@ class BNode {
         
         
 };
+
+#endif

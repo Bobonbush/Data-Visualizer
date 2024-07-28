@@ -5,9 +5,9 @@ SlideTools::SlideTools(Camera * _camera) {
     shader = new Shader("button.vs", "button.fs");
 
     buttons = std::vector<Button*>();
-    glm::vec3 position = glm::vec3(-0.98, 0.75f, 0.0f);
+    glm::vec3 position = glm::vec3(-0.97, 0.7f, 0.0f);
     glm::vec3 size = glm::vec3(0.4f, 1.8f, 0.0f);
-    Button * add = new Button(position, glm::vec3(0.25f, 0.25f, 0.0f), "add.png", camera, "Add");
+    Button * add = new Button(position, glm::vec3(0.3f, 0.3f, 0.0f), "add.png", camera, "Add");
     buttons.push_back(add);
     texture = TextureLoader::LoadTexture("slide.png");
     
@@ -15,30 +15,52 @@ SlideTools::SlideTools(Camera * _camera) {
     
     
     position.y -= add ->GetBoxSize().y;
-    float off_set = 0.05f;
+    float off_set = 0.2f;
     position.y -= off_set;
-    position.x += off_set * 0.2f;
+    position.x += off_set * 0.1f;
     
-    Button * remove = new Button(position , glm::vec3(0.17f, 0.17f, 0.0f), "cancel.png", camera, "Delete");
+    Button * remove = new Button(position , glm::vec3(0.2f, 0.2f, 0.0f), "cancel.png", camera, "Delete");
     buttons.push_back(remove);
     
     position.y -= add ->GetBoxSize().y;
 
     position.y -= off_set;
 
-    Button * edit = new Button(position, glm::vec3(0.2f, 0.2f, 0.0f), "Create.png", camera, "Update");   
+    Button * edit = new Button(position, glm::vec3(0.22f, 0.22f, 0.0f), "Create.png", camera, "Update");   
+    
+    Button* Search = new Button(position, glm::vec3(0.22f, 0.22f, 0.0f), "search.png", camera, "Search");
     buttons.push_back(edit);
-    /*
     position.y -= add ->GetBoxSize().y;
 
-    Button * New = new Button(position, glm::vec3(0.3f, 0.3f, 0.0f), "res/new.png", camera);
+    position.y -= off_set;
+
+    Button * New = new Button(position, glm::vec3(0.22f, 0.22f, 0.0f), "shuttle.png", camera, "Initialize");
+    buttons.push_back(New);
+    
+    position.y -= add -> GetBoxSize().y;
+    position.y -= off_set;
+    position.x -= off_set * 0.05f;
+
+    Button * Algorithm = new Button(position, glm::vec3(0.3f, 0.35f, 0.0f), "algorithm.png", camera, "Algorithm");
+    buttons.push_back(Algorithm);
+    slot.push_back(buttons);
+
+    // use for graph
+
+    buttons.clear();          
+    buttons.push_back(add);
+    buttons.push_back(remove);
+    buttons.push_back(Search);
     buttons.push_back(New);
 
-    position.y -= add -> GetBoxSize().y;
+    // Use for trees and hash
+    slot.push_back(buttons);
 
-    Button * Algorithm = new Button(position, glm::vec3(0.3f, 0.3f, 0.0f), "res/algorithm.png", camera);
-    buttons.push_back(Algorithm);
-    */
+    buttons.clear();
+    buttons.push_back(add);
+    buttons.push_back(remove);
+    buttons.push_back(New);
+    buttons = slot[1];
     float width = camera -> width;
     float height = camera -> height;
     float texture_width = size.x;
@@ -81,8 +103,10 @@ SlideTools::SlideTools(Camera * _camera) {
 }
 
 SlideTools::~SlideTools() {
-    for (int i = 0; i < buttons.size(); i++) {
-        delete buttons[i];
+    for(int i = 0; i < slot.size(); i++) {
+        for(int j = 0; j < slot[i].size(); j++) {
+            delete slot[i][j];
+        }
     }
     delete shader;
 }
@@ -109,8 +133,16 @@ void SlideTools::Draw() {
 
 }
 
-void SlideTools::Update(float MouseX, float MouseY) {
-    for (int i = 0; i < buttons.size(); i++) {
-        buttons[i] -> Update(MouseX, MouseY);
+void SlideTools::Update(int Algo, float deltaTime, float MouseX, float MouseY) {
+    
+    if(Algo == 3) {
+        buttons = slot[0];
+    } else  {
+        buttons = slot[1];
     }
+    
+    for (int i = 0; i < buttons.size(); i++) {
+        buttons[i] -> Update(deltaTime, MouseX, MouseY);
+    }
+    
 }

@@ -15,6 +15,9 @@ class Outline {
         
         unsigned int texture;
 
+
+        
+
         
 
 
@@ -28,6 +31,7 @@ class Outline {
         void Update(float MouseX , float MouseY);
         bool isInside(float MouseX , float MouseY);
         
+        
 };
 
 
@@ -39,7 +43,7 @@ class Button {
         unsigned int EBO;
         unsigned int texture;
         TextHandler * text;
-        
+        bool clicked = false;
         std::string name;
 
         
@@ -50,6 +54,9 @@ class Button {
         glm::vec3 position;
         glm::vec3 size;
         glm::vec3 pivot;
+    protected :
+        float MouseWait = 0.f;
+        float MouseWaitLimit = 0.05f;
         
         
 
@@ -62,8 +69,9 @@ class Button {
         ~Button();
 
         void Draw();
-        void Update(float MouseX , float MouseY);
+        bool Update(float deltaTime, float MouseX , float MouseY);
         glm::vec3 GetBoxSize();
+        bool isClicked(float MouseX , float MouseY);
     
 };
 

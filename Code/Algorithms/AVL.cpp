@@ -108,7 +108,7 @@ void AVL::Draw() {
 }
 
 void AVL::Update(float mouseX, float mouseY) {
-    if(root != nullptr) {
+    if(root) {
         root -> Update(mouseX, mouseY);
     }
 }
@@ -135,6 +135,10 @@ void AVL::PreOrder(Node* node) {
         PreOrder(node -> left);
         PreOrder(node -> right);
     }
+}
+
+bool AVL::Empty() {
+    return root == nullptr;
 }
 
 void AVL::PreOrder() {

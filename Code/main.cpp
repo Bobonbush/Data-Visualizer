@@ -46,7 +46,7 @@ public:
         if (!glfwInit()) {
             return;
         }
-        //glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);  // Disable window resizing
+        glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);  // Disable window resizing
         //glfwWindowHint(GLFW_DECORATED, GLFW_FALSE); // Disable window decorations (border/title bar)
 
 
@@ -70,6 +70,7 @@ public:
         image[0].pixels = stbi_load("icon.png", &image[0].width, &image[0].height, 0, 4); //rgba channels
         glfwSetWindowIcon(window, 1, image);
         stbi_image_free(image[0].pixels);
+        
 
         
         
@@ -90,6 +91,7 @@ public:
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
        
         glEnable(GL_DEPTH_TEST);
+
         // Initialize UI
         Cursor::normalCursor = TextureLoader::createCustomCursor("cursor_none.png");
         Cursor::CurrentCursor = Cursor::normalCursor;
@@ -116,6 +118,7 @@ public:
 
 
         while (!glfwWindowShouldClose(window)) {
+            
             Cursor::SetCursor(window);
             currentFrame = glfwGetTime();
             float deltaTime = currentFrame - lastFrame;
@@ -124,14 +127,14 @@ public:
             double xpos, ypos;
             glfwGetCursorPos(window, &xpos, &ypos);
             lastFrame = currentFrame;
-            slideTools -> Update(xpos, ypos);
-            toolbar -> Update();
             
+            toolbar -> Update(deltaTime , xpos, ypos);
+            slideTools -> Update(toolbar -> Algo, deltaTime, xpos, ypos);
             
 
             glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-            glClearColor(46.f/255.f, 35.f / 255.f, 108.f/ 255.f, 1.0f);
+            glClearColor(14.f/255.f, 41.f / 255.f, 84.f/ 255.f, 1.0f);
 
             // Drawing 
             toolbar -> Draw();
@@ -140,6 +143,7 @@ public:
             
             glfwSwapBuffers(window);
             glfwPollEvents();
+            
         }
 
     }

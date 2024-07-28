@@ -33,6 +33,9 @@ Trie::Trie(Camera * _camera) {
     root = new TrieNode(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), camera, "");
 }
 
+Trie :: ~Trie() {
+    delete root;
+}
 void Trie::insert(std::string word) {
     TrieNode* current = root;
     for(int i = 0 ; i <= (int) word.size()-1 ; i++ ) {
@@ -78,4 +81,12 @@ bool Trie::search(std::string word) {
         current = current->_next[word[i]];
     }
     return current->cnt_Leaf[word[(int)word.size()-1]] > 0;
+}
+
+void Trie::Update() {
+    
+}
+
+void Trie::Draw() {
+    
 }

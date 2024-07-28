@@ -15,6 +15,37 @@ Node::Node(glm::vec3 _position, glm::vec3 _size, Camera * _camera, int _value) {
     float height = camera -> height;
     float texture_width = TextureLoader::GetTextureSize("node.png").first;
     float texture_height = TextureLoader::GetTextureSize("node.png").second;
+    texture = TextureLoader::LoadTexture("node.png");
+    texture_width = texture_width * size.x;
+    texture_height = texture_height * size.y;
+
+    float vertices[] = {
+        position.x + texture_width /2.f, position.y + texture_height/2.f, 0.0f, 1.0f, 1.0f, // top right
+        position.x + texture_width / 2.f, position.y - texture_height /2.f, 0.0f, 1.0f, 0.0f, // bottom right
+        position.x - texture_width / 2.f , position.y - texture_height/2.f, 0.0f, 0.0f, 0.0f, // bottom left
+        position.x - texture_width / 2.f, position.y + texture_height/2.f, 0.0f, 0.0f, 1.0f // top left
+    };
+
+    size.x = texture_width;
+    size.y = texture_height;
+
+    unsigned int indices[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+
+    glGenVertexArrays(1, &VAO);
+    glGenBuffers(1, &VBO);
+    glGenBuffers(1, &EBO);
+
+    glBindVertexArray(VAO);
+
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_DYNAMIC_DRAW);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
     
 }
 
@@ -83,6 +114,13 @@ void Node::Draw() {
     glBindVertexArray(VAO);
 
     glBindTexture(GL_TEXTURE_2D, texture);
+
+    float vertices[] = {
+        position.x + size.x /2.f, position.y + size.y/2.f, 0.0f, 1.0f, 1.0f, // top right
+        position.x + size.x / 2.f, position.y - size.y /2.f, 0.0f, 1.0f, 0.0f, // bottom right
+        position.x - size.x / 2.f , position.y - size.y/2.f, 0.0f, 0.0f, 0.0f, // bottom left
+        position.x - size.x / 2.f, position.y + size.y/2.f, 0.0f, 0.0f, 1.0f // top left
+    };
 
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);

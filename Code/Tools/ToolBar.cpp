@@ -1,10 +1,20 @@
+#ifndef TOOLBAR_CPP
+#define TOOLBAR_CPP
 #include "ToolBar.h"
-
 
 ToolBar ::ToolBar(Camera * _camera) {
     camera = _camera;
     shader = new Shader("button.vs", "button.fs");
+    manager = new Manager(camera);
+    Algo = 0;
+    Button* reverse = new Button(glm::vec3(0.92f, 0.75f, 0.0f), glm::vec3(0.2f, 0.2f, 0.0f), "restart.png", camera, "");
+    button.push_back(reverse);
     
+    Button * ok = new Button(glm::vec3(-0.55f, 0.94f, 0.0f), glm::vec3(1.4f, 1.75f, 0.0f), "ok.png", camera, "");
+    
+    button.push_back(ok);
+
+    buttonSlot.push_back(button);
     float vertices[] {
         1.f, 1.f, 0.f, 1.f, 1.f, // top right
         1.f, 0.8f, 0.f, 1.f, 0.f, // bottom right
@@ -41,6 +51,12 @@ ToolBar ::ToolBar(Camera * _camera) {
 
 
     outline_Texture = TextureLoader::LoadTexture("UpperBar.png");
+
+    Bar * bar = new Bar(camera, glm::vec3(-0.97f, 0.9f, 0.0f), glm::vec3(0.001f, 0.0015f, 0.0f));
+    bars.push_back(bar);
+    Barslot.push_back(bars);
+
+
 }
 
 ToolBar ::~ToolBar() {
@@ -48,9 +64,30 @@ ToolBar ::~ToolBar() {
     glDeleteBuffers(1, &VBO);
     glDeleteBuffers(1, &EBO);
     delete shader;
+
+    for(int i = 0 ; i < (int)Barslot.size() ; i++) {
+        for(int j = 0; j < (int)Barslot[i].size(); j++) {
+            delete Barslot[i][j];
+        }
+    }
+    for(int i = 0 ; i < (int)buttonSlot.size() ; i++) {
+        for(int j = 0; j < (int)buttonSlot[i].size(); j++) {
+            delete buttonSlot[i][j];
+        }
+    }
+    delete manager;
 }
 
 void ToolBar ::Draw() {
+    
+    //manager -> Draw();
+    for(int i = 0; i < bars.size(); i++) {
+        bars[i] -> Draw();
+    }
+
+    for(int i = 0 ; i< button.size(); i++) {
+        button[i] -> Draw();
+    }
     
     shader -> use();
     glm::mat4 model = glm::mat4(1.0f);
@@ -69,8 +106,20 @@ void ToolBar ::Draw() {
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
 
+    manager -> Draw();
+    
+
+
 }
 
-void ToolBar ::Update() {
-    
+void ToolBar ::Update(float deltaTime, float MouseX, float MouseY) {
+    for (int i = 0; i < bars.size(); i++) {
+        bars[i] -> Update();
+    }
+    for(int i = 0 ; i < button.size(); i++) {
+        button[i] -> Update(deltaTime, MouseX, MouseY);
+    }
+    manager -> Update(Algo, deltaTime, MouseX, MouseY);
 }
+
+#endif

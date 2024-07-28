@@ -4,7 +4,8 @@
 #include <vector>
 #include <iostream>
 #include "Button.h"
-
+#include "Interactive/Bar.h"
+#include "Manager.h"
 
 class ToolBar {
     private: 
@@ -12,15 +13,21 @@ class ToolBar {
         unsigned int VBO;
         unsigned int EBO;
         unsigned int outline_Texture;
+        
         Shader * shader;
         Camera * camera;
-        std::vector <Button*> buttons;
+        std::vector<std::vector<Bar*>>Barslot;
+        std::vector  <Bar*> bars;
+        std::vector <Button*> button;
+        std::vector <std::vector <Button*>> buttonSlot;
+        Manager * manager;
     public : 
+        int Algo;
         ToolBar(Camera * _camera);
         ~ToolBar();
 
         void Draw();
-        void Update();
+        void Update(float deltaTime, float MouseX , float MouseY);
 
 };
 

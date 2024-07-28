@@ -31,6 +31,8 @@ class Trie {
     public : 
     Trie(Camera *_camera);
     ~Trie();
+    void Update();
+    void Draw();
     void insert(std::string word);
     bool search(std::string word);
     void Delete(std::string word);

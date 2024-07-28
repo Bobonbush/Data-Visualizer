@@ -1,6 +1,6 @@
 #include "234-tree.h"
 
-BTree::BTree(glm::vec3 _position, glm::vec3 , Camera * _camera, int _degree) {
+BTree::BTree(Camera * _camera, int _degree) {
     root = nullptr;
     camera = _camera;
     degree = _degree;
