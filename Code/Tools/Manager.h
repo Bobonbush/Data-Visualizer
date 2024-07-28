@@ -3,6 +3,7 @@
 #include "Algorithms/AVL.h"
 #include "Algorithms/Trie.h"
 #include "slidebox.h"
+#include "Interactive/Scroll.h"
 
 class Manager {
     private :
@@ -45,6 +46,8 @@ class Manager {
 
     float MouseWait = 0.f;
     float MouseWaitLimit = 0.08f;
+
+    Scroll * animationBar;
 
     std::string currentData = "AVL Tree";
     

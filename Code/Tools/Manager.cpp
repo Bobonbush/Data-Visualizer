@@ -12,7 +12,7 @@ Manager::Manager(Camera * _camera) {
 
     scroll = new Button(glm::vec3(0.95f, -0.9, 0.f), glm::vec3(0.3f, 0.3f, 0.f),  "greater.png", _camera, "");
 
-
+    animationBar = new Scroll(_camera);
 
     
     position.y += offset;
@@ -130,6 +130,8 @@ void Manager::Update(int &Algo, float deltaTime , float MouseX , float MouseY) {
     if(slide ) {
         Sliding ^= 1;
     }
+
+    animationBar -> Update(MouseX, MouseY);
 }
 
 void Manager::Draw() {
@@ -159,6 +161,8 @@ void Manager::Draw() {
         textShader -> setMat4("projection", glm::mat4(1.0f));
         //textHandler -> RenderText(textShader, currentData, 1.f, -0.97f, 2.f, glm::vec3(75.f/255.f, 213.f/255.f, 226.f/255.f) , camera, offset);
     }
+
+    animationBar -> Draw();
 
     
 

@@ -38,25 +38,29 @@ class Outline {
 
 class Button {
     private : 
-        unsigned int  VAO;
         unsigned int VBO;
         unsigned int EBO;
-        unsigned int texture;
         TextHandler * text;
         bool clicked = false;
         std::string name;
-
-        
-        Shader * shader;
         Shader* textShader;
+        
+        
+    protected :
+        unsigned int  VAO;
+        float MouseWait = 0.f;
+        float MouseWaitLimit = 0.05f;
+
+        Shader * shader;
+        
         Camera * camera;
         Outline * outline;
         glm::vec3 position;
         glm::vec3 size;
         glm::vec3 pivot;
-    protected :
-        float MouseWait = 0.f;
-        float MouseWaitLimit = 0.05f;
+        unsigned int texture;
+
+        
         
         
 
@@ -68,7 +72,7 @@ class Button {
         Button(glm::vec3 _position, glm::vec3 _size, char *path,  Camera * _camera, std::string _text);
         ~Button();
 
-        void Draw();
+        virtual void Draw();
         bool Update(float deltaTime, float MouseX , float MouseY);
         glm::vec3 GetBoxSize();
         bool isClicked(float MouseX , float MouseY);
