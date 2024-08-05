@@ -4,8 +4,12 @@
 class AVL {
     private : 
     Node * root;
+    Camera * camera;
+    int totalNodes = 0;
+    float offsetx = 0.05f;
+    float offsety = 0.05;
     public :
-    AVL();
+    AVL(Camera* _camera);
     ~AVL();
     Node* insert(Node* node, int value);
     void insert(int value);
@@ -13,7 +17,7 @@ class AVL {
     void deleteNode(int value);
     Node* minValueNode(Node* node);
     void Draw();
-    void Update(float MouseX , float MouseY);
+    void Update(float deltaTime, float MouseX , float MouseY);
     Node* search(Node* node, int value);
     void search(int value);
 

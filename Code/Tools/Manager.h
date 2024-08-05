@@ -16,10 +16,14 @@ class Manager {
     4 is Heap
     5 is HashTable
     */
-    float AnimationSpeed = 0.f;             // Maximum 1.f
+    float AnimationSpeed = 1.f;             // Maximum 1.f
     float AnimationCountDown = 0.f;
     int currentAction = 0;
     bool Sliding = 0;
+
+    float AnimationConst = 0.01f;
+
+
     /*
     0 is Insert
     1 is Delete

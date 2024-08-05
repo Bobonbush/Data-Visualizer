@@ -30,6 +30,7 @@ Button::Button(glm::vec3 _position, glm::vec3 _size, char *path,  Camera * _came
         position.x + texture_width, position.y + texture_height/2.f, 0.0f, 1.0f, 0.0f, // top right
         position.x + texture_width, position.y - texture_height/2.f, 0.0f, 1.0f, 1.0f,  // bottom right
         position.x, position.y - texture_height/2.f, 0.0f,                 0.0f, 1.0f // bottom left
+        
     };
 
     pivot = glm::vec3(position.x + texture_width / 2.f, position.y - texture_height / 2.f, 0.0f);
@@ -84,7 +85,7 @@ void Button::Draw() {
     glm::mat4 model = glm::mat4(1.0f);
     glm::mat4 projection = glm::mat4(1.0f);
     glm::mat4 view = glm::mat4(1.0f);
-    if(outline -> isHovered) {
+    if(outline -> isHovered || isChosen) {
         model = glm::translate(model, pivot);
         model = glm::scale(model, glm::vec3(1.2f, 1.2f, 1.0f));
         model = glm::translate(model, -pivot);
@@ -134,6 +135,7 @@ bool Button::isClicked(float mouseX , float mouseY) {
 bool Button::Update(float deltaTime, float mouseX , float mouseY) {
     MouseWait -= deltaTime;
     outline -> Update(mouseX, mouseY);
+
     
     return outline -> isHovered && isClicked(mouseX, mouseY);
     

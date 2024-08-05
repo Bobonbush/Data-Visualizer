@@ -19,7 +19,7 @@ void BTree::Draw() {
 
 void BTree::Update(float MouseX , float MouseY) {
     if(root != nullptr) {
-        root -> Update(MouseX, MouseY);
+        //root -> Update(MouseX, MouseY);
     }
 }
 

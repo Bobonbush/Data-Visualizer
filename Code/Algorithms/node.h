@@ -13,6 +13,9 @@ class Node {
         Shader* shader;
         Camera* camera;
         unsigned int texture;
+        Shader * textShader; 
+        TextHandler * textHandler;
+        std::string text;
     public :
 
         Node* left;
@@ -22,13 +25,15 @@ class Node {
         int height;
 
         glm::vec3 position;
+        glm::vec3 targetPosition;
         glm::vec3 size;
         bool isHovered = false;
         Node(glm::vec3 _position, glm::vec3 _size, Camera* _camera , int _value);
         ~Node();
-
+        
+        void RecalculatePosition(float offsetx , float offsety);
         void Draw();
-        void Update(float MouseX, float MouseY);
+        void Update(float deltaTime, float MouseX, float MouseY);
         bool isInside(float MouseX, float MouseY);
         int getHeight(Node* node);
         int getBalance(Node* node);
@@ -65,7 +70,7 @@ class BNode {
         ~BNode();
 
         void Draw();
-        void Update(float MouseX , float MouseY);
+        void Update(float deltaTime, float MouseX , float MouseY);
         bool isInside(float MouseX , float MouseY);
         void traverse();
         BNode* search(int value);

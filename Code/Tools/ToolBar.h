@@ -13,6 +13,8 @@ class ToolBar {
         unsigned int VBO;
         unsigned int EBO;
         unsigned int outline_Texture;
+
+        int status = 0;
         
         Shader * shader;
         Camera * camera;
@@ -27,7 +29,7 @@ class ToolBar {
         ~ToolBar();
 
         void Draw();
-        void Update(float deltaTime, float MouseX , float MouseY);
+        void Update(int _status, float deltaTime, float MouseX , float MouseY);
 
 };
 

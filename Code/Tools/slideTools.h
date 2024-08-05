@@ -18,6 +18,18 @@ class SlideTools {
         
         
     public :
+        int status = 0;
+        /*
+        status = 0 : Initialize        // By default -> random or input size or read from file
+        status = 1 : add        // a bar
+        status = 2 : remove     // a bar
+        status = 3 : edit       // two bars
+        status = 4 : search     // a bar
+        status = 5 : getTop     // auto select
+        status = 6 : algorithm   // 2 algorithms
+        status = 7 : size       // auto select
+
+        */
         SlideTools(Camera * _camera);
         ~SlideTools();
 

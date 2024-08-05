@@ -7,14 +7,7 @@ ToolBar ::ToolBar(Camera * _camera) {
     shader = new Shader("button.vs", "button.fs");
     manager = new Manager(camera);
     Algo = 0;
-    Button* reverse = new Button(glm::vec3(0.92f, 0.75f, 0.0f), glm::vec3(0.2f, 0.2f, 0.0f), "restart.png", camera, "");
-    button.push_back(reverse);
     
-    Button * ok = new Button(glm::vec3(-0.55f, 0.94f, 0.0f), glm::vec3(1.4f, 1.75f, 0.0f), "ok.png", camera, "");
-    
-    button.push_back(ok);
-
-    buttonSlot.push_back(button);
     float vertices[] {
         1.f, 1.f, 0.f, 1.f, 1.f, // top right
         1.f, 0.8f, 0.f, 1.f, 0.f, // bottom right
@@ -52,11 +45,59 @@ ToolBar ::ToolBar(Camera * _camera) {
 
     outline_Texture = TextureLoader::LoadTexture("UpperBar.png");
 
-    Bar * bar = new Bar(camera, glm::vec3(-0.97f, 0.9f, 0.0f), glm::vec3(0.001f, 0.0015f, 0.0f));
+    glm::vec3 position = glm::vec3(-0.97f, 0.9f, 0.0f);
+
+    Bar * bar = new Bar(camera, position, glm::vec3(0.001f, 0.0015f, 0.0f));
     bars.push_back(bar);
+
+    float offset_x = -0.55 + 0.97;
+
+    position.x += offset_x;
+    Bar * bar2 = new Bar(camera, position, glm::vec3(0.001f, 0.0015f, 0.0f));
+    bars.push_back(bar2);
+
+    position.x += offset_x;
+    position.y += 0.04f;
+    Button * ok = new Button(position, glm::vec3(1.4f, 1.75f, 0.0f), "ok.png", camera, "");
+    button.push_back(ok);
+    
+   
+    Button* reverse = new Button(glm::vec3(0.92f, 0.75f, 0.0f), glm::vec3(0.2f, 0.2f, 0.0f), "restart.png", camera, "");
+    button.push_back(reverse);
+    
+    
+    
+    buttonSlot.push_back(button);
+    button.clear();
+    Barslot.push_back(bars);
+    bars.clear();
+
+    bars.push_back(bar);
+    position.x -= offset_x;
+    Button * ok2 = new Button(position, glm::vec3(1.4f, 1.75f, 0.0f), "ok.png", camera, "");
+    button.push_back(ok2);
+    button.push_back(reverse);
+    buttonSlot.push_back(button);
+    button.clear();
+    
     Barslot.push_back(bars);
 
+    button.push_back(reverse);
+    position.y += 0.07f;
+    position.x += offset_x /3.f;
+    Button * surprise_box = new Button(position, glm::vec3(0.35f, 0.35f, 0.0f), "surprise-box.png", camera, "");
+    position.y -= 0.02;
+    position.x =(2.f - (1.f + position.x)) - 1.f;
+    position.x -= offset_x / 4.f;
+    Button * fromComputer = new Button(position, glm::vec3(0.3f, 0.3f, 0.0f), "Computer.png", camera, "");
+    button.push_back(fromComputer);
+    button.push_back(surprise_box);
+    buttonSlot.push_back(button);
+    button.clear();
 
+    button = buttonSlot[0];
+    bars = Barslot[0];
+    
 }
 
 ToolBar ::~ToolBar() {
@@ -81,6 +122,8 @@ ToolBar ::~ToolBar() {
 void ToolBar ::Draw() {
     
     //manager -> Draw();
+    manager -> Draw();
+    
     for(int i = 0; i < bars.size(); i++) {
         bars[i] -> Draw();
     }
@@ -106,20 +149,32 @@ void ToolBar ::Draw() {
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
 
-    manager -> Draw();
     
 
 
 }
 
-void ToolBar ::Update(float deltaTime, float MouseX, float MouseY) {
+void ToolBar ::Update(int _status, float deltaTime, float MouseX, float MouseY) {
+    manager -> Update(Algo, deltaTime, MouseX, MouseY);
+    status = _status;
+    if(status == 3) {
+        button = buttonSlot[0];
+        bars = Barslot[0];
+    } else if(status == 1 || status == 2 || status == 3 || status == 4) {
+        button = buttonSlot[1];
+        bars = Barslot[1];
+    }else if(status == 0) {
+        bars.clear();
+        button = buttonSlot[2];
+    }
+
     for (int i = 0; i < bars.size(); i++) {
-        bars[i] -> Update();
+        bars[i] -> Update(deltaTime, MouseX , MouseY);
     }
     for(int i = 0 ; i < button.size(); i++) {
         button[i] -> Update(deltaTime, MouseX, MouseY);
     }
-    manager -> Update(Algo, deltaTime, MouseX, MouseY);
+    
 }
 
 #endif

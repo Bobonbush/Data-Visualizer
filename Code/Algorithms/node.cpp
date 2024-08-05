@@ -9,42 +9,66 @@ Node::Node(glm::vec3 _position, glm::vec3 _size, Camera * _camera, int _value) {
     position = _position;
     size = _size;
     camera = _camera;
-    shader = new Shader("button.vs", "button.fs");
+    shader = new Shader("Button.vs", "Button.fs");
 
     float width = camera -> width;
     float height = camera -> height;
     float texture_width = TextureLoader::GetTextureSize("node.png").first;
     float texture_height = TextureLoader::GetTextureSize("node.png").second;
     texture = TextureLoader::LoadTexture("node.png");
-    texture_width = texture_width * size.x;
+    texture_width = texture_width / width;
+    texture_height = texture_height / height;
+    
+    texture_width  = texture_width  * size.x;
     texture_height = texture_height * size.y;
 
+    int temp = value;
+    while(temp > 0 ) {
+        text.push_back(temp % 10 + '0');
+        temp /= 10;
+    }
+    std::reverse(text.begin(), text.end());
+
+    textHandler = new TextHandler();
+    textHandler->LoadFont("Font/AisyKhadijah.ttf", 24);
+    textShader = new Shader("textShader.vs", "textShader.fs");
+
     float vertices[] = {
-        position.x + texture_width /2.f, position.y + texture_height/2.f, 0.0f, 1.0f, 1.0f, // top right
+        position.x - texture_width /2.f, position.y + texture_height/2.f, 0.0f, 1.0f, 1.0f, // top right
         position.x + texture_width / 2.f, position.y - texture_height /2.f, 0.0f, 1.0f, 0.0f, // bottom right
-        position.x - texture_width / 2.f , position.y - texture_height/2.f, 0.0f, 0.0f, 0.0f, // bottom left
+        position.x + texture_width / 2.f , position.y - texture_height/2.f, 0.0f, 0.0f, 0.0f, // bottom left
         position.x - texture_width / 2.f, position.y + texture_height/2.f, 0.0f, 0.0f, 1.0f // top left
     };
-
     size.x = texture_width;
     size.y = texture_height;
 
     unsigned int indices[] = {
-        0, 1, 3,
-        1, 2, 3
+        0, 1, 2,
+        2, 3, 0
     };
 
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
-    glGenBuffers(1, &EBO);
 
     glBindVertexArray(VAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_DYNAMIC_DRAW);
 
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+
+    glEnableVertexAttribArray(1);
+
+    glGenBuffers(1, &EBO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
 
     
 }
@@ -54,6 +78,22 @@ Node::~Node() {
     delete right;
 }
 
+
+void Node::RecalculatePosition(float offsetx, float offsety) {
+    if(left != nullptr) {
+        left -> RecalculatePosition(offsetx, offsety);
+        left -> targetPosition.x = targetPosition .x - offsetx;
+        left -> targetPosition.y = targetPosition.y - offsety;
+
+        //std::cout << left -> targetPosition.x << " " << left -> targetPosition.y << '\n';
+        //std::cout << "YES" << '\n';
+    }
+    if(right != nullptr) {
+        right -> RecalculatePosition(offsetx, offsety);
+        right -> targetPosition.x = targetPosition.x + offsetx;
+        right -> targetPosition.y = targetPosition.y - offsety;
+    }
+}
 
 int Node::getHeight(Node* node) {
     if(node == nullptr) {
@@ -97,11 +137,42 @@ Node* Node::leftRotate(Node* x) {
 }
 
 
-void Node::Update(float mouseX, float mouseY) {
+void Node::Update(float deltaTime, float mouseX, float mouseY) {
+    
+    textShader -> use();
+    textShader -> setMat4("projection", glm::mat4(1.0f));
+    if(left != nullptr) {
+        left -> Update(deltaTime, mouseX, mouseY);
+    }
+    if(right != nullptr) {
+        right -> Update(deltaTime, mouseX, mouseY);
+    }
     isHovered = isInside(mouseX, mouseY);
+    float offset_x = targetPosition.x - position.x;
+    float offset_y = targetPosition.y - position.y;
+
+    //std::cout << offset_x << " " << offset_y << '\n';
+    if(offset_x < 0.00001f && offset_x > -0.00001f) {
+        offset_x = 0.f;
+    }
+    if(offset_y < 0.00001f && offset_y > -0.00001f) {
+        offset_y = 0.f;
+    }
+    float speed = 10.f;
+    position.x += offset_x * speed * deltaTime;
+    position.y += offset_y * speed * deltaTime;
+    
 }
 
 void Node::Draw() {
+    if(left != nullptr) {
+        left -> Draw();
+    }
+    if(right != nullptr) {
+        right -> Draw();
+    }
+    float offset = 0.0005f;
+    textHandler -> RenderMiddleText(textShader, text, position.x, position.y, 1.5f, glm::vec3(0.1f, 0.2f, 0.6f),camera, offset);
 
     shader -> use();
     glm::mat4 model = glm::mat4(1.0f);
@@ -110,20 +181,36 @@ void Node::Draw() {
 
     shader -> setMat4("projection", projection);
     shader -> setMat4("view", view);
-    shader -> setMat4("model", glm::mat4(1.0f));
-    glBindVertexArray(VAO);
-
-    glBindTexture(GL_TEXTURE_2D, texture);
-
+    shader -> setMat4("model", model);
+    float texutre_width = size.x;
+    float texture_height = size.y;
+    
+    
     float vertices[] = {
-        position.x + size.x /2.f, position.y + size.y/2.f, 0.0f, 1.0f, 1.0f, // top right
-        position.x + size.x / 2.f, position.y - size.y /2.f, 0.0f, 1.0f, 0.0f, // bottom right
-        position.x - size.x / 2.f , position.y - size.y/2.f, 0.0f, 0.0f, 0.0f, // bottom left
-        position.x - size.x / 2.f, position.y + size.y/2.f, 0.0f, 0.0f, 1.0f // top left
+        position.x - texutre_width /2.f, position.y + texture_height/2.f, 0.0f, 1.0f, 1.0f, // top right
+        position.x + texutre_width / 2.f, position.y + texture_height /2.f, 0.0f, 1.0f, 0.0f, // bottom right
+        position.x + texutre_width / 2.f , position.y - texture_height/2.f, 0.0f, 0.0f, 0.0f, // bottom left
+        position.x - texutre_width / 2.f, position.y - texture_height/2.f, 0.0f, 0.0f, 1.0f // top left
     };
 
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
+    
+    
+    glBindVertexArray(VAO);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    
+    
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+    
+    
+
+
+
 
 }
 
@@ -191,7 +278,7 @@ void BNode::Draw() {
     }
 }
 
-void BNode::Update(float mouseX, float mouseY) {
+void BNode::Update(float deltaTime, float mouseX, float mouseY) {
     isHovered = isInside(mouseX, mouseY);
 }
 

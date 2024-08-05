@@ -14,6 +14,8 @@ Manager::Manager(Camera * _camera) {
 
     animationBar = new Scroll(_camera);
 
+    //randomButton = new Button(glm::vec3(0.95f, 0.9f, 0.f), glm::vec3(0.3f, 0.3f, 0.f), "node.png", _camera, "Random");
+
     
     position.y += offset;
     
@@ -69,7 +71,13 @@ Manager::~Manager() {
 
 void Manager::Initialize(int degree) {
     if(currentAlgo == 0) {
-        avl = new AVL();
+        avl = new AVL(camera);
+        avl->insert(50);
+        avl -> insert(40);
+        avl -> insert(45);
+        avl -> insert(60);
+        avl -> insert(30);
+        avl -> insert(70);
     } else if(currentAlgo == 1) {
         //bTree = new BTree(camera, degree);
     } else if(currentAlgo == 2) {
@@ -93,7 +101,8 @@ void Manager::Update(int &Algo, float deltaTime , float MouseX , float MouseY) {
     if(currentAlgo == 0) {
         
         noData = avl -> Empty();
-        avl -> Update(MouseX , MouseY);
+        avl -> Update(deltaTime, MouseX , MouseY);
+        //randomButton -> Update(deltaTime, MouseX, MouseY);
         
     } else if(currentAlgo == 1) {
         //bTree -> Update(MouseX, MouseY);
@@ -131,12 +140,13 @@ void Manager::Update(int &Algo, float deltaTime , float MouseX , float MouseY) {
         Sliding ^= 1;
     }
 
-    animationBar -> Update(MouseX, MouseY);
+    AnimationConst =  animationBar -> Update(MouseX, MouseY);
 }
 
 void Manager::Draw() {
     if(currentAlgo == 0) {
         avl -> Draw();
+        //randomButton -> Draw();
     } else if(currentAlgo == 1) {
         //bTree -> Draw();
     } else if(currentAlgo == 2) {

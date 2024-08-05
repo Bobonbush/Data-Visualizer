@@ -45,11 +45,10 @@ class Button {
         std::string name;
         Shader* textShader;
         
-        
     protected :
         unsigned int  VAO;
         float MouseWait = 0.f;
-        float MouseWaitLimit = 0.05f;
+        float MouseWaitLimit = 0.09f;
 
         Shader * shader;
         
@@ -65,6 +64,8 @@ class Button {
         
 
     public:
+        bool isChosen = false;
+        
 
         
 
@@ -73,7 +74,7 @@ class Button {
         ~Button();
 
         virtual void Draw();
-        bool Update(float deltaTime, float MouseX , float MouseY);
+        virtual bool Update(float deltaTime, float MouseX , float MouseY);
         glm::vec3 GetBoxSize();
         bool isClicked(float MouseX , float MouseY);
     

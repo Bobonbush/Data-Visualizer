@@ -3,27 +3,26 @@
 
 
 
-class StaticButton{
+class StaticButton : public Button {
     unsigned int VAO;
     unsigned int VBO;
     unsigned int EBO;
     Shader *shader;
     Camera *camera;
     unsigned int texture;
-    glm::vec3 position;
-    glm::vec3 size;
     std::string name;
 
     glm::vec3 pivot;
-
-    Outline * outline;
-
+    bool isHovered = false;
     public:
+    glm::vec3 position;
+    glm::vec3 size;
     StaticButton(glm::vec3 _position, glm::vec3 _size, char* path, Camera * _camera, std::string _name);
     ~StaticButton();
     void Draw();
     void Update(float MouseX, float MouseY);
     bool isClicked();
+    bool isMouseHovered(float MouseX, float MouseY);
 };
 
 class Scroll {
@@ -39,14 +38,15 @@ class Scroll {
     Shader *shader;
     Camera *camera;
     unsigned int texture;
+    
+    StaticButton * iter;
+    public:
     glm::vec3 position;
     glm::vec3 size;
 
-    Button * iter;
-    public:
     Scroll(Camera * _camera);
     ~Scroll();
     void Draw();
-    void Update(float MouseX, float MouseY);
+    float Update(float MouseX, float MouseY);
 
 };

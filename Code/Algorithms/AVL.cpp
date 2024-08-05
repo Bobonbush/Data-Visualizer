@@ -1,8 +1,9 @@
 #include "AVL.h"
 
 
-AVL::AVL() {
+AVL::AVL(Camera* _camera) {
     root = nullptr;
+    camera = _camera;
 }
 
 AVL::~AVL() {
@@ -11,7 +12,8 @@ AVL::~AVL() {
 
 Node* AVL::insert(Node* node , int value) {
     if(node == nullptr) {
-        return new Node(glm::vec3(0.0f), glm::vec3(0.0f), nullptr, value);             // Careful
+        totalNodes++;
+        return new Node(glm::vec3(0.0f, 0.74f, 0.0f ), glm::vec3(0.6f , 0.6f, 0.f), camera, value);             // Careful
     }
     if(value < node -> value) {
         node -> left = insert(node -> left, value);
@@ -107,9 +109,11 @@ void AVL::Draw() {
     }
 }
 
-void AVL::Update(float mouseX, float mouseY) {
+void AVL::Update(float deltaTime, float mouseX, float mouseY) {
+    root -> targetPosition = glm::vec3(0.0f, 0.74f, 0.0f);
+    root -> RecalculatePosition(offsetx  * totalNodes, offsety * totalNodes);
     if(root) {
-        root -> Update(mouseX, mouseY);
+        root -> Update(deltaTime, mouseX, mouseY);
     }
 }
 

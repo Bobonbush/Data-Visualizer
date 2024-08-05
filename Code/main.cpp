@@ -54,7 +54,7 @@ public:
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-        
+        //glEnable(GLFW_SAMPLES);
        
         glfwWindowHint(GLFW_SAMPLES, 64);  // defined samples for  GLFW Window
 
@@ -127,9 +127,9 @@ public:
             double xpos, ypos;
             glfwGetCursorPos(window, &xpos, &ypos);
             lastFrame = currentFrame;
-            
-            toolbar -> Update(deltaTime , xpos, ypos);
             slideTools -> Update(toolbar -> Algo, deltaTime, xpos, ypos);
+            
+            toolbar -> Update(slideTools ->status ,deltaTime , xpos, ypos);
             
 
             glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
