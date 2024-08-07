@@ -58,8 +58,8 @@ ToolBar ::ToolBar(Camera * _camera) {
 
     position.x += offset_x;
     position.y += 0.04f;
-    Button * ok = new Button(position, glm::vec3(1.4f, 1.75f, 0.0f), "ok.png", camera, "");
-    button.push_back(ok);
+    //Button * ok = new Button(position, glm::vec3(1.4f, 1.75f, 0.0f), "ok.png", camera, "");
+    //button.push_back(ok);
     
    
     Button* reverse = new Button(glm::vec3(0.92f, 0.75f, 0.0f), glm::vec3(0.2f, 0.2f, 0.0f), "restart.png", camera, "");
@@ -74,8 +74,8 @@ ToolBar ::ToolBar(Camera * _camera) {
 
     bars.push_back(bar);
     position.x -= offset_x;
-    Button * ok2 = new Button(position, glm::vec3(1.4f, 1.75f, 0.0f), "ok.png", camera, "");
-    button.push_back(ok2);
+    //Button * ok2 = new Button(position, glm::vec3(1.4f, 1.75f, 0.0f), "ok.png", camera, "");
+    //button.push_back(ok2);
     button.push_back(reverse);
     buttonSlot.push_back(button);
     button.clear();
@@ -167,12 +167,34 @@ void ToolBar ::Update(int _status, float deltaTime, float MouseX, float MouseY) 
         bars.clear();
         button = buttonSlot[2];
     }
+    std::string input = "";
+    std::string input2 = "";
+    if((int)bars.size() > 0){
+        input = bars[0] -> Update(deltaTime, MouseX, MouseY);
+    }
+    if((int)bars.size() > 1) {
+        input2 = bars[1] -> Update(deltaTime, MouseX, MouseY);
+    }
 
-    for (int i = 0; i < bars.size(); i++) {
-        bars[i] -> Update(deltaTime, MouseX , MouseY);
+    //std::cout << input << ' ' << input2 << ' ' << status <<'\n';
+
+    if(input != "inf" && input != "" && status == 1) {
+        manager -> Insert(input);
+    }
+    if(input != "inf" && input != "" && status == 2) {
+        manager -> Delete(input);
+    }
+
+    if(input != "inf" && input != "" && status == 4) {
+        manager -> Search(input);
     }
     for(int i = 0 ; i < button.size(); i++) {
-        button[i] -> Update(deltaTime, MouseX, MouseY);
+        
+        if(button[i] -> Update(deltaTime, MouseX, MouseY)) {
+            if(status == 0 && i == 2) {
+                manager -> Initialize();
+            }
+        }
     }
     
 }

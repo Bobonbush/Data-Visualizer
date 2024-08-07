@@ -4,7 +4,6 @@
 #include "Algorithms/Trie.h"
 #include "slidebox.h"
 #include "Interactive/Scroll.h"
-
 class Manager {
     private :
     int currentAlgo = 0;
@@ -22,6 +21,15 @@ class Manager {
     bool Sliding = 0;
 
     float AnimationConst = 0.01f;
+    std::vector<NodeInfo> animationNodes;
+    int index = 0;
+    float AnimationTime = 0.5f;
+    float AnimationTimeLimit = 0.4f;
+    float AnimateStatus = 0;
+    /*
+    0 : traverse
+    1 : change
+    */
 
 
     /*
@@ -77,10 +85,13 @@ class Manager {
    void Update(int & Algo, float deltaTime, float MouseX , float MouseY);
 
    void Draw();
-   void Modify(float value , float newValue);
-   void Delete(float value);
-   void Insert(float value);
-   void Search(float value);
+   void Modify(std::string value , std::string newValue);
+   void Delete(std::string value);
+   void Insert(std::string value);
+   void Search(std::string value);
+   void Initialize();
+
+   bool AnimationManagement(float deltaTime);
 
     
 };

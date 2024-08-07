@@ -10,15 +10,21 @@ AVL::~AVL() {
     delete root;
 }
 
-Node* AVL::insert(Node* node , int value) {
+Node* AVL::insert(Node* node ,Node* parent, int value, std::vector<NodeInfo> & nodes) {
     if(node == nullptr) {
         totalNodes++;
-        return new Node(glm::vec3(0.0f, 0.74f, 0.0f ), glm::vec3(0.6f , 0.6f, 0.f), camera, value);             // Careful
+        Node* temp = new Node(glm::vec3(0.0f, -0.95f, 0.0f ), glm::vec3(0.6f , 0.6f, 0.f), camera, value);
+        temp -> targetPosition = glm::vec3(0.0f, -0.95f, 0.0f);
+        temp -> status = -1;
+        nodes.push_back(NodeInfo(temp, 1));
+        return temp ;             // Careful
     }
+    nodes.push_back(NodeInfo(node, 0));
+
     if(value < node -> value) {
-        node -> left = insert(node -> left, value);
+        node -> left = insert(node -> left,node, value, nodes);
     } else if(value > node -> value) {
-        node -> right = insert(node -> right, value);
+        node -> right = insert(node -> right,node, value, nodes);
     } else {
         return node;
     }
@@ -26,33 +32,47 @@ Node* AVL::insert(Node* node , int value) {
     int balance = node -> getBalance(node);
     if(balance > 1 && value < node -> left -> value) {
         return node -> rightRotate(node);
+        
+        return node;
     }
     if(balance < -1 && value > node -> right -> value) {
+        
         return node -> leftRotate(node);
+        return node;
     }
     if(balance > 1 && value > node -> left -> value) {
         node -> left = node -> leftRotate(node -> left);
+        
         return node -> rightRotate(node);
     }
     if(balance < -1 && value < node -> right -> value) {
         node -> right = node -> rightRotate(node -> right);
+        
         return node -> leftRotate(node);
     }
     return node;
 }
 
-void AVL::insert(int value) {
-    root = insert(root, value);
+void AVL::insert(int value, std::vector<NodeInfo> & nodes) {
+    root = insert(root,root, value, nodes);
 }
 
-Node* AVL::deleteNode(Node* node, int value) {
+void AVL :: RecalculatePosition() {
+    if(root != nullptr) {
+        root -> targetPosition = glm::vec3(0.0f, 0.74f, 0.0f);
+        root -> RecalculatePosition(offsetx  * totalNodes, offsety * totalNodes);
+    }
+}
+
+Node* AVL::deleteNode(Node* node, int value, std::vector<NodeInfo> & nodes) {
     if(node == nullptr) {
         return node;
     }
     if(value < node -> value) {
-        node -> left = deleteNode(node -> left, value);
+        node -> left = deleteNode(node -> left, value, nodes);
+        
     } else if(value > node -> value) {
-        node -> right = deleteNode(node -> right, value);
+        node -> right = deleteNode(node -> right, value, nodes);
     } else {
         if(node -> left == nullptr || node -> right == nullptr) {
             Node* temp = node -> left ? node -> left : node -> right;
@@ -66,7 +86,8 @@ Node* AVL::deleteNode(Node* node, int value) {
         } else {
             Node* temp = minValueNode(node -> right);
             node -> value = temp -> value;
-            node -> right = deleteNode(node -> right, temp -> value);
+            node ->text = temp -> text;
+            node -> right = deleteNode(node -> right, temp -> value, nodes);
         }
     }
     if(node == nullptr) {
@@ -91,8 +112,8 @@ Node* AVL::deleteNode(Node* node, int value) {
     return node;
 }
 
-void AVL::deleteNode(int value) {
-    root = deleteNode(root, value);
+void AVL::deleteNode(int value, std::vector<NodeInfo> & nodes) {
+    root = deleteNode(root, value, nodes);
 }
 
 Node* AVL::minValueNode(Node* node) {
@@ -110,26 +131,30 @@ void AVL::Draw() {
 }
 
 void AVL::Update(float deltaTime, float mouseX, float mouseY) {
-    root -> targetPosition = glm::vec3(0.0f, 0.74f, 0.0f);
-    root -> RecalculatePosition(offsetx  * totalNodes, offsety * totalNodes);
+    
     if(root) {
+        Node::isOver = false;
         root -> Update(deltaTime, mouseX, mouseY);
     }
 }
 
-Node* AVL::search(Node* node, int value) {
-    if(node == nullptr || node -> value == value) {
+Node* AVL::search(Node* node, int value, std::vector<NodeInfo> & nodes) {
+    if(node == nullptr) return node;
+    if(node -> value == value) {
+        nodes.push_back(NodeInfo(node, 3));
+
         return node;
     }
+    nodes.push_back(NodeInfo(node, 0));
     if(node -> value < value) {
-        return search(node -> right, value);
+        return search(node -> right, value, nodes);
     }
-    return search(node -> left, value);
+    return search(node -> left, value , nodes);
 }
 
 
-void AVL::search(int value) {
-    Node* node = search(root, value);
+void AVL::search(int value, std::vector<NodeInfo> & nodes) {
+    Node* node = search(root, value, nodes);
     
 }
 

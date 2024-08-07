@@ -53,7 +53,7 @@ Bar::Bar(Camera* _camera, glm::vec3 _position, glm::vec3 _size) {
     glBindVertexArray(0);
 
     text = new TextHandler();
-    text -> LoadFont("Font/Roboto-Black.ttf", 16);
+    text -> LoadFont("Font/Revamped.ttf", 24);
     textShader = new Shader("textShader.vs", "textShader.fs");
     glfwSetKeyCallback(glfwGetCurrentContext(), KeyCallBack);
 }
@@ -124,11 +124,17 @@ std::string Bar::Update(float deltaTime , float MouseX, float MouseY) {
         std::string ret =  input;
         input = "";
         cursor = 0;        
+        for(int i = 0; i < ret.size(); i++) {
+            if(ret[i] == '|') {
+                ret.erase(i, 1);
+                break;
+            }
+        }
         
         return ret;
     }
     
-    return "-1";
+    return "inf";
 }
 
 void Bar::KeyCallBack(GLFWwindow* window, int key, int scancode, int action, int mods) {
@@ -203,7 +209,7 @@ void Bar::Draw() {
     textShader -> use();
     float offset = 0.0005f;
     textShader -> setMat4("projection", projection);
-    text -> RenderText(textShader, input, position.x + offset * 20 , position.y - offset * 40, 1.75f, glm::vec3(0.0f, 0.0f, 0.0f),camera, offset);
+    text -> RenderText(textShader, input, position.x + offset * 20 , position.y - offset * 40, 2.75f, glm::vec3(0.0f, 0.0f, 0.0f),camera, offset);
     shader ->use();
     glBindVertexArray(VAO);
     glBindTexture(GL_TEXTURE_2D, texture);

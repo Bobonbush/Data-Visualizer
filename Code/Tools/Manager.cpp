@@ -72,12 +72,6 @@ Manager::~Manager() {
 void Manager::Initialize(int degree) {
     if(currentAlgo == 0) {
         avl = new AVL(camera);
-        avl->insert(50);
-        avl -> insert(40);
-        avl -> insert(45);
-        avl -> insert(60);
-        avl -> insert(30);
-        avl -> insert(70);
     } else if(currentAlgo == 1) {
         //bTree = new BTree(camera, degree);
     } else if(currentAlgo == 2) {
@@ -109,6 +103,9 @@ void Manager::Update(int &Algo, float deltaTime , float MouseX , float MouseY) {
     } else if(currentAlgo == 2) {
         //trie -> Update();
     }
+    AnimationConst =  animationBar -> Update(MouseX, MouseY);
+    Node::speed = AnimationConst * 1.0f;
+
 
     for(int i = 0; i < algorithmsBox.size(); i++) {
         
@@ -139,8 +136,22 @@ void Manager::Update(int &Algo, float deltaTime , float MouseX , float MouseY) {
     if(slide ) {
         Sliding ^= 1;
     }
+    
+    if(!animationNodes.empty() && AnimationManagement(deltaTime)) {
+        return ;
+    } else if(animationNodes.size() > 0) {
+        
+        if(currentAlgo == 0) {
+            for(int i = 0 ; i<= (int)animationNodes.size()-1 ; i++) {
+                NodeInfo info = animationNodes[i];
+                info. node -> status = -1;
+            }
+            avl -> RecalculatePosition();
+        }
 
-    AnimationConst =  animationBar -> Update(MouseX, MouseY);
+        animationNodes.clear();
+    }
+
 }
 
 void Manager::Draw() {
@@ -175,21 +186,139 @@ void Manager::Draw() {
     animationBar -> Draw();
 
     
-
+    
     scroll -> Draw();
 }
 
-void Manager::Modify(float value , float newValue) {
+bool Manager::AnimationManagement(float deltaTime) {
+    if(AnimationTime > 0.f) {
+        AnimationTime -= deltaTime;
+    }else if(index < (int)animationNodes.size()) {
+        AnimationTime = AnimationTimeLimit * AnimationConst;
+        NodeInfo info = animationNodes[index];
+        info.node -> status = info.status;
+        
+        
+        index++;
+
+    }else {
+        AnimationTime = AnimationTimeLimit * AnimationConst;
+        index++;
+    }
+    return index <= (int) animationNodes.size();
 }
 
-void Manager::Delete(float value) {
-    
+void Manager::Modify(std::string value , std::string newValue) {
+
 }
 
-void Manager::Insert(float value) {
-    
+void Manager::Delete(std::string input) {
+    if((int) animationNodes.size() > 0) return;
+    int value = 0;
+    bool valid = true;
+    for(int i = 0 ; i < input.size(); i++) {
+        if(input[i] <'0' || input[i] > '9') {
+            if(input[i] !=',') {
+                valid = false;
+                break;    
+            }
+            
+        }
+    }
+
+    valid &= (input[0] != ',');
+    if(!valid) return;
+
+    for(int i = 0; i < input.size(); i++) {
+        if(input[i] == ',') {
+            avl -> deleteNode(value, animationNodes) ;
+            value = 0; 
+            continue;
+        } 
+        value = value * 10 + input[i] - '0';
+    }
+    avl -> deleteNode(value, animationNodes);
+
 }
 
-void Manager::Search(float value) {
+void Manager::Insert(std::string input) {
+    if((int) animationNodes.size() > 0) return;
+    int value = 0;
+    bool valid = true;
+    index = 0;
+    for(int i = 0 ; i < input.size(); i++) {
+        if(input[i] <'0' || input[i] > '9') {
+            if(input[i] !=',') {
+                valid = false;
+                break;    
+            }
+            
+        }
+    }
     
+    valid &= (input[0] != ',');
+    if(!valid) return;
+    for(int i = 0; i < input.size(); i++) {
+        if(input[i] == ',') {
+            avl -> insert(value, animationNodes) ;
+            value = 0; 
+            continue;
+        } 
+        value = value * 10 + input[i] - '0';
+    }
+    avl -> insert(value, animationNodes);
+    //avl -> RecalculatePosition();
+
+
+}
+
+void Manager::Search(std::string value) {
+    if(value.size() == 0) return;
+    if((int) animationNodes.size() > 0) return;
+    bool valid = true;
+    index = 0;
+    
+    for(int i = 0; i < value.size(); i++) {
+        if(value[i] < '0' || value[i] > '9') {
+            valid = false;
+            break;
+        }
+    }
+
+    if(!valid) return;
+    int val = 0;
+    for(int i = 0; i < value.size(); i++) {
+        val = val * 10 + value[i] - '0';
+    }
+    avl -> search(val, animationNodes);
+
+}
+
+int Rand(int a, int b) {
+    return a + rand() % (b - a + 1);
+}
+
+void Manager::Initialize() {
+    if(currentAlgo == 0) {
+        avl = new AVL(camera);
+        int n = Rand(10, 20);
+        for(int i = 0; i < n; i++) {
+            int value = Rand(1, 100);
+            avl -> insert(value, animationNodes);
+            std::cout << value << '\n';
+            for(int i = 0 ; i <= (int)animationNodes.size()-1 ; i++) {
+            NodeInfo info = animationNodes[i];
+            info. node -> status = -1;
+
+            }
+        animationNodes.clear();
+        }
+        
+        avl -> RecalculatePosition();
+
+    } else if(currentAlgo == 1) {
+        //bTree = new BTree(camera, 2);
+    } else if(currentAlgo == 2) {
+        //trie = new Trie(camera);
+    }
 }
