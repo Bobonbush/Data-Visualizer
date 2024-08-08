@@ -161,7 +161,7 @@ void Bar::KeyCallBack(GLFWwindow* window, int key, int scancode, int action, int
             cursor++;
         } else if(key == GLFW_KEY_ENTER) {
             Enter = true;
-        } else if (key <= GLFW_KEY_9 && key >= GLFW_KEY_0) {
+        } else if ((key <= GLFW_KEY_9 && key >= GLFW_KEY_0) || (key <= GLFW_KEY_Z && key >= GLFW_KEY_A)) {
             if(cursor > 0 && input[cursor-1] == '|') {
                 input.erase(cursor-1, 1);
                 cursor--;

@@ -22,6 +22,8 @@ class Manager {
 
     float AnimationConst = 0.01f;
     std::vector<NodeInfo> animationNodes;
+    std::vector<TrieInfo> animationTrieNodes;
+    TrieNode * current;
     int index = 0;
     float AnimationTime = 0.5f;
     float AnimationTimeLimit = 0.4f;
@@ -91,7 +93,10 @@ class Manager {
    void Search(std::string value);
    void Initialize();
 
-   bool AnimationManagement(float deltaTime);
+   bool NodeAnimationManagement(float deltaTime);
+   bool TrieNodeAnimationManagement(float deltaTime);
+
+   void Reverse();
 
     
 };

@@ -1,5 +1,6 @@
 #include "Manager.h"
 
+
 Manager::Manager(Camera * _camera) {
     avl = nullptr;
     bTree = nullptr;
@@ -70,13 +71,9 @@ Manager::~Manager() {
 }
 
 void Manager::Initialize(int degree) {
-    if(currentAlgo == 0) {
-        avl = new AVL(camera);
-    } else if(currentAlgo == 1) {
+    avl = new AVL(camera);
         //bTree = new BTree(camera, degree);
-    } else if(currentAlgo == 2) {
-        //trie = new Trie(camera);
-    }
+    trie = new Trie(camera);
 }
 
 void Manager::Update(int &Algo, float deltaTime , float MouseX , float MouseY) {
@@ -101,7 +98,8 @@ void Manager::Update(int &Algo, float deltaTime , float MouseX , float MouseY) {
     } else if(currentAlgo == 1) {
         //bTree -> Update(MouseX, MouseY);
     } else if(currentAlgo == 2) {
-        //trie -> Update();
+        noData = trie -> Empty();
+        trie -> Update(deltaTime, MouseX , MouseY);
     }
     AnimationConst =  animationBar -> Update(MouseX, MouseY);
     Node::speed = AnimationConst * 1.0f;
@@ -137,7 +135,7 @@ void Manager::Update(int &Algo, float deltaTime , float MouseX , float MouseY) {
         Sliding ^= 1;
     }
     
-    if(!animationNodes.empty() && AnimationManagement(deltaTime)) {
+    if(!animationNodes.empty() && NodeAnimationManagement(deltaTime)) {
         return ;
     } else if(animationNodes.size() > 0) {
         
@@ -152,6 +150,21 @@ void Manager::Update(int &Algo, float deltaTime , float MouseX , float MouseY) {
         animationNodes.clear();
     }
 
+    if(!animationTrieNodes.empty() && TrieNodeAnimationManagement(deltaTime)) {
+        return ;
+    }else if(animationTrieNodes.size() > 0 ) {
+        if(currentAlgo == 2) {
+            current = animationTrieNodes[0].node;
+            for(int i = 0 ; i<= (int)animationTrieNodes.size()-1 ; i++) {
+                TrieInfo info = animationTrieNodes[i];
+                current ->  status = -1;
+                current = current -> _next[info.word];
+            }
+            trie -> RecalculatePosition();
+        }
+        animationTrieNodes.clear();
+    }
+
 }
 
 void Manager::Draw() {
@@ -161,7 +174,7 @@ void Manager::Draw() {
     } else if(currentAlgo == 1) {
         //bTree -> Draw();
     } else if(currentAlgo == 2) {
-        //trie -> Draw();
+        trie -> Draw();
     }
 
     for(int i = 0; i < algorithmsBox.size(); i++) {
@@ -190,7 +203,7 @@ void Manager::Draw() {
     scroll -> Draw();
 }
 
-bool Manager::AnimationManagement(float deltaTime) {
+bool Manager::NodeAnimationManagement(float deltaTime) {
     if(AnimationTime > 0.f) {
         AnimationTime -= deltaTime;
     }else if(index < (int)animationNodes.size()) {
@@ -208,12 +221,51 @@ bool Manager::AnimationManagement(float deltaTime) {
     return index <= (int) animationNodes.size();
 }
 
+bool Manager::TrieNodeAnimationManagement(float deltaTime) {
+    if(AnimationTime > 0.f) {
+        AnimationTime -= deltaTime;
+    }else if(index < (int)animationTrieNodes.size()) {
+        if(index ==0 ) {
+            current = animationTrieNodes[index].node;
+        }
+        AnimationTime = AnimationTimeLimit * AnimationConst;
+        TrieInfo info = animationTrieNodes[index];
+        //current -> status = info.status;
+        if(info.found) {
+            current -> status = info.status;
+            current = current -> _next[info.word];
+        }
+        if(info.newed) {
+
+            current -> status = info.status;
+            bool isLeaf = (index == (int)animationTrieNodes.size()-1);
+            bool created = trie->subInsert(info.word, current, isLeaf);
+            if(created) {
+                trie -> RecalculatePosition();
+            }
+            
+        }
+        index++;
+    }else {
+        AnimationTime = AnimationTimeLimit * AnimationConst;
+        index++;
+    }
+    return index <= (int) animationTrieNodes.size();
+}
+
 void Manager::Modify(std::string value , std::string newValue) {
 
 }
 
 void Manager::Delete(std::string input) {
-    if((int) animationNodes.size() > 0) return;
+    if((int) animationNodes.size() > 0 && currentAlgo != 2) return;
+    if((int) animationTrieNodes.size() > 0 && currentAlgo == 2) return;
+    index = 0;
+    if(currentAlgo == 2) {
+        trie -> Delete(input, animationTrieNodes);
+        trie -> RecalculatePosition();
+        return ;
+    }
     int value = 0;
     bool valid = true;
     for(int i = 0 ; i < input.size(); i++) {
@@ -238,14 +290,22 @@ void Manager::Delete(std::string input) {
         value = value * 10 + input[i] - '0';
     }
     avl -> deleteNode(value, animationNodes);
+    avl -> RecalculatePosition();
 
 }
 
 void Manager::Insert(std::string input) {
-    if((int) animationNodes.size() > 0) return;
+    if((int) animationNodes.size() > 0 && currentAlgo != 2) return;
+    if((int) animationTrieNodes.size() > 0 && currentAlgo == 2) return;
+    index = 0;
+    if(currentAlgo == 2) {
+        trie -> insert(input, animationTrieNodes);
+        //trie -> RecalculatePosition();
+        return ;
+    }
     int value = 0;
     bool valid = true;
-    index = 0;
+    
     for(int i = 0 ; i < input.size(); i++) {
         if(input[i] <'0' || input[i] > '9') {
             if(input[i] !=',') {
@@ -266,7 +326,9 @@ void Manager::Insert(std::string input) {
         } 
         value = value * 10 + input[i] - '0';
     }
-    avl -> insert(value, animationNodes);
+    if(currentAlgo == 0)
+        avl -> insert(value, animationNodes);
+    
     //avl -> RecalculatePosition();
 
 
@@ -274,9 +336,15 @@ void Manager::Insert(std::string input) {
 
 void Manager::Search(std::string value) {
     if(value.size() == 0) return;
-    if((int) animationNodes.size() > 0) return;
-    bool valid = true;
+    if((int) animationNodes.size() > 0 && currentAlgo != 2) return;
+    if((int) animationTrieNodes.size() > 0 && currentAlgo == 2) return;
     index = 0;
+    if(currentAlgo == 2) {
+        trie -> search(value, animationTrieNodes);
+        return ;
+    }
+    bool valid = true;
+    
     
     for(int i = 0; i < value.size(); i++) {
         if(value[i] < '0' || value[i] > '9') {
@@ -302,14 +370,14 @@ void Manager::Initialize() {
     if(currentAlgo == 0) {
         avl = new AVL(camera);
         int n = Rand(10, 20);
+        avl -> currentVersion++;
+        avl -> root.push_back(nullptr);
         for(int i = 0; i < n; i++) {
             int value = Rand(1, 100);
-            avl -> insert(value, animationNodes);
-            std::cout << value << '\n';
+            avl -> Initialize(value, animationNodes);
             for(int i = 0 ; i <= (int)animationNodes.size()-1 ; i++) {
             NodeInfo info = animationNodes[i];
             info. node -> status = -1;
-
             }
         animationNodes.clear();
         }
@@ -319,6 +387,33 @@ void Manager::Initialize() {
     } else if(currentAlgo == 1) {
         //bTree = new BTree(camera, 2);
     } else if(currentAlgo == 2) {
-        //trie = new Trie(camera);
+        int numWord = Rand(2 , 7);
+        trie = new Trie(camera);
+        while(numWord--) {
+            std::string word = "";
+            int len = Rand(1, 6);
+            for(int i = 0; i < len; i++) {
+                word.push_back('A' + Rand(0, 3));
+            }
+            trie -> Initialize(word);
+        }
+        trie -> RecalculatePosition();
+    }
+}
+
+void Manager::Reverse() {
+    if(currentAlgo == 0) {
+        avl -> currentVersion--;
+        if(avl -> currentVersion < 0) {
+            avl -> currentVersion = 0;
+        }else avl -> root.pop_back();
+    } else if(currentAlgo == 1) {
+        //bTree -> PreOrder();
+    } else if(currentAlgo == 2) {
+       trie -> currentVersion--;
+       if(trie -> currentVersion < 0) {
+           trie -> currentVersion = 0;
+           trie -> root.clear();
+       }else trie -> root.pop_back();
     }
 }

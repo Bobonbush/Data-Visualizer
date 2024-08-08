@@ -87,6 +87,7 @@ Node::~Node() {
 
 void Node::RecalculatePosition(float offsetx, float offsety) {
     float bonus = 0.02f;
+    status = -1;
     if(left != nullptr) {
         left -> targetPosition.x = targetPosition .x - offsetx - ((1 << left -> getHeight(left))  +2) * bonus;
         left -> targetPosition.y = targetPosition.y - offsety;
@@ -194,7 +195,7 @@ void Node::Update(float deltaTime, float mouseX, float mouseY) {
             targetPosition.y = mouseY;
             position.y = mouseY;
             Cursor::CurrentCursor = Cursor::HoldCursor;
-        }else {
+        } else {
             isDragging = false;
             isHovered = false;
         }
@@ -231,9 +232,6 @@ void Node::Update(float deltaTime, float mouseX, float mouseY) {
     
     position.x += offset_x * speed * deltaTime;
     position.y += offset_y * speed * deltaTime;
-
-    
-    
 }
 
 void Node::Draw() {
@@ -254,9 +252,9 @@ void Node::Draw() {
     shader -> setMat4("projection", projection);
     shader -> setMat4("view", view);
     shader -> setMat4("model", model);
+
     float texutre_width = size.x;
     float texture_height = size.y;
-    
     
     float vertices[] = {
         position.x - texutre_width /2.f, position.y + texture_height/2.f, 0.0f, 1.0f, 1.0f, // top right
@@ -290,7 +288,6 @@ void Node::Draw() {
     glBindVertexArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     if(left != nullptr) {
-        
         float lineVertices[] = {
             position.x, position.y, 0.0f,
             left->position.x, left -> position.y, 0.0f

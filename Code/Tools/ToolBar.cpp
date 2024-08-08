@@ -194,6 +194,9 @@ void ToolBar ::Update(int _status, float deltaTime, float MouseX, float MouseY) 
             if(status == 0 && i == 2) {
                 manager -> Initialize();
             }
+            if(i == 0) {
+                manager -> Reverse();
+            }
         }
     }
     

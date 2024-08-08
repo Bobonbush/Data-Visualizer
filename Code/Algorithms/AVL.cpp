@@ -2,12 +2,18 @@
 
 
 AVL::AVL(Camera* _camera) {
-    root = nullptr;
+    root.clear();
+    root.push_back(nullptr);
+    currentVersion = 0;
     camera = _camera;
 }
 
 AVL::~AVL() {
-    delete root;
+    for(int i = 0 ; i < (int) root.size(); i++) {
+        if(root[i] != nullptr) {
+            delete root[i];
+        }
+    }
 }
 
 Node* AVL::insert(Node* node ,Node* parent, int value, std::vector<NodeInfo> & nodes) {
@@ -53,14 +59,32 @@ Node* AVL::insert(Node* node ,Node* parent, int value, std::vector<NodeInfo> & n
     return node;
 }
 
+
+Node* AVL :: CopyNode(Node* node) {
+    if(!node) return nullptr;
+    else {
+        Node * newNode = new Node(node -> position, glm::vec3(0.6f, 0.6f, 0.0f), camera, node -> value);
+        newNode -> left = CopyNode(node -> left);
+        newNode -> right = CopyNode(node -> right);
+        newNode -> targetPosition = node -> targetPosition;
+        newNode -> height = node -> height;
+        return newNode;
+    } 
+}
+
 void AVL::insert(int value, std::vector<NodeInfo> & nodes) {
-    root = insert(root,root, value, nodes);
+    root.push_back(nullptr);
+    root[++currentVersion] = CopyNode(root[currentVersion-1]);
+    root[currentVersion] = insert(root[currentVersion],root[currentVersion], value, nodes);
+}
+void AVL::Initialize(int value , std::vector<NodeInfo> & nodes) {
+    root[currentVersion] = insert(root[currentVersion],root[currentVersion], value,nodes);
 }
 
 void AVL :: RecalculatePosition() {
-    if(root != nullptr) {
-        root -> targetPosition = glm::vec3(0.0f, 0.74f, 0.0f);
-        root -> RecalculatePosition(offsetx  * totalNodes, offsety * totalNodes);
+    if(root[currentVersion] != nullptr) {
+        root[currentVersion] -> targetPosition = glm::vec3(0.0f, 0.74f, 0.0f);
+        root[currentVersion] -> RecalculatePosition(offsetx  * totalNodes, offsety * totalNodes);
     }
 }
 
@@ -113,7 +137,9 @@ Node* AVL::deleteNode(Node* node, int value, std::vector<NodeInfo> & nodes) {
 }
 
 void AVL::deleteNode(int value, std::vector<NodeInfo> & nodes) {
-    root = deleteNode(root, value, nodes);
+    root.push_back(nullptr);
+    root[++currentVersion] = CopyNode(root[currentVersion-1]);
+    root[currentVersion] = deleteNode(root[currentVersion], value, nodes);
 }
 
 Node* AVL::minValueNode(Node* node) {
@@ -125,16 +151,16 @@ Node* AVL::minValueNode(Node* node) {
 }
 
 void AVL::Draw() {
-    if(root != nullptr) {
-        root -> Draw();
+    if(root[currentVersion] != nullptr) {
+        root[currentVersion] -> Draw();
     }
 }
 
 void AVL::Update(float deltaTime, float mouseX, float mouseY) {
     
-    if(root) {
+    if(root[currentVersion]) {
         Node::isOver = false;
-        root -> Update(deltaTime, mouseX, mouseY);
+        root[currentVersion] -> Update(deltaTime, mouseX, mouseY);
     }
 }
 
@@ -154,7 +180,7 @@ Node* AVL::search(Node* node, int value, std::vector<NodeInfo> & nodes) {
 
 
 void AVL::search(int value, std::vector<NodeInfo> & nodes) {
-    Node* node = search(root, value, nodes);
+    Node* node = search(root[currentVersion], value, nodes);
     
 }
 
@@ -167,11 +193,11 @@ void AVL::PreOrder(Node* node) {
 }
 
 bool AVL::Empty() {
-    return root == nullptr;
+    return root.empty()  || root[currentVersion] == nullptr;
 }
 
 void AVL::PreOrder() {
-    PreOrder(root);
+    PreOrder(root[currentVersion]);
 }
 
 
@@ -184,7 +210,7 @@ void AVL::InOrder(Node* node) {
 }
 
 void AVL::InOrder() {
-    InOrder(root);
+    InOrder(root[currentVersion]);
 }
 
 void AVL::PostOrder(Node* node) {
@@ -196,5 +222,5 @@ void AVL::PostOrder(Node* node) {
 }
 
 void AVL::PostOrder() {
-    PostOrder(root);
+    PostOrder(root[currentVersion]);
 }
