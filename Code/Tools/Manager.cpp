@@ -3,7 +3,6 @@
 
 Manager::Manager(Camera * _camera) {
     avl = nullptr;
-    bTree = nullptr;
     trie = nullptr;
     glm::vec3 position = glm::vec3(0.5, -0.97f, 0.0f);
     float offset = 0.15f;
@@ -56,9 +55,6 @@ Manager::Manager(Camera * _camera) {
 Manager::~Manager() {
     if (avl) {
         delete avl;
-    }
-    if (bTree) {
-        delete bTree;
     }
     if (trie) {
         delete trie;
@@ -200,10 +196,38 @@ void Manager::Animator(float deltaTime) {
 
         if(mask & (1 << 1)) {
             avl -> deleteNode(value1);
+            
             avl -> RecalculatePosition();
             if(avl -> root[avl -> currentVersion] -> Done) {
                 mask = 0;
                 avl -> Reset();
+            }
+        }
+    }
+
+    if(currentAlgo == 2) {
+        if(mask & 1) {
+            trie -> insert(value2);
+            trie -> RecalculatePosition();
+            if(trie -> root[trie -> currentVersion] -> Done) {
+                mask = 0;
+                trie -> Reset();
+            }
+        }
+
+        if(mask & (1 << 2)) {
+            trie -> search(value2);
+            if(trie -> root[trie -> currentVersion] -> Done) {
+                mask = 0;
+                trie -> Reset();
+            }
+        }
+        if(mask & (1 << 1)) {
+            trie -> Delete(value2);
+            trie -> RecalculatePosition();
+            if(trie -> root[trie -> currentVersion] -> Done) {
+                mask = 0;
+                trie -> Reset();
             }
         }
     }
@@ -215,11 +239,18 @@ void Manager::Modify(std::string value , std::string newValue) {
 
 void Manager::Delete(std::string input) {
     if(mask) return ;
-    if((int) animationTrieNodes.size() > 0 && currentAlgo == 2) return;
     index = 0;
     if(currentAlgo == 2) {
-        trie -> Delete(input);
-        trie -> RecalculatePosition();
+        if(trie -> root.empty() || trie -> root[trie -> currentVersion] == nullptr) {
+            mask = 0;   
+        }
+        else {
+            trie -> Deleted = false;
+            trie -> root.push_back(nullptr);
+            trie -> root[++trie -> currentVersion] = trie ->CopyNode(trie -> root[trie -> currentVersion - 1]);
+            mask = 2;
+            value2 = input;
+        }
         return ;
     }
     int value = 0;
@@ -260,11 +291,19 @@ void Manager::Delete(std::string input) {
 
 void Manager::Insert(std::string input) {
     if(mask) return ;
-    if((int) animationTrieNodes.size() > 0 && currentAlgo == 2) return;
     index = 0;
     if(currentAlgo == 2) {
-        
+        if(trie -> root.empty() || trie -> root[trie -> currentVersion] == nullptr) {
+            trie -> root.push_back(new TrieNode(glm::vec3(0.0f , 0.0f, 0.0f), glm::vec3(0.6f, 0.6f, 0.0f), camera, ' '));
+            trie -> root.back() -> targetPosition = glm::vec3(0.0f, 0.0f, 0.0f);
+        }
+        else {
+            trie -> root.push_back(nullptr);
+            trie -> root[++trie -> currentVersion] = trie ->CopyNode(trie -> root[trie -> currentVersion - 1]);
+        }
         //trie -> RecalculatePosition();
+        mask = 1;
+        value2 = input;
         return ;
     }
     int value = 0;
@@ -304,9 +343,10 @@ void Manager::Insert(std::string input) {
 void Manager::Search(std::string value) {
     if(mask) return ;
     if(value.size() == 0) return;
-    if((int) animationTrieNodes.size() > 0 && currentAlgo == 2) return;
     index = 0;
     if(currentAlgo == 2) {
+        mask = (1 << 2);
+        value2 = value;
         return ;
     }
     bool valid = true;

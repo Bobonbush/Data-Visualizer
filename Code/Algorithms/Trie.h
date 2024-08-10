@@ -27,6 +27,7 @@ class TrieNode {
     public : 
     bool traverse = false;
     bool Done = false;
+    bool Deleted = false;
     std::string word;
     glm::vec3 position;
     glm::vec3 size;
@@ -54,8 +55,9 @@ class TrieNode {
 class Trie {
    
     Camera * camera;
-    bool Deleted = false;
+    
     public : 
+    bool Deleted = false;
     std::vector<TrieNode*> root;
     int currentVersion = 0;
     Trie(Camera *_camera);
@@ -71,6 +73,8 @@ class Trie {
     void subDelete(char word, TrieNode* &current, bool isLeaf);
     bool Empty();
     void Initialize(std::string word);
+    void Reset(TrieNode* node);
+    void Reset();
 
 };
 

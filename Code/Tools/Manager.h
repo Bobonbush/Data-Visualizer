@@ -21,7 +21,6 @@ class Manager {
     bool Sliding = 0;
 
     float AnimationConst = 0.01f;
-    std::vector<TrieInfo> animationTrieNodes;
     TrieNode * current;
     int index = 0;
     float AnimationTime = 0.5f;
@@ -43,7 +42,6 @@ class Manager {
     */
 
     AVL * avl;
-    BTree * bTree;
     Trie * trie;
     Camera * camera;
 
@@ -75,6 +73,7 @@ class Manager {
 
     int mask = 0 ;
     int value1 = 0;
+    std::string value2 = "";
     /*
     1 is Insert
     10 is Delete
