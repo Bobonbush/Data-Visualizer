@@ -21,7 +21,6 @@ class Manager {
     bool Sliding = 0;
 
     float AnimationConst = 0.01f;
-    std::vector<NodeInfo> animationNodes;
     std::vector<TrieInfo> animationTrieNodes;
     TrieNode * current;
     int index = 0;
@@ -73,6 +72,17 @@ class Manager {
         "Heap",
         "Hash Table"
     };
+
+    int mask = 0 ;
+    int value1 = 0;
+    /*
+    1 is Insert
+    10 is Delete
+    100 is Search
+    1000 is Minimum spanning tree
+    10000 is Connected Components
+
+    */
     
     public:
     
@@ -92,9 +102,9 @@ class Manager {
    void Insert(std::string value);
    void Search(std::string value);
    void Initialize();
+   void Animator(float deltaTime);
 
    bool NodeAnimationManagement(float deltaTime);
-   bool TrieNodeAnimationManagement(float deltaTime);
 
    void Reverse();
 

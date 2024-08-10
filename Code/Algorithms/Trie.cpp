@@ -296,7 +296,7 @@ float TrieNode::RecalculatePosition(TrieNode* node, int depth, float offsetx = 0
         return offset;
     }
 
-    node->targetPosition.x =  -0.5+ offsetx + totalWidth / 2.f;
+    node->targetPosition.x =  -0.5+ offsetx + totalWidth/2.f ;
     node->targetPosition.y = 0.75f -depth * verticaloffset;
 
     return totalWidth;
@@ -326,7 +326,7 @@ TrieNode* Trie::CopyNode(TrieNode * node) {
     newNode -> targetPosition = node -> targetPosition;
     return newNode;
 }
-void Trie::insert(std::string word, std::vector<TrieInfo> &nodes) {
+void Trie::insert(std::string word) {
     if(root.empty() || root[currentVersion] == nullptr) {
         root.push_back(new TrieNode(glm::vec3(0.0f , 0.0f, 0.0f), glm::vec3(0.6f, 0.6f, 0.0f), camera, ' '));
         root.back() -> targetPosition = glm::vec3(0.0f, 0.0f, 0.0f);
@@ -339,17 +339,9 @@ void Trie::insert(std::string word, std::vector<TrieInfo> &nodes) {
     
     for(int i = 0 ; i <= (int) word.size()-1 ; i++ ) {
         if(current -> _next[word[i]] == nullptr) {
-            nodes.push_back(TrieInfo(current, 1));
-            nodes.back().newed = true;
-            nodes.back().word = word[i];
-            //current -> _next[word[i]] = new TrieNode(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.6f, 0.6f, 0.0f), new Camera(),word[i]);
+            current -> _next[word[i]] = new TrieNode(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.6f, 0.6f, 0.0f), new Camera(),word[i]);
             continue;
         }
-        
-        nodes.push_back(TrieInfo(current, 0));
-        nodes.back().newed = true;
-        nodes.back().word = word[i];
-        
         current = current->_next[word[i]];
         current -> cnt[word[i]]++;
     }
@@ -387,7 +379,7 @@ void Trie::Initialize(std::string word) {
     current->cnt_Leaf[word[(int)word.size()-1]]++;
 }
 
-void Trie::Delete(std::string word , std::vector<TrieInfo> &subnodes) {
+void Trie::Delete(std::string word) {
     if(root.empty() || root[currentVersion] == nullptr) {
         return;
     }else {
@@ -404,17 +396,16 @@ void Trie::Delete(std::string word , std::vector<TrieInfo> &subnodes) {
     current = root[currentVersion];
 
     for(int i = 0 ; i <= (int)word.size()-1 ; i++) {
-        subnodes.push_back(TrieInfo(current, 0));
         current = current -> _next[word[i]];
     }
-    subnodes.push_back(TrieInfo(current, 2));
 
     
     if(current -> cnt_Leaf[word[(int)word.size()-1]] == 0) {
         return;
     }
     current -> cnt_Leaf[word[(int)word.size()-1]]--;
-    
+
+
     for(int i = (int)nodes.size()-2 ; i >= 0 ; i--) {
         nodes[i+1] -> cnt[word[i+1]]--;
         if(nodes[i+1] -> cnt[word[i+1]] == 0) {
@@ -425,7 +416,6 @@ void Trie::Delete(std::string word , std::vector<TrieInfo> &subnodes) {
     nodes[0] -> cnt[word[0]]--;
     current = root[currentVersion];
     if(current -> _next[word[0]] -> cnt[word[0]] == 0) {
-        //delete current -> _next[word[0]];
         current -> _next[word[0]] = nullptr;
     }
     
@@ -436,19 +426,15 @@ void Trie::subDelete(char word, TrieNode* &current, bool isLeaf) {
     current -> cnt_Leaf[word] -= isLeaf;
 }
 
-bool Trie::search(std::string word , std::vector<TrieInfo> &nodes) {
+bool Trie::search(std::string word) {
     TrieNode* current = root[currentVersion];
     for(int i = 0 ; i <= (int) word.size()-1 ; i++ ) {
         if(current->_next[word[i]] == nullptr) {
             return false;
         }
-        nodes.push_back(TrieInfo(current, 0));
-        nodes.back().found = true;
-        nodes.back().word = word[i];
         current = current->_next[word[i]];
     }
-    nodes.push_back(TrieInfo(current, (current->cnt_Leaf[word[(int)word.size()-1]] > 0) ? 3 : 0));
-    nodes.back().found = true;
+
     return current->cnt_Leaf[word[(int)word.size()-1]] > 0;
 }
 

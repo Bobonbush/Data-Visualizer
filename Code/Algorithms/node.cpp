@@ -87,7 +87,7 @@ Node::~Node() {
 
 void Node::RecalculatePosition(float offsetx, float offsety) {
     float bonus = 0.02f;
-    status = -1;
+    //status = -1;
     if(left != nullptr) {
         left -> targetPosition.x = targetPosition .x - offsetx - ((1 << left -> getHeight(left))  +2) * bonus;
         left -> targetPosition.y = targetPosition.y - offsety;

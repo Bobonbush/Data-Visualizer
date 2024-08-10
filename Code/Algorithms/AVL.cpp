@@ -16,21 +16,100 @@ AVL::~AVL() {
     }
 }
 
-Node* AVL::insert(Node* node ,Node* parent, int value, std::vector<NodeInfo> & nodes) {
+void AVL::Reset(Node * node) {
+    node -> traverse = false;
+    node -> Done = false;
+    node -> status = -1;
+    if(node -> left != nullptr) {
+        Reset(node -> left);
+
+    }
+    if(node -> right != nullptr) {
+        Reset(node -> right);
+    }
+}
+
+void AVL::Reset() {
+    Reset(root[currentVersion]);
+}
+
+Node* AVL::insert(Node* node ,Node* parent, int value) {
+    
+    if(node == nullptr) {
+        totalNodes++;
+        Node* temp = new Node(glm::vec3(0.0f, -0.95f, 0.0f ), glm::vec3(0.6f , 0.6f, 0.f), camera, value);
+        temp -> targetPosition = glm::vec3(0.0f, -0.95f, 0.0f);
+        temp -> status = 1;
+        temp -> Done = true;
+        return temp ;             // Careful
+    }
+    node -> status = 0;
+
+    if(value < node -> value && node -> Done == false) {
+        if(node -> left != nullptr && node -> left -> traverse == false) {
+            node -> left -> traverse = true;
+            return node;
+        } 
+        if(node -> left != nullptr && node -> left -> Done == true) {
+            node -> Done = true;
+        }else
+        {
+            node -> left = insert(node -> left,node, value);
+        }
+    } else if(value > node -> value && node -> Done == false) {
+        if(node -> right != nullptr && node -> right -> traverse == false) {
+            node -> right -> traverse = true;
+            return node;
+        }
+        if(node -> right != nullptr && node -> right -> Done == true) {
+            node -> Done = true;
+        } else {
+            node -> right = insert(node -> right,node, value);
+        }
+    } else {
+        node -> Done = true;
+        return node;
+    }
+    if(node -> Done == false) {
+        return node;
+    }
+    node -> status = -1;
+    node -> height = 1 + std::max(node -> getHeight(node -> left), node -> getHeight(node -> right));
+    int balance = node -> getBalance(node);
+    if(balance > 1 && value < node -> left -> value) {
+        return node -> rightRotate(node);
+    }
+    if(balance < -1 && value > node -> right -> value) {
+        
+        return node -> leftRotate(node);
+    }
+    if(balance > 1 && value > node -> left -> value) {
+        node -> left = node -> leftRotate(node -> left);
+        
+        return node -> rightRotate(node);
+    }
+    if(balance < -1 && value < node -> right -> value) {
+        node -> right = node -> rightRotate(node -> right);
+        
+        return node -> leftRotate(node);
+    }
+    return node;
+}
+
+Node * AVL::Initialize(Node* node, int value) {
     if(node == nullptr) {
         totalNodes++;
         Node* temp = new Node(glm::vec3(0.0f, -0.95f, 0.0f ), glm::vec3(0.6f , 0.6f, 0.f), camera, value);
         temp -> targetPosition = glm::vec3(0.0f, -0.95f, 0.0f);
         temp -> status = -1;
-        nodes.push_back(NodeInfo(temp, 1));
         return temp ;             // Careful
     }
-    nodes.push_back(NodeInfo(node, 0));
 
-    if(value < node -> value) {
-        node -> left = insert(node -> left,node, value, nodes);
+    if(value < node -> value ) {
+        node -> left = Initialize(node -> left, value);
     } else if(value > node -> value) {
-        node -> right = insert(node -> right,node, value, nodes);
+        node -> right = Initialize(node -> right, value);
+        
     } else {
         return node;
     }
@@ -38,13 +117,10 @@ Node* AVL::insert(Node* node ,Node* parent, int value, std::vector<NodeInfo> & n
     int balance = node -> getBalance(node);
     if(balance > 1 && value < node -> left -> value) {
         return node -> rightRotate(node);
-        
-        return node;
     }
     if(balance < -1 && value > node -> right -> value) {
         
         return node -> leftRotate(node);
-        return node;
     }
     if(balance > 1 && value > node -> left -> value) {
         node -> left = node -> leftRotate(node -> left);
@@ -72,13 +148,11 @@ Node* AVL :: CopyNode(Node* node) {
     } 
 }
 
-void AVL::insert(int value, std::vector<NodeInfo> & nodes) {
-    root.push_back(nullptr);
-    root[++currentVersion] = CopyNode(root[currentVersion-1]);
-    root[currentVersion] = insert(root[currentVersion],root[currentVersion], value, nodes);
+void AVL::insert(int value) {
+    root[currentVersion] = insert(root[currentVersion],root[currentVersion], value);
 }
-void AVL::Initialize(int value , std::vector<NodeInfo> & nodes) {
-    root[currentVersion] = insert(root[currentVersion],root[currentVersion], value,nodes);
+void AVL::Initialize(int value ) {
+    root[currentVersion] = Initialize(root[currentVersion], value);
 }
 
 void AVL :: RecalculatePosition() {
@@ -88,35 +162,76 @@ void AVL :: RecalculatePosition() {
     }
 }
 
-Node* AVL::deleteNode(Node* node, int value, std::vector<NodeInfo> & nodes) {
+Node* AVL::deleteNode(Node* node, int value) {
     if(node == nullptr) {
         return node;
     }
+    node -> status = 0;
     if(value < node -> value) {
-        node -> left = deleteNode(node -> left, value, nodes);
-        
+        if(node -> left != nullptr && node -> left -> traverse == false) {
+            node -> left -> traverse = true;
+            return node;
+        }
+        if((node -> left != nullptr && node -> left -> Done == true) || node -> left == nullptr) {
+            node -> Done = true;
+        } else {
+            node -> left = deleteNode(node -> left, value);
+        }
     } else if(value > node -> value) {
-        node -> right = deleteNode(node -> right, value, nodes);
+        if(node -> right != nullptr && node -> right -> traverse == false) {
+            node -> right -> traverse = true;
+            return node;
+        }
+        if((node -> right != nullptr && node -> right -> Done == true) || node -> right == nullptr) {
+            node -> Done = true;
+            
+        } else {
+            node -> right = deleteNode(node -> right, value);
+        }
     } else {
+        
         if(node -> left == nullptr || node -> right == nullptr) {
             Node* temp = node -> left ? node -> left : node -> right;
             if(temp == nullptr) {
                 temp = node;
                 node = nullptr;
+                temp -> Done = true;
+                //node -> text = "";
+                //node -> value = 0;
             } else {
                 *node = *temp;
+                node -> status = 3;
             }
+            deleted = true;
             delete temp;
         } else {
+            
             Node* temp = minValueNode(node -> right);
-            node -> value = temp -> value;
-            node ->text = temp -> text;
-            node -> right = deleteNode(node -> right, temp -> value, nodes);
+            int value = temp -> value;
+            std::string text = temp -> text;
+            temp -> status = 2;
+            
+              
+            
+            //node -> right -> traverse = true;
+            node -> right = deleteNode(node -> right, temp -> value);
+            if(  node-> right == nullptr || node -> right -> Done || deleted) {
+                node -> Done = true;
+                node -> value = value;
+                node -> text = text;
+            }
+            
         }
+        //if(node != nullptr) node -> Done = true;
     }
     if(node == nullptr) {
         return node;
     }
+    if(node -> Done == false) {
+        return node;
+    }
+    node -> status = -1;
+
     node -> height = 1 + std::max(node -> getHeight(node -> left), node -> getHeight(node -> right));
     int balance = node -> getBalance(node);
     if(balance > 1 && node -> getBalance(node -> left) >= 0) {
@@ -136,10 +251,8 @@ Node* AVL::deleteNode(Node* node, int value, std::vector<NodeInfo> & nodes) {
     return node;
 }
 
-void AVL::deleteNode(int value, std::vector<NodeInfo> & nodes) {
-    root.push_back(nullptr);
-    root[++currentVersion] = CopyNode(root[currentVersion-1]);
-    root[currentVersion] = deleteNode(root[currentVersion], value, nodes);
+void AVL::deleteNode(int value) {
+    root[currentVersion] = deleteNode(root[currentVersion], value);
 }
 
 Node* AVL::minValueNode(Node* node) {
@@ -164,23 +277,50 @@ void AVL::Update(float deltaTime, float mouseX, float mouseY) {
     }
 }
 
-Node* AVL::search(Node* node, int value, std::vector<NodeInfo> & nodes) {
-    if(node == nullptr) return node;
-    if(node -> value == value) {
-        nodes.push_back(NodeInfo(node, 3));
-
+Node* AVL::search(Node* node, int value) {
+    if(node == nullptr) {
         return node;
     }
-    nodes.push_back(NodeInfo(node, 0));
-    if(node -> value < value) {
-        return search(node -> right, value, nodes);
+    if(node -> value == value) {
+        node -> Done = true;
+        node -> status = 3;
+        return node;
     }
-    return search(node -> left, value , nodes);
+    node -> status = 0;
+    if(node -> value < value && node -> Done == false) {
+        if(node -> right != nullptr && node -> right -> traverse == false) {
+            node -> right -> traverse = true;
+            return node;
+        }
+        if(node -> right != nullptr && node -> right -> Done == true) {
+            node -> Done = true;
+        } else {
+            return search(node -> right, value);
+        }
+    }
+
+    if(node -> value > value && node -> Done == false) {
+        if(node -> left != nullptr && node -> left -> traverse == false) {
+            node -> left -> traverse = true;
+            return node;
+        }
+        if(node -> left != nullptr && node -> left -> Done == true) {
+            node -> Done = true;
+        } else {
+            Node *lmao = search(node -> left, value);
+            if(lmao == nullptr) {
+                node -> Done = true;
+                return node;
+            }
+            return lmao;
+        }
+    }
+    return node;
 }
 
 
-void AVL::search(int value, std::vector<NodeInfo> & nodes) {
-    Node* node = search(root[currentVersion], value, nodes);
+void AVL::search(int value) {
+    Node* node = search(root[currentVersion], value);
     
 }
 

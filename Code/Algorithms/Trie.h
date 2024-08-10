@@ -25,6 +25,8 @@ class TrieNode {
     unsigned int textureLeaf;
     TextHandler * textHandler;
     public : 
+    bool traverse = false;
+    bool Done = false;
     std::string word;
     glm::vec3 position;
     glm::vec3 size;
@@ -49,22 +51,10 @@ class TrieNode {
     bool isInside(float MouseX, float MouseY);
 };
 
-struct TrieInfo {
-    TrieNode* node;
-    int status;
-    bool deleted = false;
-    bool newed = false;
-    bool found = false;
-    char word;
-    TrieInfo(TrieNode* _node, int _status) {
-        node = _node;
-        status = _status;
-    }
-};
-
 class Trie {
    
     Camera * camera;
+    bool Deleted = false;
     public : 
     std::vector<TrieNode*> root;
     int currentVersion = 0;
@@ -74,10 +64,10 @@ class Trie {
     void Update(float deltaTime, float MouseX, float MouseY);
     void Draw();
     void RecalculatePosition();
-    void insert(std::string word, std::vector<TrieInfo> & nodes);
+    void insert(std::string word);
     bool subInsert(char word, TrieNode* &current, bool isLeaf);
-    bool search(std::string word, std::vector<TrieInfo> & nodes);
-    void Delete(std::string word, std::vector<TrieInfo> & nodes);
+    bool search(std::string word);
+    void Delete(std::string word);
     void subDelete(char word, TrieNode* &current, bool isLeaf);
     bool Empty();
     void Initialize(std::string word);

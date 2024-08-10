@@ -43,6 +43,10 @@ class Node {
         int height;
         static float speed;
 
+        bool traverse = false;
+        bool Done = false;
+
+
         glm::vec3 position;
         glm::vec3 targetPosition;
         glm::vec3 size;
@@ -64,21 +68,6 @@ class Node {
         int SubTreeHeight(Node* node);
         Node* rightRotate(Node* y);
         Node* leftRotate(Node* x);
-};
-
-struct NodeInfo {
-    Node* node;
-    int status = 0; // 0. just traverse , 1. new, 2. deletation
-    float AnimationTime = 0.0f;
-    int rotate = 0; 
-    Node* node2 = nullptr;
-    /*
-    0 right
-    1 left
-    2 left right
-    3 right left
-    */
-    NodeInfo(Node* _node, int _status) : node(_node), status(_status) {}
 };
 
 class BNode {
