@@ -43,6 +43,7 @@ class Manager {
 
     AVL * avl;
     Trie * trie;
+    Tree234 * tree234;
     Camera * camera;
 
     TextHandler * textHandler;
@@ -64,7 +65,7 @@ class Manager {
     
     std::string dataStructure[6] = {
         "AVL Tree",
-        "B Tree",
+        "2 3 4 -Tree",
         "Trie",
         "Graph",
         "Heap",
@@ -102,9 +103,6 @@ class Manager {
    void Search(std::string value);
    void Initialize();
    void Animator(float deltaTime);
-
-   bool NodeAnimationManagement(float deltaTime);
-
    void Reverse();
 
     

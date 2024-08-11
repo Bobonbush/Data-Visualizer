@@ -68,7 +68,7 @@ Manager::~Manager() {
 
 void Manager::Initialize(int degree) {
     avl = new AVL(camera);
-        //bTree = new BTree(camera, degree);
+    tree234 = new Tree234(camera);
     trie = new Trie(camera);
 }
 
@@ -92,7 +92,7 @@ void Manager::Update(int &Algo, float deltaTime , float MouseX , float MouseY) {
         //randomButton -> Update(deltaTime, MouseX, MouseY);
         
     } else if(currentAlgo == 1) {
-        //bTree -> Update(MouseX, MouseY);
+        tree234 -> Update(deltaTime);
     } else if(currentAlgo == 2) {
         noData = trie -> Empty();
         trie -> Update(deltaTime, MouseX , MouseY);
@@ -141,7 +141,7 @@ void Manager::Draw() {
         avl -> Draw();
         //randomButton -> Draw();
     } else if(currentAlgo == 1) {
-        //bTree -> Draw();
+        tree234 -> Draw();
     } else if(currentAlgo == 2) {
         trie -> Draw();
     }
@@ -281,10 +281,17 @@ void Manager::Delete(std::string input) {
         avl -> currentVersion++;
         avl -> root[avl -> currentVersion] = avl -> CopyNode(avl -> root[avl -> currentVersion - 1]);
         avl -> deleted = false;
+        mask = (1 << 1);
+        value1 = value;
     }
 
-    mask = (1 << 1);
-    value1 = value;
+    if(currentAlgo == 1) {
+        tree234 -> remove(value);
+        tree234 -> RecalculatePosition();
+    }
+
+
+    
 
 }
 
@@ -333,11 +340,18 @@ void Manager::Insert(std::string input) {
         avl->root.push_back(nullptr);
         avl -> currentVersion++;
         avl -> root[avl -> currentVersion] = avl -> CopyNode(avl -> root[avl -> currentVersion - 1]);
-            
+        value1 = value;
+        mask = 1;
+    }
+    if(currentAlgo == 1) {
+        tree234 -> root.push_back(nullptr);
+        tree234 -> currentVersion++;
+        tree234 -> root[tree234 -> currentVersion] = tree234 -> CopyNode(tree234 -> root[tree234 -> currentVersion - 1], nullptr);
+        tree234 -> insert(value);
+        tree234 -> RecalculatePosition();
     }
 
-    value1 = value;
-    mask = 1;
+    
 }
 
 void Manager::Search(std::string value) {
@@ -413,7 +427,11 @@ void Manager::Reverse() {
             avl -> currentVersion = 0;
         }else avl -> root.pop_back();
     } else if(currentAlgo == 1) {
-        //bTree -> PreOrder();
+        tree234 -> currentVersion--;
+        if(tree234 -> currentVersion < 0) {
+            tree234 -> currentVersion = 0;
+            tree234 -> root.clear();
+        }else tree234 -> root.pop_back();
     } else if(currentAlgo == 2) {
        trie -> currentVersion--;
        if(trie -> currentVersion < 0) {
