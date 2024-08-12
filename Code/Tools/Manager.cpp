@@ -92,6 +92,7 @@ void Manager::Update(int &Algo, float deltaTime , float MouseX , float MouseY) {
         //randomButton -> Update(deltaTime, MouseX, MouseY);
         
     } else if(currentAlgo == 1) {
+        noData = tree234 -> isEmpty();
         tree234 -> Update(deltaTime);
     } else if(currentAlgo == 2) {
         noData = trie -> Empty();
@@ -391,7 +392,7 @@ int Rand(int a, int b) {
 void Manager::Initialize() {
     if(currentAlgo == 0) {
         avl = new AVL(camera);
-        int n = Rand(10, 20);
+        int n = Rand(10, 50);
         avl -> currentVersion++;
         avl -> root.push_back(nullptr);
         for(int i = 0; i < n; i++) {
@@ -404,7 +405,15 @@ void Manager::Initialize() {
         avl -> RecalculatePosition();
 
     } else if(currentAlgo == 1) {
-        //bTree = new BTree(camera, 2);
+        tree234 = new Tree234(camera);
+        int n = Rand(10, 40);
+        tree234 -> currentVersion++;
+        tree234 -> root.push_back(nullptr);
+        for(int i = 0; i < n; i++) {
+            int value = Rand(1, 100);
+            tree234 -> Initialize(value);
+        }
+        tree234 -> RecalculatePosition();
     } else if(currentAlgo == 2) {
         int numWord = Rand(2 , 7);
         trie = new Trie(camera);

@@ -37,7 +37,7 @@ Node* AVL::insert(Node* node ,Node* parent, int value) {
     
     if(node == nullptr) {
         totalNodes++;
-        Node* temp = new Node(glm::vec3(0.0f, -0.95f, 0.0f ), glm::vec3(0.6f , 0.6f, 0.f), camera, value);
+        Node* temp = new Node(glm::vec3(0.0f, -0.95f, 0.0f ), glm::vec3(0.45f, 0.45f, 0.0f), camera, value);
         temp -> targetPosition = glm::vec3(0.0f, -0.95f, 0.0f);
         temp -> status = 1;
         temp -> Done = true;
@@ -99,7 +99,7 @@ Node* AVL::insert(Node* node ,Node* parent, int value) {
 Node * AVL::Initialize(Node* node, int value) {
     if(node == nullptr) {
         totalNodes++;
-        Node* temp = new Node(glm::vec3(0.0f, -0.95f, 0.0f ), glm::vec3(0.6f , 0.6f, 0.f), camera, value);
+        Node* temp = new Node(glm::vec3(0.0f, -0.95f, 0.0f ), glm::vec3(0.45f, 0.45f, 0.0f), camera, value);
         temp -> targetPosition = glm::vec3(0.0f, -0.95f, 0.0f);
         temp -> status = -1;
         return temp ;             // Careful
@@ -139,7 +139,7 @@ Node * AVL::Initialize(Node* node, int value) {
 Node* AVL :: CopyNode(Node* node) {
     if(!node) return nullptr;
     else {
-        Node * newNode = new Node(node -> position, glm::vec3(0.6f, 0.6f, 0.0f), camera, node -> value);
+        Node * newNode = new Node(node -> position, glm::vec3(0.45f, 0.45f, 0.0f), camera, node -> value);
         newNode -> left = CopyNode(node -> left);
         newNode -> right = CopyNode(node -> right);
         newNode -> targetPosition = node -> targetPosition;
@@ -155,11 +155,49 @@ void AVL::Initialize(int value ) {
     root[currentVersion] = Initialize(root[currentVersion], value);
 }
 
-void AVL :: RecalculatePosition() {
-    if(root[currentVersion] != nullptr) {
-        root[currentVersion] -> targetPosition = glm::vec3(0.0f, 0.74f, 0.0f);
-        root[currentVersion] -> RecalculatePosition(offsetx  * totalNodes, offsety * totalNodes);
+Info AVL::calculateSubTreeWidth(Node* node, float offsetX) {
+    Info info = {0, 0};
+    if(node == nullptr) {
+        return info;
     }
+    float totalWidth = 0;
+    float maxOffset = 0.f;
+
+    Info leftInfo = calculateSubTreeWidth(node -> left, offsetX);
+    totalWidth += leftInfo.width + offsetX;
+    maxOffset = std::max(maxOffset, leftInfo.xOffset);
+    Info rightInfo = calculateSubTreeWidth(node -> right, offsetX);
+
+    totalWidth += rightInfo.width + offsetX;
+    maxOffset = std::max(maxOffset, rightInfo.xOffset);
+
+    totalWidth = std::max(totalWidth, offsetX);
+
+    float xOffset = totalWidth / 2;
+
+    return {totalWidth, xOffset};
+}
+
+void AVL::RecalculatePosition(Node* node , float x , float y , float offset_x, float offset_y) {
+    if(!node)return ;
+    Info info = calculateSubTreeWidth(node, offset_x);
+    node -> targetPosition = glm::vec3(x, y, 0.0f);
+
+    float childX = x - info.width / 2.0f;
+    if(node -> left != nullptr) {
+        Info childInfo = calculateSubTreeWidth(node -> left, offset_x);
+        RecalculatePosition(node -> left, childX + childInfo.xOffset, y - offset_y, offset_x, offset_y);
+        childX += childInfo.width + offset_x;
+    }
+
+    if(node -> right != nullptr) {
+        Info childInfo = calculateSubTreeWidth(node -> right, offset_x);
+        RecalculatePosition(node -> right, childX + childInfo.xOffset, y - offset_y, offset_x, offset_y);
+        
+    }
+}
+void AVL :: RecalculatePosition() {
+    RecalculatePosition(root[currentVersion], 0.0f, 0.75f, offsetx, offsety);
 }
 
 Node* AVL::deleteNode(Node* node, int value) {

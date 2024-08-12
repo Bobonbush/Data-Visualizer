@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <PreferredToolArchitecture>x86</PreferredToolArchitecture>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
   </PropertyGroup>
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
@@ -22,9 +22,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{C11F2589-E48C-3AC9-952B-D61B521C1E75}</ProjectGuid>
+    <ProjectGuid>{1636C660-8A1B-3D18-82D3-2576B8A25AC7}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
     <Platform>x64</Platform>
     <ProjectName>DATAVISUALIZER</ProjectName>
     <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
@@ -59,25 +59,25 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">G:\Code\HCMUS\Code\Data-Visualizer\build\Debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\build\Debug\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">DATAVISUALIZER.dir\Debug\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">DATAVISUALIZER</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">G:\Code\HCMUS\Code\Data-Visualizer\build\Release\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\build\Release\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">DATAVISUALIZER.dir\Release\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">DATAVISUALIZER</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">G:\Code\HCMUS\Code\Data-Visualizer\build\MinSizeRel\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\build\MinSizeRel\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">DATAVISUALIZER.dir\MinSizeRel\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">DATAVISUALIZER</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">G:\Code\HCMUS\Code\Data-Visualizer\build\RelWithDebInfo\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\build\RelWithDebInfo\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">DATAVISUALIZER.dir\RelWithDebInfo\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">DATAVISUALIZER</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.exe</TargetExt>
@@ -86,27 +86,30 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLAD\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;G:\Code\HCMUS\Code\Data-Visualizer\FreeType\include;G:\Code\HCMUS\Code\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLFW\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLAD\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLM;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\FreeType\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <MinimalRebuild></MinimalRebuild>
       <Optimization>Disabled</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLAD\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;G:\Code\HCMUS\Code\Data-Visualizer\FreeType\include;G:\Code\HCMUS\Code\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLFW\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLAD\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLM;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\FreeType\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLAD\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;G:\Code\HCMUS\Code\Data-Visualizer\FreeType\include;G:\Code\HCMUS\Code\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLFW\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLAD\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLM;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\FreeType\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -116,7 +119,7 @@
     <PostBuildEvent>
       <Message>		</Message>
       <Command>setlocal
-D:\CMAKE\bin\cmake.exe -E copy_directory G:/Code/HCMUS/Code/Data-Visualizer/Shaders G:/Code/HCMUS/Code/Data-Visualizer/build/Debug
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_directory "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/Shaders" "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/Debug"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -125,7 +128,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-D:\CMAKE\bin\cmake.exe -E copy_directory G:/Code/HCMUS/Code/Data-Visualizer/Assets G:/Code/HCMUS/Code/Data-Visualizer/build/Debug
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_directory "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/Assets" "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/Debug"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -134,7 +137,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-D:\CMAKE\bin\cmake.exe -E copy_directory G:/Code/HCMUS/Code/Data-Visualizer/FreeType/objs G:/Code/HCMUS/Code/Data-Visualizer/build/Debug
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_directory "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/FreeType/objs" "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/Debug"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -145,12 +148,12 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </PostBuildEvent>
     <Link>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;freetype.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>G:/Code/HCMUS/Code/Data-Visualizer/GLFW/lib-vc2022;G:/Code/HCMUS/Code/Data-Visualizer/GLFW/lib-vc2022/$(Configuration);G:/Code/HCMUS/Code/Data-Visualizer/FreeType/objs;G:/Code/HCMUS/Code/Data-Visualizer/FreeType/objs/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/GLFW/lib-vc2022;D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/GLFW/lib-vc2022/$(Configuration);D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/FreeType/objs;D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/FreeType/objs/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>G:/Code/HCMUS/Code/Data-Visualizer/build/Debug/DATAVISUALIZER.lib</ImportLibrary>
-      <ProgramDataBaseFile>G:/Code/HCMUS/Code/Data-Visualizer/build/Debug/DATAVISUALIZER.pdb</ProgramDataBaseFile>
+      <ImportLibrary>D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/Debug/DATAVISUALIZER.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/Debug/DATAVISUALIZER.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -159,27 +162,31 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLAD\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;G:\Code\HCMUS\Code\Data-Visualizer\FreeType\include;G:\Code\HCMUS\Code\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLFW\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLAD\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLM;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\FreeType\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <MinimalRebuild></MinimalRebuild>
       <Optimization>MaxSpeed</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <DebugInformationFormat>
       </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLAD\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;G:\Code\HCMUS\Code\Data-Visualizer\FreeType\include;G:\Code\HCMUS\Code\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLFW\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLAD\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLM;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\FreeType\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLAD\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;G:\Code\HCMUS\Code\Data-Visualizer\FreeType\include;G:\Code\HCMUS\Code\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLFW\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLAD\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLM;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\FreeType\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -189,7 +196,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <PostBuildEvent>
       <Message>		</Message>
       <Command>setlocal
-D:\CMAKE\bin\cmake.exe -E copy_directory G:/Code/HCMUS/Code/Data-Visualizer/Shaders G:/Code/HCMUS/Code/Data-Visualizer/build/Release
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_directory "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/Shaders" "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/Release"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -198,7 +205,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-D:\CMAKE\bin\cmake.exe -E copy_directory G:/Code/HCMUS/Code/Data-Visualizer/Assets G:/Code/HCMUS/Code/Data-Visualizer/build/Release
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_directory "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/Assets" "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/Release"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -207,7 +214,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-D:\CMAKE\bin\cmake.exe -E copy_directory G:/Code/HCMUS/Code/Data-Visualizer/FreeType/objs G:/Code/HCMUS/Code/Data-Visualizer/build/Release
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_directory "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/FreeType/objs" "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/Release"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -218,12 +225,12 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </PostBuildEvent>
     <Link>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;freetype.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>G:/Code/HCMUS/Code/Data-Visualizer/GLFW/lib-vc2022;G:/Code/HCMUS/Code/Data-Visualizer/GLFW/lib-vc2022/$(Configuration);G:/Code/HCMUS/Code/Data-Visualizer/FreeType/objs;G:/Code/HCMUS/Code/Data-Visualizer/FreeType/objs/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/GLFW/lib-vc2022;D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/GLFW/lib-vc2022/$(Configuration);D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/FreeType/objs;D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/FreeType/objs/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>G:/Code/HCMUS/Code/Data-Visualizer/build/Release/DATAVISUALIZER.lib</ImportLibrary>
-      <ProgramDataBaseFile>G:/Code/HCMUS/Code/Data-Visualizer/build/Release/DATAVISUALIZER.pdb</ProgramDataBaseFile>
+      <ImportLibrary>D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/Release/DATAVISUALIZER.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/Release/DATAVISUALIZER.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -232,27 +239,31 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLAD\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;G:\Code\HCMUS\Code\Data-Visualizer\FreeType\include;G:\Code\HCMUS\Code\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLFW\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLAD\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLM;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\FreeType\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <MinimalRebuild></MinimalRebuild>
       <Optimization>MinSpace</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <DebugInformationFormat>
       </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLAD\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;G:\Code\HCMUS\Code\Data-Visualizer\FreeType\include;G:\Code\HCMUS\Code\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLFW\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLAD\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLM;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\FreeType\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLAD\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;G:\Code\HCMUS\Code\Data-Visualizer\FreeType\include;G:\Code\HCMUS\Code\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLFW\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLAD\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLM;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\FreeType\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -262,7 +273,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <PostBuildEvent>
       <Message>		</Message>
       <Command>setlocal
-D:\CMAKE\bin\cmake.exe -E copy_directory G:/Code/HCMUS/Code/Data-Visualizer/Shaders G:/Code/HCMUS/Code/Data-Visualizer/build/MinSizeRel
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_directory "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/Shaders" "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/MinSizeRel"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -271,7 +282,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-D:\CMAKE\bin\cmake.exe -E copy_directory G:/Code/HCMUS/Code/Data-Visualizer/Assets G:/Code/HCMUS/Code/Data-Visualizer/build/MinSizeRel
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_directory "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/Assets" "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/MinSizeRel"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -280,7 +291,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-D:\CMAKE\bin\cmake.exe -E copy_directory G:/Code/HCMUS/Code/Data-Visualizer/FreeType/objs G:/Code/HCMUS/Code/Data-Visualizer/build/MinSizeRel
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_directory "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/FreeType/objs" "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/MinSizeRel"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -291,12 +302,12 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </PostBuildEvent>
     <Link>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;freetype.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>G:/Code/HCMUS/Code/Data-Visualizer/GLFW/lib-vc2022;G:/Code/HCMUS/Code/Data-Visualizer/GLFW/lib-vc2022/$(Configuration);G:/Code/HCMUS/Code/Data-Visualizer/FreeType/objs;G:/Code/HCMUS/Code/Data-Visualizer/FreeType/objs/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/GLFW/lib-vc2022;D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/GLFW/lib-vc2022/$(Configuration);D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/FreeType/objs;D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/FreeType/objs/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>G:/Code/HCMUS/Code/Data-Visualizer/build/MinSizeRel/DATAVISUALIZER.lib</ImportLibrary>
-      <ProgramDataBaseFile>G:/Code/HCMUS/Code/Data-Visualizer/build/MinSizeRel/DATAVISUALIZER.pdb</ProgramDataBaseFile>
+      <ImportLibrary>D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/MinSizeRel/DATAVISUALIZER.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/MinSizeRel/DATAVISUALIZER.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -305,26 +316,30 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLAD\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;G:\Code\HCMUS\Code\Data-Visualizer\FreeType\include;G:\Code\HCMUS\Code\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLFW\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLAD\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLM;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\FreeType\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <MinimalRebuild></MinimalRebuild>
       <Optimization>MaxSpeed</Optimization>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SupportJustMyCode></SupportJustMyCode>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLAD\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;G:\Code\HCMUS\Code\Data-Visualizer\FreeType\include;G:\Code\HCMUS\Code\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLFW\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLAD\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLM;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\FreeType\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>G:\Code\HCMUS\Code\Data-Visualizer\GLFW\include;G:\Code\HCMUS\Code\Data-Visualizer\GLAD\include;G:\Code\HCMUS\Code\Data-Visualizer\GLM;G:\Code\HCMUS\Code\Data-Visualizer\FreeType\include;G:\Code\HCMUS\Code\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLFW\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLAD\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLM;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\FreeType\include;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -334,7 +349,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <PostBuildEvent>
       <Message>		</Message>
       <Command>setlocal
-D:\CMAKE\bin\cmake.exe -E copy_directory G:/Code/HCMUS/Code/Data-Visualizer/Shaders G:/Code/HCMUS/Code/Data-Visualizer/build/RelWithDebInfo
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_directory "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/Shaders" "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/RelWithDebInfo"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -343,7 +358,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-D:\CMAKE\bin\cmake.exe -E copy_directory G:/Code/HCMUS/Code/Data-Visualizer/Assets G:/Code/HCMUS/Code/Data-Visualizer/build/RelWithDebInfo
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_directory "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/Assets" "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/RelWithDebInfo"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -352,7 +367,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
 setlocal
-D:\CMAKE\bin\cmake.exe -E copy_directory G:/Code/HCMUS/Code/Data-Visualizer/FreeType/objs G:/Code/HCMUS/Code/Data-Visualizer/build/RelWithDebInfo
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_directory "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/FreeType/objs" "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/RelWithDebInfo"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -363,12 +378,12 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </PostBuildEvent>
     <Link>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;freetype.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>G:/Code/HCMUS/Code/Data-Visualizer/GLFW/lib-vc2022;G:/Code/HCMUS/Code/Data-Visualizer/GLFW/lib-vc2022/$(Configuration);G:/Code/HCMUS/Code/Data-Visualizer/FreeType/objs;G:/Code/HCMUS/Code/Data-Visualizer/FreeType/objs/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/GLFW/lib-vc2022;D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/GLFW/lib-vc2022/$(Configuration);D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/FreeType/objs;D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/FreeType/objs/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>G:/Code/HCMUS/Code/Data-Visualizer/build/RelWithDebInfo/DATAVISUALIZER.lib</ImportLibrary>
-      <ProgramDataBaseFile>G:/Code/HCMUS/Code/Data-Visualizer/build/RelWithDebInfo/DATAVISUALIZER.pdb</ProgramDataBaseFile>
+      <ImportLibrary>D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/RelWithDebInfo/DATAVISUALIZER.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/RelWithDebInfo/DATAVISUALIZER.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -376,11 +391,11 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="G:\Code\HCMUS\Code\Data-Visualizer\CmakeLists.txt">
+    <CustomBuild Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\CmakeLists.txt">
       <UseUtf8Encoding>Always</UseUtf8Encoding>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule G:/Code/HCMUS/Code/Data-Visualizer/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-D:\CMAKE\bin\cmake.exe -SG:/Code/HCMUS/Code/Data-Visualizer -BG:/Code/HCMUS/Code/Data-Visualizer/build --check-stamp-file G:/Code/HCMUS/Code/Data-Visualizer/build/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" "-SD:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer" "-BD:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build" --check-stamp-file "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/CMakeFiles/generate.stamp"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -388,12 +403,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\CMAKE\share\cmake-3.27\Modules\CMakeCInformation.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeCXXInformation.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeCommonLanguageInclude.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeGenericSystem.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeInitializeConfigs.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeLanguageInformation.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeRCInformation.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeSystemSpecificInformation.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeSystemSpecificInitialize.cmake;D:\CMAKE\share\cmake-3.27\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\CMAKE\share\cmake-3.27\Modules\Compiler\MSVC-C.cmake;D:\CMAKE\share\cmake-3.27\Modules\Compiler\MSVC-CXX.cmake;D:\CMAKE\share\cmake-3.27\Modules\Compiler\MSVC.cmake;D:\CMAKE\share\cmake-3.27\Modules\Platform\Windows-Initialize.cmake;D:\CMAKE\share\cmake-3.27\Modules\Platform\Windows-MSVC-C.cmake;D:\CMAKE\share\cmake-3.27\Modules\Platform\Windows-MSVC-CXX.cmake;D:\CMAKE\share\cmake-3.27\Modules\Platform\Windows-MSVC.cmake;D:\CMAKE\share\cmake-3.27\Modules\Platform\Windows.cmake;D:\CMAKE\share\cmake-3.27\Modules\Platform\WindowsPaths.cmake;G:\Code\HCMUS\Code\Data-Visualizer\build\CMakeFiles\3.27.6\CMakeCCompiler.cmake;G:\Code\HCMUS\Code\Data-Visualizer\build\CMakeFiles\3.27.6\CMakeCXXCompiler.cmake;G:\Code\HCMUS\Code\Data-Visualizer\build\CMakeFiles\3.27.6\CMakeRCCompiler.cmake;G:\Code\HCMUS\Code\Data-Visualizer\build\CMakeFiles\3.27.6\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">G:\Code\HCMUS\Code\Data-Visualizer\build\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\WindowsPaths.cmake;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\build\CMakeFiles\3.30.0-rc4\CMakeCCompiler.cmake;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\build\CMakeFiles\3.30.0-rc4\CMakeCXXCompiler.cmake;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\build\CMakeFiles\3.30.0-rc4\CMakeRCCompiler.cmake;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\build\CMakeFiles\3.30.0-rc4\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule G:/Code/HCMUS/Code/Data-Visualizer/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-D:\CMAKE\bin\cmake.exe -SG:/Code/HCMUS/Code/Data-Visualizer -BG:/Code/HCMUS/Code/Data-Visualizer/build --check-stamp-file G:/Code/HCMUS/Code/Data-Visualizer/build/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" "-SD:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer" "-BD:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build" --check-stamp-file "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/CMakeFiles/generate.stamp"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -401,12 +416,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\CMAKE\share\cmake-3.27\Modules\CMakeCInformation.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeCXXInformation.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeCommonLanguageInclude.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeGenericSystem.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeInitializeConfigs.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeLanguageInformation.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeRCInformation.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeSystemSpecificInformation.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeSystemSpecificInitialize.cmake;D:\CMAKE\share\cmake-3.27\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\CMAKE\share\cmake-3.27\Modules\Compiler\MSVC-C.cmake;D:\CMAKE\share\cmake-3.27\Modules\Compiler\MSVC-CXX.cmake;D:\CMAKE\share\cmake-3.27\Modules\Compiler\MSVC.cmake;D:\CMAKE\share\cmake-3.27\Modules\Platform\Windows-Initialize.cmake;D:\CMAKE\share\cmake-3.27\Modules\Platform\Windows-MSVC-C.cmake;D:\CMAKE\share\cmake-3.27\Modules\Platform\Windows-MSVC-CXX.cmake;D:\CMAKE\share\cmake-3.27\Modules\Platform\Windows-MSVC.cmake;D:\CMAKE\share\cmake-3.27\Modules\Platform\Windows.cmake;D:\CMAKE\share\cmake-3.27\Modules\Platform\WindowsPaths.cmake;G:\Code\HCMUS\Code\Data-Visualizer\build\CMakeFiles\3.27.6\CMakeCCompiler.cmake;G:\Code\HCMUS\Code\Data-Visualizer\build\CMakeFiles\3.27.6\CMakeCXXCompiler.cmake;G:\Code\HCMUS\Code\Data-Visualizer\build\CMakeFiles\3.27.6\CMakeRCCompiler.cmake;G:\Code\HCMUS\Code\Data-Visualizer\build\CMakeFiles\3.27.6\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">G:\Code\HCMUS\Code\Data-Visualizer\build\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\WindowsPaths.cmake;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\build\CMakeFiles\3.30.0-rc4\CMakeCCompiler.cmake;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\build\CMakeFiles\3.30.0-rc4\CMakeCXXCompiler.cmake;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\build\CMakeFiles\3.30.0-rc4\CMakeRCCompiler.cmake;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\build\CMakeFiles\3.30.0-rc4\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule G:/Code/HCMUS/Code/Data-Visualizer/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
-D:\CMAKE\bin\cmake.exe -SG:/Code/HCMUS/Code/Data-Visualizer -BG:/Code/HCMUS/Code/Data-Visualizer/build --check-stamp-file G:/Code/HCMUS/Code/Data-Visualizer/build/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" "-SD:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer" "-BD:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build" --check-stamp-file "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/CMakeFiles/generate.stamp"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -414,12 +429,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\CMAKE\share\cmake-3.27\Modules\CMakeCInformation.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeCXXInformation.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeCommonLanguageInclude.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeGenericSystem.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeInitializeConfigs.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeLanguageInformation.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeRCInformation.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeSystemSpecificInformation.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeSystemSpecificInitialize.cmake;D:\CMAKE\share\cmake-3.27\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\CMAKE\share\cmake-3.27\Modules\Compiler\MSVC-C.cmake;D:\CMAKE\share\cmake-3.27\Modules\Compiler\MSVC-CXX.cmake;D:\CMAKE\share\cmake-3.27\Modules\Compiler\MSVC.cmake;D:\CMAKE\share\cmake-3.27\Modules\Platform\Windows-Initialize.cmake;D:\CMAKE\share\cmake-3.27\Modules\Platform\Windows-MSVC-C.cmake;D:\CMAKE\share\cmake-3.27\Modules\Platform\Windows-MSVC-CXX.cmake;D:\CMAKE\share\cmake-3.27\Modules\Platform\Windows-MSVC.cmake;D:\CMAKE\share\cmake-3.27\Modules\Platform\Windows.cmake;D:\CMAKE\share\cmake-3.27\Modules\Platform\WindowsPaths.cmake;G:\Code\HCMUS\Code\Data-Visualizer\build\CMakeFiles\3.27.6\CMakeCCompiler.cmake;G:\Code\HCMUS\Code\Data-Visualizer\build\CMakeFiles\3.27.6\CMakeCXXCompiler.cmake;G:\Code\HCMUS\Code\Data-Visualizer\build\CMakeFiles\3.27.6\CMakeRCCompiler.cmake;G:\Code\HCMUS\Code\Data-Visualizer\build\CMakeFiles\3.27.6\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">G:\Code\HCMUS\Code\Data-Visualizer\build\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\WindowsPaths.cmake;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\build\CMakeFiles\3.30.0-rc4\CMakeCCompiler.cmake;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\build\CMakeFiles\3.30.0-rc4\CMakeCXXCompiler.cmake;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\build\CMakeFiles\3.30.0-rc4\CMakeRCCompiler.cmake;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\build\CMakeFiles\3.30.0-rc4\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule G:/Code/HCMUS/Code/Data-Visualizer/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
-D:\CMAKE\bin\cmake.exe -SG:/Code/HCMUS/Code/Data-Visualizer -BG:/Code/HCMUS/Code/Data-Visualizer/build --check-stamp-file G:/Code/HCMUS/Code/Data-Visualizer/build/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" "-SD:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer" "-BD:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build" --check-stamp-file "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/CMakeFiles/generate.stamp"
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -427,49 +442,49 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\CMAKE\share\cmake-3.27\Modules\CMakeCInformation.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeCXXInformation.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeCommonLanguageInclude.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeGenericSystem.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeInitializeConfigs.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeLanguageInformation.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeRCInformation.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeSystemSpecificInformation.cmake;D:\CMAKE\share\cmake-3.27\Modules\CMakeSystemSpecificInitialize.cmake;D:\CMAKE\share\cmake-3.27\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\CMAKE\share\cmake-3.27\Modules\Compiler\MSVC-C.cmake;D:\CMAKE\share\cmake-3.27\Modules\Compiler\MSVC-CXX.cmake;D:\CMAKE\share\cmake-3.27\Modules\Compiler\MSVC.cmake;D:\CMAKE\share\cmake-3.27\Modules\Platform\Windows-Initialize.cmake;D:\CMAKE\share\cmake-3.27\Modules\Platform\Windows-MSVC-C.cmake;D:\CMAKE\share\cmake-3.27\Modules\Platform\Windows-MSVC-CXX.cmake;D:\CMAKE\share\cmake-3.27\Modules\Platform\Windows-MSVC.cmake;D:\CMAKE\share\cmake-3.27\Modules\Platform\Windows.cmake;D:\CMAKE\share\cmake-3.27\Modules\Platform\WindowsPaths.cmake;G:\Code\HCMUS\Code\Data-Visualizer\build\CMakeFiles\3.27.6\CMakeCCompiler.cmake;G:\Code\HCMUS\Code\Data-Visualizer\build\CMakeFiles\3.27.6\CMakeCXXCompiler.cmake;G:\Code\HCMUS\Code\Data-Visualizer\build\CMakeFiles\3.27.6\CMakeRCCompiler.cmake;G:\Code\HCMUS\Code\Data-Visualizer\build\CMakeFiles\3.27.6\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">G:\Code\HCMUS\Code\Data-Visualizer\build\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\WindowsPaths.cmake;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\build\CMakeFiles\3.30.0-rc4\CMakeCCompiler.cmake;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\build\CMakeFiles\3.30.0-rc4\CMakeCXXCompiler.cmake;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\build\CMakeFiles\3.30.0-rc4\CMakeRCCompiler.cmake;D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\build\CMakeFiles\3.30.0-rc4\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\main.cpp" />
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Utils\shader.cpp" />
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Utils\shader.h" />
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Utils\Texture.cpp" />
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Utils\Texture.h" />
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Camera.h" />
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Utils\Cursor.cpp" />
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Utils\Cursor.h" />
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\GLAD\src\glad.c" />
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tools\slideTools.cpp" />
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tools\slideTools.h" />
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tools\ToolBar.cpp" />
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tools\ToolBar.h" />
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tools\button.cpp" />
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tools\button.h" />
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Algorithms\AVL.cpp" />
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Algorithms\AVL.h" />
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Algorithms\node.cpp" />
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Algorithms\node.h" />
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Algorithms\234-tree.cpp" />
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Algorithms\234-tree.h" />
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Algorithms\Trie.cpp" />
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Algorithms\Trie.h" />
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Interactive\bar.cpp" />
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Interactive\bar.h" />
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tools\Manager.cpp" />
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tools\Manager.h" />
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Algorithms\graph.cpp" />
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Algorithms\graph.h" />
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tools\slidebox.cpp" />
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Tools\slidebox.h" />
-    <ClCompile Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Interactive\Scroll.cpp" />
-    <ClInclude Include="G:\Code\HCMUS\Code\Data-Visualizer\Code\Interactive\Scroll.h" />
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\main.cpp" />
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Utils\shader.cpp" />
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Utils\shader.h" />
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Utils\Texture.cpp" />
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Utils\Texture.h" />
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Camera.h" />
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Utils\Cursor.cpp" />
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Utils\Cursor.h" />
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\GLAD\src\glad.c" />
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Tools\slideTools.cpp" />
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Tools\slideTools.h" />
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Tools\ToolBar.cpp" />
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Tools\ToolBar.h" />
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Tools\button.cpp" />
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Tools\button.h" />
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Algorithms\AVL.cpp" />
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Algorithms\AVL.h" />
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Algorithms\node.cpp" />
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Algorithms\node.h" />
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Algorithms\234-tree.cpp" />
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Algorithms\234-tree.h" />
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Algorithms\Trie.cpp" />
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Algorithms\Trie.h" />
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Interactive\bar.cpp" />
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Interactive\bar.h" />
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Tools\Manager.cpp" />
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Tools\Manager.h" />
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Algorithms\graph.cpp" />
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Algorithms\graph.h" />
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Tools\slidebox.cpp" />
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Tools\slidebox.h" />
+    <ClCompile Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Interactive\Scroll.cpp" />
+    <ClInclude Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\Code\Interactive\Scroll.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="G:\Code\HCMUS\Code\Data-Visualizer\build\ZERO_CHECK.vcxproj">
-      <Project>{FC63DA9A-2148-3DB4-B6D7-7B27E073D417}</Project>
+    <ProjectReference Include="D:\Code\HCMUS\Year 1\Semester III\Data Visualizer\Data-Visualizer\build\ZERO_CHECK.vcxproj">
+      <Project>{33A1B8B2-7E5E-3CE0-9AC6-9216BEF55BB1}</Project>
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>

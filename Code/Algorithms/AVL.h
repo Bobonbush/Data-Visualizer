@@ -1,13 +1,16 @@
 #include "Node.h"
-
+struct Info { 
+    float  width = 0 ;
+    float xOffset = 0;
+};
 
 class AVL {
     private : 
     
     Camera * camera;
     int totalNodes = 0;
-    float offsetx = 0.0025f;
-    float offsety = 0.02f;
+    float offsetx = 0.025f;
+    float offsety = 0.3f;
     
     public :
     bool deleted = false;
@@ -30,7 +33,9 @@ class AVL {
     void Reset(Node * node);
     void Reset();
     
+    void RecalculatePosition(Node* node , float x , float y , float offset_x, float offset_y);
     void RecalculatePosition();
+    Info calculateSubTreeWidth(Node* node, float offsetX);
     void PreOrder(Node* node);
     void PreOrder();
     void InOrder(Node* node);

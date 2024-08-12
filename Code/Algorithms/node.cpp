@@ -38,7 +38,7 @@ Node::Node(glm::vec3 _position, glm::vec3 _size, Camera * _camera, int _value) {
     std::reverse(text.begin(), text.end());
 
     textHandler = new TextHandler();
-    textHandler->LoadFont("Font/AisyKhadijah.ttf", 24);
+    textHandler->LoadFont("Font/AisyKhadijah.ttf", 16);
     textShader = new Shader("textShader.vs", "textShader.fs");
 
     float vertices[] = {
@@ -303,7 +303,7 @@ void Node::Draw() {
         glBindVertexArray(lineVAO);
         glBindBuffer(GL_ARRAY_BUFFER, lineVBO);
         glBufferData(GL_ARRAY_BUFFER, sizeof(lineVertices), lineVertices, GL_STATIC_DRAW);
-        glLineWidth(3.0f);
+        glLineWidth(size.x * 32.0f);
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
         glEnableVertexAttribArray(0);
         
@@ -334,7 +334,7 @@ void Node::Draw() {
         glBindVertexArray(lineVAO);
         glBindBuffer(GL_ARRAY_BUFFER, lineVBO);
         glBufferData(GL_ARRAY_BUFFER, sizeof(lineVertices), lineVertices, GL_STATIC_DRAW);
-        glLineWidth(3.0f);
+        glLineWidth(size.x * 32.0f);
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
         glEnableVertexAttribArray(0);
         
