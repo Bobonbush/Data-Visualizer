@@ -1,6 +1,6 @@
-^D:\CODE\HCMUS\YEAR 1\SEMESTER III\DATA VISUALIZER\DATA-VISUALIZER\BUILD\CMAKEFILES\FFF7A5B5A292CE090F5CE5C8929AFA25\GENERATE.STAMP.RULE
+^G:\CODE\HCMUS\CODE\DATA-VISUALIZER\BUILD\CMAKEFILES\33C70BA6C1F6F1BD2F013E2F9E7128B1\GENERATE.STAMP.RULE
 setlocal
-"C:\Program Files\CMake\bin\cmake.exe" "-SD:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer" "-BD:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "D:/Code/HCMUS/Year 1/Semester III/Data Visualizer/Data-Visualizer/build/DATAVISUALIZER.sln"
+D:\CMAKE\bin\cmake.exe -SG:/Code/HCMUS/Code/Data-Visualizer -BG:/Code/HCMUS/Code/Data-Visualizer/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file G:/Code/HCMUS/Code/Data-Visualizer/build/DATAVISUALIZER.sln
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone

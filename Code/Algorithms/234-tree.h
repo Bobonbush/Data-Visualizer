@@ -15,6 +15,20 @@ class BNode {
     unsigned int VBO;
     unsigned int EBO;
     unsigned int texture;
+    unsigned int textureDel;
+    unsigned int textureNew;
+    unsigned int textureRelated;
+    unsigned int textureFound;
+
+    int status = -1;
+    /*
+        -1 : Default
+        0 : traverse 
+        1 : deletation
+        2 : new
+        3 : found
+    */
+    
     Shader * textShader;
     Shader * lineShader;
     TextHandler * text;

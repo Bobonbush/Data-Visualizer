@@ -6,6 +6,10 @@ BNode:: BNode(glm::vec3 _position, glm::vec3 _size , Camera * _camera)  : parent
         
         camera = _camera;
         texture = TextureLoader::LoadTexture("box.png");
+        textureDel = TextureLoader::LoadTexture("box_red.png");
+        textureNew = TextureLoader::LoadTexture("box_new.png");
+        textureRelated = TextureLoader::LoadTexture("box_traverse.png");
+        textureFound = TextureLoader::LoadTexture("box_found.png");
         float width = camera -> width;
         float height = camera -> height;
 
@@ -99,7 +103,7 @@ void BNode::Draw()  {
         
         int sz = (int) keys.size();
 
-       glm::mat4 model = glm::mat4(1.0f);
+        glm::mat4 model = glm::mat4(1.0f);
         glm::mat4 view = glm::mat4(1.0f);
         glm::mat4 projection = glm::mat4(1.0f);
 
@@ -139,7 +143,17 @@ void BNode::Draw()  {
         
         glBindVertexArray(VAO);
         glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, texture);
+        if(status == 0) {
+            glBindTexture(GL_TEXTURE_2D, textureRelated);
+        }else if(status == 1) {
+            glBindTexture(GL_TEXTURE_2D, textureNew);
+        }else if(status == 2) {
+            glBindTexture(GL_TEXTURE_2D, textureDel);
+        }else if(status == 3) {
+            glBindTexture(GL_TEXTURE_2D, textureFound);
+        }else {
+            glBindTexture(GL_TEXTURE_2D, texture);
+        }
         
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
@@ -181,6 +195,11 @@ void BNode::Draw()  {
 
 
 void Tree234::split(BNode * node) {
+    if(node -> traverse == true) {
+        return ;
+    }
+    node -> traverse = true;
+    node -> status = 1;
     BNode * parent = node->parent;
 
     BNode * leftChild = new BNode(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.45f, 0.45f, 0.45f), camera);
@@ -269,8 +288,21 @@ void Tree234::instantSplit(BNode * node) {
 }
 
 void Tree234 :: insertRecursively(BNode* node, int key) {
+    if(node -> Done ) {
+        node -> status = -1;
+        return ;
+    } 
+    if(node -> traverse == false) {
+        node -> traverse = true;
+        node -> status = 0;
+        return ;
+    }
+
     if(node->isLeaf()) {
+        node -> Done = true;
+        node -> status = 1;
         node->insertKey(key);
+        
     } else {
         for(int i = 0 ; i <  (int)node -> children.size() ; i++ ) {
             if(node -> children[i] -> isFull()) {
@@ -287,15 +319,39 @@ void Tree234 :: insertRecursively(BNode* node, int key) {
         }
 
         if(key < node -> keys[0]) {
-            insertRecursively(node -> children[0], key);
+            if(node -> children[0] -> Done == true) {
+                node -> Done = true;
+                node -> status = -1;
+            }
+            else
+            {
+                insertRecursively(node -> children[0], key);
+            }
         }else if ( (int) node -> keys.size() == 1 || key < node -> keys[1]) {
-            insertRecursively(node -> children[1], key);
+            if(node -> children[1] -> Done == true) {
+                node -> Done = true;
+                node -> status = -1;
+            }else {
+
+                insertRecursively(node -> children[1], key);
+            }
         }else if((int)node -> keys.size() == 2 || key < node -> keys[2]) {
-            insertRecursively(node -> children[2], key);
+            if(node -> children[2] -> Done == true) {
+                node -> Done = true;
+                node -> status = -1;
+            }else {
+
+            
+                insertRecursively(node -> children[2], key);
+            }
         }
         else {
-
-            insertRecursively(node -> children[3], key);
+            if(node -> children[3] -> Done == true) {
+                node -> Done = true;
+                node -> status = -1;
+            }else {
+                insertRecursively(node -> children[3], key);
+            }
         }
     }
 }
@@ -337,7 +393,9 @@ void Tree234::Initialize(int key) {
         root[currentVersion] = new BNode(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.45f, 0.45f, 0.45f), camera);
         root[currentVersion] -> targetPosition = glm::vec3(0.0f, 0.0f, 0.0f);
         root[currentVersion] -> insertKey(key);
+        
     }else {
+        
         if(root[currentVersion] -> isFull()) {
             instantSplit(root[currentVersion]);
         }
@@ -346,21 +404,26 @@ void Tree234::Initialize(int key) {
 }
 
 void Tree234:: insert(int key) {
+    if(root[currentVersion] != nullptr && root[currentVersion] -> Done == true) {
+        return ;
+    }
     if(root[currentVersion] == nullptr) {
         root[currentVersion] = new BNode(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.45f, 0.45f, 0.45f), camera);
+        root[currentVersion] -> status = 0;
         root[currentVersion] -> targetPosition = glm::vec3(0.0f, 0.0f, 0.0f);
         root[currentVersion] -> insertKey(key);
+        root[currentVersion] -> Done = true;
     }else {
         if(root[currentVersion] -> isFull()) {
             split(root[currentVersion]);
         }
+        
         insertRecursively(root[currentVersion], key);
     }
 }
 
 void Tree234::deleteRecursively(BNode* node, int key) {
     if(node == nullptr) return ;
-
     auto it = std::find (node -> keys.begin() , node -> keys.end() , key);
 
     if(it != node -> keys.end()) {
@@ -379,17 +442,15 @@ void Tree234::deleteRecursively(BNode* node, int key) {
             childIndex++;
         }
 
-        if(childIndex == (int)node -> keys.size()) {
-            childIndex--;
-        }
-
         BNode* child = node -> children[childIndex];
-        if(child == nullptr) return ;
         if((int)child -> keys.size() == 1) {
             handleUnderflow(node, childIndex);
         }
 
-        deleteRecursively(child, key);
+        if( childIndex < (int)node -> children.size()) {
+            deleteRecursively(node -> children[childIndex], key);
+        }
+        
     }
 }
 
@@ -437,19 +498,26 @@ void Tree234::handleUnderflow(BNode* parent , int childIndex) {
 void Tree234::MergeNodes(BNode* parent, int index) {
      BNode* leftChild = parent->children[index];
      BNode* rightChild = parent->children[index + 1]; 
+
      leftChild->keys.push_back(parent->keys[index]);
      leftChild->keys.insert(leftChild->keys.end(), rightChild->keys.begin(), rightChild->keys.end()); 
      if (!rightChild->isLeaf()) {
          leftChild->children.insert(leftChild->children.end(), rightChild->children.begin(), rightChild->children.end());
      } 
+     
      parent->keys.erase(parent->keys.begin() + index);
-     parent->children.erase(parent->children.begin() + index + 1); 
-     delete rightChild; 
+     parent->children.erase(parent->children.begin() + index + 1 );
+     delete rightChild;
+        
+     
+     
      if (parent->keys.empty()) {
          root[currentVersion] = leftChild;
          root[currentVersion]->parent = nullptr;
          delete parent;
-     }
+      }
+      
+     
 }
 
 void Tree234::remove(int key) {
@@ -462,10 +530,11 @@ void Tree234::remove(int key) {
         if(root[currentVersion]->isLeaf()) {
             root[currentVersion] = nullptr;
         }else {
+            
             root[currentVersion] = root[currentVersion]->children[0];
             root[currentVersion]->parent = nullptr;
         }
-        delete temp;
+        //delete temp;
     }
 }
 
@@ -561,20 +630,18 @@ void Tree234::FindNode(BNode * node , int key) {
     if(node == nullptr) return ;
     if(node -> traverse == false || node -> Done == true) {
         node -> traverse = true;
+        node -> status = 0;
         return ;
     }
     auto it = std::find(node -> keys.begin(), node -> keys.end(), key);
     if(it != node -> keys.end()) {
         node -> Done = true;
+        node -> status = 3;
         return ;
     }else {
         int childIndex = 0;
         while(childIndex < (int)node -> keys.size() && key > node -> keys[childIndex]) {
             childIndex++;
-        }
-
-        if(childIndex == (int)node -> keys.size()) {
-            childIndex--;
         }
 
         BNode * child = node -> children[childIndex];
@@ -595,6 +662,7 @@ void Tree234::Reset(BNode * node) {
     if(node == nullptr) return ;
     node -> Done = false;
     node -> traverse = false;
+    node -> status = -1;
     for(auto child : node -> children) {
         Reset(child);
     }

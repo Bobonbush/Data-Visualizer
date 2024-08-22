@@ -69,6 +69,10 @@ add_executable(DATAVISUALIZER   Code/main.cpp
                                 Code/Tools/slidebox.h
                                 Code/Interactive/Scroll.cpp 
                                 Code/Interactive/Scroll.h
+                                Code/Algorithms/heap.cpp
+                                Code/Algorithms/heap.h
+                                Code/Algorithms/hashtable.cpp
+                                Code/Algorithms/hashtable.h
                               )
 
 

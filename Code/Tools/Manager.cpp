@@ -179,56 +179,89 @@ void Manager::Animator(float deltaTime) {
     if(currentAlgo == 0) {
         if(mask & 1) {
             
-            avl -> insert(value1);
-            avl -> RecalculatePosition();
-            if(avl -> root[avl -> currentVersion] -> Done) {
+            
+            if( avl -> root[avl -> currentVersion] && avl -> root[avl -> currentVersion] -> Done) {
                 mask = 0;
                 avl -> Reset();
+            }else {
+                avl -> insert(value1);
+                avl -> RecalculatePosition();
             }
         }
 
         if(mask & (1 << 2)) {
-            avl -> search(value1);
-            if(avl -> root[avl -> currentVersion] -> Done) {
+            if(avl -> root[avl -> currentVersion] && avl -> root[avl -> currentVersion] -> Done) {
                 mask = 0;
                 avl -> Reset();
-            }
+            }else avl -> search(value1);
+            
         }
 
         if(mask & (1 << 1)) {
-            avl -> deleteNode(value1);
+
             
-            avl -> RecalculatePosition();
-            if(avl -> root[avl -> currentVersion] -> Done) {
+            
+                avl -> deleteNode(value1);
+            
+                avl -> RecalculatePosition();
+
+                if(avl -> root[avl -> currentVersion] && avl -> root[avl -> currentVersion] -> Done) {
+                    mask = 0;
+                    avl -> Reset();
+                }
+            
+        }
+    }
+    if(currentAlgo == 1) {
+        if(mask & 1) {
+
+            if(tree234 -> root[tree234 -> currentVersion] && tree234 -> root[tree234 -> currentVersion] -> Done) {
                 mask = 0;
-                avl -> Reset();
+                tree234 -> Reset();
+            }else {
+                tree234 -> insert(value1);
+                tree234 -> RecalculatePosition();
+            }
+        }
+
+        if(mask & (1 << 2)) {
+            if(tree234 -> root[tree234 -> currentVersion] && tree234 -> root[tree234 -> currentVersion] -> Done) {
+                mask = 0;
+                tree234 -> Reset();
+            }else {
+                tree234 -> FindNode(tree234 -> root[tree234 -> currentVersion], value1);
             }
         }
     }
 
     if(currentAlgo == 2) {
         if(mask & 1) {
-            trie -> insert(value2);
-            trie -> RecalculatePosition();
+            
             if(trie -> root[trie -> currentVersion] -> Done) {
                 mask = 0;
                 trie -> Reset();
+            }else {
+                trie -> insert(value2);
+                trie -> RecalculatePosition();
             }
         }
 
         if(mask & (1 << 2)) {
-            trie -> search(value2);
             if(trie -> root[trie -> currentVersion] -> Done) {
                 mask = 0;
                 trie -> Reset();
+            }else {
+                trie -> search(value2);
             }
         }
         if(mask & (1 << 1)) {
-            trie -> Delete(value2);
-            trie -> RecalculatePosition();
+            
             if(trie -> root[trie -> currentVersion] -> Done) {
                 mask = 0;
                 trie -> Reset();
+            }else {
+                trie -> Delete(value2);
+                trie -> RecalculatePosition();
             }
         }
     }
@@ -348,9 +381,11 @@ void Manager::Insert(std::string input) {
         tree234 -> root.push_back(nullptr);
         tree234 -> currentVersion++;
         tree234 -> root[tree234 -> currentVersion] = tree234 -> CopyNode(tree234 -> root[tree234 -> currentVersion - 1], nullptr);
-        tree234 -> insert(value);
-        tree234 -> RecalculatePosition();
+        value1 = value;
+        mask = 1;
     }
+
+    
 
     
 }
