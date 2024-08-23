@@ -11,6 +11,7 @@ class GNode : Node {
     glm::vec3 velocity = glm::vec3(0.0f, 0.0f ,0.0f);
     glm::vec3 force = glm::vec3(0.0f, 0.0f, 0.0f);
     
+    
     std::vector<std::pair<GNode *, int> > neighbours;
 
     GNode(glm::vec3 _position, glm::vec3 _size, int data , Camera * _camera);
@@ -20,6 +21,10 @@ class GNode : Node {
     void DrawLine(glm::vec3 start, glm::vec3 end, glm::vec4 color, int weight);
     void Update(float deltaTime, float MouseX, float MouseY);
     void AddNeighbour(GNode * node, int weight);
+
+    int GetStatus () {
+        return status;
+    }
 
     void changeStatus(int _status) {
         status = _status;
@@ -65,6 +70,7 @@ class Edges {
     GNode * start;
     GNode * end;
     int weight;
+    bool MST = false;
     Edges(GNode * _start, GNode * _end, int _weight) {
         start = _start;
         end = _end;
@@ -112,9 +118,15 @@ class GRAPH {
     Camera * camera;
     std::queue<GNode *> q;
     DisJointSet * dsu;
-    std::vector<bool>space;
+    std::vector<int>space;
+
+    int component = 0 ;
+    bool MST = false;
+    bool CC = false;
+
 
     int debugConst = 0;
+    std::vector<glm::vec4> edgecolor;
     public:
     GRAPH(Camera * _camera);
     ~GRAPH();
@@ -132,9 +144,9 @@ class GRAPH {
 
     void Initialize(int numNode ,int numEdge);
 
-    void MinimumSpanningTree();
+    bool MinimumSpanningTree();
 
-    void ConnectedComponents();
+    bool ConnectedComponents();
 
     void calculateForces();
 

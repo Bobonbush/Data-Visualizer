@@ -86,13 +86,23 @@ ToolBar ::ToolBar(Camera * _camera) {
     position.y += 0.07f;
     position.x += offset_x /3.f;
     Button * surprise_box = new Button(position, glm::vec3(0.35f, 0.35f, 0.0f), "surprise-box.png", camera, "");
+    Button * ConnectedComponent = new Button(position, glm::vec3(0.3f, 0.3f, 0.0f), "Connected.png", camera, "");
     position.y -= 0.02;
     position.x =(2.f - (1.f + position.x)) - 1.f;
     position.x -= offset_x / 4.f;
+    Button * MinimumSpanningTree = new Button(position, glm::vec3(0.3f, 0.3f, 0.0f), "MST.png", camera, "");
     Button * fromComputer = new Button(position, glm::vec3(0.3f, 0.3f, 0.0f), "Computer.png", camera, "");
     button.push_back(fromComputer);
     button.push_back(surprise_box);
     buttonSlot.push_back(button);
+    button.clear();
+    button.push_back(reverse);
+    button.push_back(ConnectedComponent);
+    button.push_back(MinimumSpanningTree);
+    buttonSlot.push_back(button);
+
+
+    
     button.clear();
 
     button = buttonSlot[0];
@@ -166,6 +176,9 @@ void ToolBar ::Update(int _status, float deltaTime, float MouseX, float MouseY) 
     }else if(status == 0) {
         bars.clear();
         button = buttonSlot[2];
+    }else if(status == 5) {
+        bars.clear();
+        button = buttonSlot[3];
     }
     std::string input = "";
     std::string input2 = "";
@@ -201,6 +214,13 @@ void ToolBar ::Update(int _status, float deltaTime, float MouseX, float MouseY) 
 
             if(status == 0 && i == 1) {
                 manager -> InitializeReadFile();
+            }
+
+            if(status == 5 && i == 1) {
+                manager -> ConnectedComponent();
+            }
+            if(status == 5 && i == 2) {
+                manager -> MinimumSpanningTree();
             }
 
             

@@ -322,6 +322,23 @@ void Manager::Animator(float deltaTime) {
             }
         }
     }
+
+    
+    if(mask & (1 << 4)) {
+        if(graph -> ConnectedComponents()) {
+            mask = 0;
+            graph -> Reset();
+        }
+        //std::cout << "YES" <<'\n';
+    }
+
+    if(mask & (1 << 3)) {
+        if(graph -> MinimumSpanningTree()) {
+            mask = 0;
+            graph -> Reset();
+        }
+    }
+    
 }
 
 void Manager::Modify(std::string value , std::string newValue) {
@@ -657,17 +674,25 @@ void Manager::Reverse() {
 }
 
 void Manager::ShowSize() {
-
+    if(mask) return ;
+    if(currentAlgo == 4) {
+        heap -> GetSize();
+    }
 }
 
 void Manager::GetTop() {
-
+    if(mask) return ;
+    if(currentAlgo == 4) {
+        mask = (1 << 5);
+    }
 }
 
 void Manager::ConnectedComponent() {
-
+    if(mask) return ;
+    mask = (1 << 4);
 }
 
 void Manager::MinimumSpanningTree() {
-
+    if(mask) return ;
+    mask = (1 << 3);
 }

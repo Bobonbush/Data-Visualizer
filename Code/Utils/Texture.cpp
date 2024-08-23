@@ -38,6 +38,7 @@ unsigned int TextureLoader :: LoadTexturePNG(char* path){
         }
         else
         {
+            std::cout << path <<'\n';
             std::cout << "Failed to load texture" << std::endl;
         }
         glBindTexture(GL_TEXTURE_2D, 0);
@@ -81,6 +82,7 @@ unsigned int TextureLoader::LoadTextureJPG(char* path)
 
         if(!data)
         {
+            
             std::cout << "Failed to load texture" << std::endl;
             return -1;
         }

@@ -7,6 +7,10 @@ MinHeap::MinHeap(int capacity, Camera * _camera) {
     camera = _camera;
     blocks.resize(capacity);
     indexed_blocks.resize(capacity);
+    textHandler = new TextHandler();
+    textShader = new Shader("textShader.vs", "textShader.fs");
+    textHandler -> LoadFont("Font/Roboto-Black.ttf", 24);
+
     glm::vec3 position = glm::vec3(-0.4, -0.73, 0.0f);
     for(int i = 0 ; i < capacity ; i++) {
         blocks[i] = new Block(position, glm::vec3(0.75f, 0.75f, 0.1f), INT_MAX, camera, "box.png");
@@ -29,6 +33,13 @@ MinHeap::~MinHeap() {
             delete nodes[i];
         }
     }
+}
+
+void MinHeap::GetSize() {
+    textShader -> use();
+    textShader -> setMat4("projection", glm::mat4(1.0f));
+    textHandler -> RenderText(textShader, "Heap Size: " + std::to_string(heap_size), 0.0f, -0.95f, 2.f, glm::vec3(1.0f, 0.0f, 0.0f),camera, 0.0005f);
+
 }
 
 void MinHeap::MinHeapify(int i) {
@@ -70,12 +81,24 @@ void MinHeap::extractMin() {
 }
 
 bool MinHeap::GetTop() {
-    if(heap_size == 0) return false;
-    blocks[0] -> key = INT_MAX;
-    nodes[0] = nullptr;
+    if(heap_size <= 0) {
+        blocks[0] -> status = -1;
+        return true;
+    }
+    if(heap_size == 1) {
+        heap_size--;
+        blocks[0] -> key = INT_MAX;
+        nodes[0] = nullptr;
+        return true;
+    }
+    int root = blocks[0] -> key;
+    blocks[0] -> key = blocks[heap_size - 1] -> key;
+    blocks[heap_size - 1] -> key = INT_MAX;
+    nodes[heap_size - 1] = nullptr;
+    heap_size--;
     MinHeapify(0);
     Reset();
-    return true;
+    return  true ;
 } 
 
 void MinHeap::decreaseKey(int i, int new_val) {
@@ -117,6 +140,14 @@ void MinHeap::insertKey(int k) {
 }
 
 void MinHeap::Update(float deltaTime, float MouseX, float MouseY) {
+    if(blocks[0] != nullptr && nodes[0] != nullptr) {
+        if(abs(nodes[0] -> targetPosition.x - nodes[0] -> position.x) < 0.01f && abs(nodes[0] -> targetPosition.y - nodes[0] -> position.y) < 0.01f) {
+           nodes[0] -> status = 2;
+        }
+        
+        blocks[0] -> status = 1;
+    }
+    
     for(int i = 0; i < capacity; i++) {
         blocks[i]->Update(deltaTime);
         indexed_blocks[i]->Update(deltaTime);
@@ -130,6 +161,7 @@ void MinHeap::Update(float deltaTime, float MouseX, float MouseY) {
 }
 
 void MinHeap::Draw() {
+    GetSize();
     for(int i = 0; i < capacity; i++) {
         blocks[i]->Draw();
         indexed_blocks[i]->Draw();

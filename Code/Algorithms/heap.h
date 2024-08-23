@@ -14,6 +14,8 @@ class MinHeap {
     int capacity;
     int heap_size;
     Camera* camera;
+    TextHandler * textHandler;
+    Shader * textShader;
 public:
 
     MinHeap(int capacity, Camera *_camera);
@@ -31,7 +33,7 @@ public:
     void decreaseKey(int i, int new_val);
 
     int getMin() { return blocks[0] -> key; }
-    int GetSize() {return heap_size;}
+    void GetSize();
 
     void deleteKey(int i);
 

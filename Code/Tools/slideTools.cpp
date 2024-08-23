@@ -47,12 +47,8 @@ SlideTools::SlideTools(Camera * _camera) {
     buttons.clear();
 
 
-    Button * GetSize = new Button(position, glm::vec3(0.3f, 0.35f, 0.0f), "size.png", camera, " Get Size");
     buttons.push_back(add);
     buttons.push_back(remove);
-    buttons.push_back(getTop);
-    
-    buttons.push_back(GetSize);
     buttons.push_back(New);
     slot.push_back(buttons);
     
@@ -168,9 +164,7 @@ void SlideTools::Update(int Algo, float deltaTime, float MouseX, float MouseY) {
         if(Algo == 4 && buttons[i] -> Update(deltaTime, MouseX, MouseY)) {
             if(index == 1) status = 1;
             if(index == 2) status = 2;
-            if(index == 3) status = 5;
-            if(index == 4) status = 7;
-            if(index == 5) status = 0;
+            if(index == 3) status = 0;
         }
 
         if(Algo != 3 && Algo != 4 && buttons[i] -> Update(deltaTime, MouseX, MouseY)) {
@@ -188,9 +182,7 @@ void SlideTools::Update(int Algo, float deltaTime, float MouseX, float MouseY) {
     if(Algo == 4) {
         if(status == 1 ) buttons[0] -> isChosen = true;
         if(status == 2) buttons[1] -> isChosen = true;
-        if(status == 5) buttons[2] -> isChosen = true;
-        if(status == 7) buttons[3] -> isChosen = true;
-        if(status == 0) buttons[4] -> isChosen = true;
+        if(status == 0) buttons[2] -> isChosen = true;
     }
 
     if(Algo != 3 && Algo != 4) {

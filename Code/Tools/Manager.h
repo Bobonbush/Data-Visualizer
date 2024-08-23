@@ -92,6 +92,7 @@ class Manager {
     100 is Search
     1000 is Minimum spanning tree
     10000 is Connected Components
+    100000 is GetTop
 
     */
     

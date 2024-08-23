@@ -282,6 +282,8 @@ void Node::Draw() {
         glBindTexture(GL_TEXTURE_2D, textureRelated);
     }else if(status == 3) {
         glBindTexture(GL_TEXTURE_2D, textureFound);
+    }else {
+        glBindTexture(GL_TEXTURE_2D, texture);
     }
     
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);

@@ -112,7 +112,14 @@ void GRAPH::Draw() {
         nodes[i] -> Draw();
     }
     for(int i = 0 ; i < (int) edges.size() ; i++) {
-        edges[i] -> start -> DrawLine(edges[i] -> start -> GetPosition(),edges[i] ->end -> GetPosition(), glm::vec4(142.f/ 255.f, 162.f/255.f, 254.f/255.f, 1.0f), edges[i]->weight);
+        glm::vec4 color = glm::vec4(142.f/ 255.f, 162.f/255.f, 254.f/255.f, 1.0f);
+        if(edges[i] -> MST) {
+            color = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);
+        }else if( space[edges[i] -> start -> GetValue()] != -1  && space[edges[i] ->start -> GetValue()] && space[edges[i] -> start -> GetValue()] == space[edges[i] -> end -> GetValue()]) {
+            color = edgecolor[space[edges[i] -> start -> GetValue()] -1];
+        }
+        
+        edges[i] -> start -> DrawLine(edges[i] -> start -> GetPosition(),edges[i] ->end -> GetPosition(), color, edges[i]->weight);
     }
 }
 
@@ -145,13 +152,18 @@ void GRAPH::seperateOverlappingNodes(GNode* a, GNode* b) {
 }
 
 void GRAPH::Reset() {
-    for(int i = 0 ; i < nodes.size() ; i++) {
+    component = 0;
+    for(int i = 0 ; i < (int) nodes.size() ; i++) {
        nodes[i] -> changeStatus(-1);
        nodes[i] -> UndoAnimation();
     }
     dsu = new DisJointSet(nodes.size());
     for(int i = 1; i <= (int) nodes.size() ; i++) {
         space[i] = false;
+    }
+
+    for(int i = 0 ; i < (int) edges.size() ; i++) {
+        edges[i] -> MST = false;
     }
 }
 
@@ -210,33 +222,79 @@ void GRAPH::Initialize(int numNode ,int numEdge) {
     });
 }
 
-void GRAPH::MinimumSpanningTree() {
-    for(int i = 0 ; i < edges.size() ; i++) {
+bool GRAPH::MinimumSpanningTree() {
+    
+    for(int i = 0 ; i < (int) edges.size() ; i++) {
         GNode * start = edges[i] -> start;
         GNode * end = edges[i] -> end;
+
+        
         if(dsu -> Join(start -> GetValue(), end -> GetValue())) {
             start -> changeStatus(1);
             end -> changeStatus(1);
-            return ;
+            
+            space[start -> GetValue()] = -1;
+            space[end -> GetValue()] = -1;
+            edges[i] -> MST = true;
+            return false;
         }
     }
+    if(MST == false) {
+        MST = true;
+        return false;
+    }
+    return true;
 }
 
-void GRAPH::ConnectedComponents() {
-    for(int i = 0 ; i < (int)nodes.size() && !q.empty() ;i++) {
+int Random(int a ,int b) {
+    return a + rand() % (b - a + 1);
+}
+
+bool GRAPH::ConnectedComponents() {
+    for(int i = 0 ; i < (int)nodes.size() && q.empty() ;i++) {
         if(space[nodes[i] -> GetValue()]) continue;
+        component++;
+        edgecolor.push_back(glm::vec4(Random(0, 255) / 255.f, Random(0, 255) / 255.f, Random(0, 255) / 255.f, 1.0f));
         q.push(nodes[i]);
     }
 
+    if(q.empty()) {
+        if(CC == false) {
+            CC = true;
+            return false;
+        }
+        return true;
+    }
     if(!q.empty()) {
         GNode * u = q.front();
         q.pop();
-        for(std::pair<GNode *, int> & v : u -> neighbours) {
-            if(space[v.first -> GetValue()]) continue;
-            space[v.first -> GetValue()] = true;
-            q.push(v.first);
+        if(u -> GetStatus() == -1) {
+            u -> changeStatus(0);
+            std::queue<GNode *> new_queue;
+            while(!q.empty()) {
+                new_queue.push(q.front());
+                q.pop();
+            }
+            
+            q.push(u);
+            while(!new_queue.empty()) {
+                q.push(new_queue.front());
+                new_queue.pop();
+            }
+
+        }else {
+            
+            space[u -> GetValue()] = component;
+            u -> changeStatus(-1);
+        
+            for(std::pair<GNode *, int> & v : u -> neighbours) {
+                if(space[v.first -> GetValue()]) continue;
+                space[v.first -> GetValue()] = component;
+                q.push(v.first);
+            }
         }
     }
+    return false;
 }
 
 void GRAPH::calculateForces() { 
@@ -259,7 +317,7 @@ void GRAPH::calculateForces() {
             if(distance > 0.001f) {
                 glm::vec3 forceDir = glm::normalize(direction);
                 float forceMag = REPULSION_CONSTANT / (distance * distance);
-
+                //if(forceMag < 0.4f) forceMag = 0.0f;
                 nodeA -> force += forceDir * forceMag;
                 nodeB -> force -= forceDir * forceMag;
             }else {
@@ -277,10 +335,10 @@ void GRAPH::calculateForces() {
 
         glm::vec3 forceDir = glm::normalize(delta);
         float force = ATTRACTION_CONSTANT * distance;
+        //if(force < 0.1f) force = 0.0f;
         edge -> start -> force += forceDir * force;
         edge -> end -> force -= forceDir * force;
     }
-    
 
     for(GNode * node : nodes) {
         if(node -> force.x < 0.1f && node -> force.x > -0.1f) {
@@ -303,20 +361,20 @@ void GRAPH::updatePositions(float deltaTime) {
         node -> SetPosition(node -> GetPosition() + displacement);
         
         
-        if(node -> GetPosition().x < -0.9f + node -> GetSize().x) {
-            node -> SetPosition(glm::vec3(-0.9f + node -> GetSize().x, node -> GetPosition().y, node -> GetPosition().z));
+        if(node -> GetPosition().x < -0.84f + node -> GetSize().x) {
+            node -> SetPosition(glm::vec3(-0.84f + node -> GetSize().x, node -> GetPosition().y, node -> GetPosition().z));
         }
 
-        if(node -> GetPosition().x > 0.9f - node -> GetSize().x) {
-            node -> SetPosition(glm::vec3(0.9f - node -> GetSize().x, node -> GetPosition().y, node -> GetPosition().z));
+        if(node -> GetPosition().x > 0.84f - node -> GetSize().x) {
+            node -> SetPosition(glm::vec3(0.84f - node -> GetSize().x, node -> GetPosition().y, node -> GetPosition().z));
         }
 
         if(node -> GetPosition().y < -1.0f + node -> GetSize().y) {
             node -> SetPosition(glm::vec3(node -> GetPosition().x, -1.0f + node -> GetSize().y, node -> GetPosition().z));
         }
 
-        if(node -> GetPosition().y > 0.75f - node -> GetSize().y) {
-            node -> SetPosition(glm::vec3(node -> GetPosition().x, 0.75f - node -> GetSize().y, node -> GetPosition().z));
+        if(node -> GetPosition().y > 0.65f - node -> GetSize().y) {
+            node -> SetPosition(glm::vec3(node -> GetPosition().x, 0.65f - node -> GetSize().y, node -> GetPosition().z));
         }
         
     }
