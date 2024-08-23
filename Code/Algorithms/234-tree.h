@@ -1,3 +1,5 @@
+#ifndef TREE234_H
+#define TREE234_H
 #include "Utils/Texture.h"
 #include <algorithm>
 
@@ -96,6 +98,8 @@ class Tree234 {
         Tree234(Camera * _camera);
         ~Tree234();
 
+        void restart();
+
         void insert(int key);
         void Initialize(int key);
         void remove(int key);
@@ -116,3 +120,5 @@ class Tree234 {
 
         
 };
+
+#endif

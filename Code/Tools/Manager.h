@@ -2,8 +2,16 @@
 #include "Algorithms/234-tree.h"
 #include "Algorithms/AVL.h"
 #include "Algorithms/Trie.h"
+#include "Algorithms/hashtable.h"
+#include "Algorithms/graph.h"
+#include "Algorithms/heap.h"
 #include "slidebox.h"
 #include "Interactive/Scroll.h"
+#include "Interactive/FileDialog.h"
+#include <sstream>
+#include <fstream>
+
+
 class Manager {
     private :
     int currentAlgo = 0;
@@ -44,6 +52,9 @@ class Manager {
     AVL * avl;
     Trie * trie;
     Tree234 * tree234;
+    HashTable * hashTable;
+    MinHeap * heap;
+    GRAPH * graph;
     Camera * camera;
 
     TextHandler * textHandler;
@@ -102,8 +113,13 @@ class Manager {
    void Insert(std::string value);
    void Search(std::string value);
    void Initialize();
+   void InitializeReadFile();
    void Animator(float deltaTime);
    void Reverse();
 
-    
+   void ShowSize();
+   void GetTop();
+
+   void ConnectedComponent();
+   void MinimumSpanningTree();
 };

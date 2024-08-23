@@ -1,3 +1,5 @@
+#ifndef AVL_H
+#define AVL_H
 #include "Node.h"
 struct Info { 
     float  width = 0 ;
@@ -18,6 +20,7 @@ class AVL {
     std::vector<Node *> root;
     AVL(Camera* _camera);
     ~AVL();
+    void restart();
     Node* insert(Node* node, Node* parent, int value);
     void insert(int value);
     Node * Initialize(Node* node, int value);
@@ -46,3 +49,5 @@ class AVL {
 
     Node* CopyNode(Node* node);
 };
+
+#endif

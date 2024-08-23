@@ -45,6 +45,7 @@ add_executable(DATAVISUALIZER   Code/main.cpp
                                 Code/Utils/Cursor.cpp
                                 Code/Utils/Cursor.h
                                 GLAD/src/glad.c
+                                GLFW/include/GLFW/tinyfiledialogs.c
                                 Code/Tools/slideTools.cpp
                                 Code/Tools/slideTools.h
                                 Code/Tools/ToolBar.cpp
@@ -73,6 +74,8 @@ add_executable(DATAVISUALIZER   Code/main.cpp
                                 Code/Algorithms/heap.h
                                 Code/Algorithms/hashtable.cpp
                                 Code/Algorithms/hashtable.h
+                                Code/Interactive/FileDialog.cpp
+                                Code/Interactive/FileDialog.h
                               )
 
 

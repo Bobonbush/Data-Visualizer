@@ -8,7 +8,6 @@ SlideTools::SlideTools(Camera * _camera) {
     glm::vec3 position = glm::vec3(-0.97, 0.7f, 0.0f);
     glm::vec3 size = glm::vec3(0.4f, 1.8f, 0.0f);
     Button * add = new Button(position, glm::vec3(0.3f, 0.3f, 0.0f), "add.png", camera, "Add");
-    buttons.push_back(add);
     texture = TextureLoader::LoadTexture("slide.png");
     
     
@@ -20,7 +19,6 @@ SlideTools::SlideTools(Camera * _camera) {
     position.x += off_set * 0.1f;
     
     Button * remove = new Button(position , glm::vec3(0.2f, 0.2f, 0.0f), "cancel.png", camera, "Delete");
-    buttons.push_back(remove);
     
     position.y -= add ->GetBoxSize().y;
 
@@ -29,7 +27,7 @@ SlideTools::SlideTools(Camera * _camera) {
     Button * edit = new Button(position, glm::vec3(0.22f, 0.22f, 0.0f), "Create.png", camera, "Update");   
     
     Button* Search = new Button(position, glm::vec3(0.22f, 0.22f, 0.0f), "search.png", camera, "Search");
-    buttons.push_back(edit);
+
     Button * getTop = new Button(position, glm::vec3(0.22f, 0.22f, 0.0f), "top.png", camera, "Get Top");
     
     position.y -= add ->GetBoxSize().y;
@@ -152,9 +150,6 @@ void SlideTools::Update(int Algo, float deltaTime, float MouseX, float MouseY) {
 
     //butons[1] = {add , remove , get Top, Get Size, New}              
     //buttons[2] = {add , remove, Search , New}                             
-    
-    
-    
     if(Algo == 3) {
         buttons = slot[0];
     }else if(Algo == 4) {
@@ -163,15 +158,12 @@ void SlideTools::Update(int Algo, float deltaTime, float MouseX, float MouseY) {
         buttons = slot[2];
     }
     int index = 0;
-    for (int i = 0; i < buttons.size(); i++) {
+    for (int i = 0; i < (int) buttons.size(); i++) {
         index++;
         buttons[i] -> isChosen = false;
         if(Algo == 3 && buttons[i] -> Update(deltaTime, MouseX, MouseY)) {
-            if(index == 1) status = 1;
-            if(index == 2) status = 2;
-            if(index == 3) status = 3;
-            if(index == 4) status = 0;
-            if(index == 5) status = 5;
+            if(index == 1) status = 0;
+            if(index == 2) status = 5;
         }
         if(Algo == 4 && buttons[i] -> Update(deltaTime, MouseX, MouseY)) {
             if(index == 1) status = 1;
@@ -190,11 +182,8 @@ void SlideTools::Update(int Algo, float deltaTime, float MouseX, float MouseY) {
     }
 
     if(Algo == 3) {
-        if(status == 1 ) buttons[0] -> isChosen = true;
-        if(status == 2) buttons[1] -> isChosen = true;
-        if(status == 3) buttons[2] -> isChosen = true;
-        if(status == 0) buttons[3] -> isChosen = true;
-        if(status == 5) buttons[4] -> isChosen = true;
+        if(status == 0) buttons[0] -> isChosen = true;
+        if(status == 5) buttons[1] -> isChosen = true;
     }
     if(Algo == 4) {
         if(status == 1 ) buttons[0] -> isChosen = true;

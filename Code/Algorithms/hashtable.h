@@ -5,12 +5,22 @@
 
 class Block {
     private : 
-        unsigned int key;
+        
         unsigned int texture;
+        
+        unsigned int texture_Found;
+        unsigned int texture_New;
+        unsigned int texture_Delete;
+        unsigned int texture_Related;
+        bool nullTexture = false;
 
         
     public :
+        int key;
+        int status = -1;
+        bool traverse = false;
         glm::vec3 position;
+        glm::vec3 targetPosition;
         glm::vec3 size;
         Shader * shader;
         Shader * textShader;
@@ -20,7 +30,7 @@ class Block {
         unsigned int VBO;
         unsigned int EBO; 
         Camera * camera;
-        Block(glm::vec3 _position, glm::vec3 _size, unsigned int _key, Camera * _camera);
+        Block(glm::vec3 _position, glm::vec3 _size,  int _key, Camera * _camera, char * path, bool isNull = false);
         ~Block();
         glm::vec3 getSize();
         unsigned int getKey();
@@ -32,9 +42,10 @@ class Block {
 
 class LinkedBlock {
     private :
-        Block * block;
+        
         LinkedBlock * next;
     public :
+        Block * block;
         LinkedBlock(Block * block);
         ~LinkedBlock();
         Block * getBlock();
@@ -45,16 +56,39 @@ class LinkedBlock {
 
 class HashTable {
     std::vector<LinkedBlock*> blocks;
+    Shader * lineShader;
     int size;
     int capacity;
     Camera * camera;
 
+    TextHandler* text;
+    Shader * textShader;
+
+    std::string HashText = "";
+    public:
     HashTable(Camera * _camera);
     ~HashTable();
 
+    int HashFunction(int key);
+
+    bool insert(int key);
+    void Initialize(int key);
+
+    bool Delete(int key);
+
+    bool Find( int key);
+
     void Update(float deltaTime);
 
+    void Reset();
+
     void Draw();
+
+    void Recalculate();
+
+    bool isEmpty() {
+        return size == 0;
+    }
 
 };
 

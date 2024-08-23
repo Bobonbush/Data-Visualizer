@@ -188,12 +188,23 @@ void ToolBar ::Update(int _status, float deltaTime, float MouseX, float MouseY) 
     if(input != "inf" && input != "" && status == 4) {
         manager -> Search(input);
     }
+
+    if(status == 7) {
+        manager -> ShowSize();
+    }
     for(int i = 0 ; i < button.size(); i++) {
         
         if(button[i] -> Update(deltaTime, MouseX, MouseY)) {
             if(status == 0 && i == 2) {
                 manager -> Initialize();
             }
+
+            if(status == 0 && i == 1) {
+                manager -> InitializeReadFile();
+            }
+
+            
+            
             if(i == 0) {
                 manager -> Reverse();
             }

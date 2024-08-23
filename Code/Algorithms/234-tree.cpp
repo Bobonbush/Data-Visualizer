@@ -543,7 +543,15 @@ void Tree234::remove(int key) {
 Tree234::Tree234 (Camera * _camera) {
     camera = _camera;
     root.push_back(nullptr);
-    
+}
+
+void Tree234::restart() {
+    for(auto node : root) {
+        delete node;
+    }
+    root.clear();
+    root.push_back(nullptr);
+    currentVersion = 0;
 }
 
 Tree234::~Tree234() {
@@ -616,7 +624,7 @@ void Tree234::RecalculatePosition(BNode * node, float x , float y , float offset
 
 void Tree234::RecalculatePosition() {
     if(root[currentVersion] != nullptr) {
-        RecalculatePosition(root[currentVersion], 0.0f, 0.3f, 0.06f, 0.3f);
+        RecalculatePosition(root[currentVersion], 0.0f, 0.3f, 0.09f, 0.3f);
     }
 }
 \

@@ -5,7 +5,7 @@
 #include "Utils/Cursor.h"
 
 class Node {
-    private:
+    protected:
         
 
         unsigned int VAO;
@@ -60,8 +60,8 @@ class Node {
         ~Node();
         
         void RecalculatePosition(float offsetx , float offsety);
-        void Draw();
-        void Update(float deltaTime, float MouseX, float MouseY);
+        virtual void Draw();
+        virtual void Update(float deltaTime, float MouseX, float MouseY);
         bool isInside(float MouseX, float MouseY);
         int getHeight(Node* node);
         int getBalance(Node* node);

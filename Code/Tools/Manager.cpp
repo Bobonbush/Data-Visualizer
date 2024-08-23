@@ -59,6 +59,21 @@ Manager::~Manager() {
     if (trie) {
         delete trie;
     }
+    if(tree234) {
+        delete tree234;
+    }
+
+    if(hashTable) {
+        delete hashTable;
+    }
+
+    if(heap) {
+        delete heap;
+    }
+
+    if(graph) {
+        delete graph;
+    }
     delete textHandler;
     delete textShader;
     for(int i = 0; i < algorithmsBox.size(); i++) {
@@ -70,6 +85,9 @@ void Manager::Initialize(int degree) {
     avl = new AVL(camera);
     tree234 = new Tree234(camera);
     trie = new Trie(camera);
+    heap = new MinHeap(15, camera);
+    hashTable = new HashTable(camera);
+    graph = new GRAPH(camera);
 }
 
 void Manager::Update(int &Algo, float deltaTime , float MouseX , float MouseY) {
@@ -97,6 +115,15 @@ void Manager::Update(int &Algo, float deltaTime , float MouseX , float MouseY) {
     } else if(currentAlgo == 2) {
         noData = trie -> Empty();
         trie -> Update(deltaTime, MouseX , MouseY);
+    }else if(currentAlgo == 3) {
+        noData = graph -> isEmpty();
+        graph -> Update(deltaTime, MouseX, MouseY);
+    }else if(currentAlgo == 4) {
+        noData = heap -> isEmpty();
+        heap -> Update(deltaTime, MouseX, MouseY);
+    }else if(currentAlgo == 5) {
+        noData = hashTable -> isEmpty();
+        hashTable -> Update(deltaTime);
     }
     AnimationConst =  animationBar -> Update(MouseX, MouseY);
     Node::speed = AnimationConst * 1.0f;
@@ -138,6 +165,13 @@ void Manager::Update(int &Algo, float deltaTime , float MouseX , float MouseY) {
 }
 
 void Manager::Draw() {
+
+    for(int i = 0; i < algorithmsBox.size(); i++) {
+        
+        if(!Sliding &&  algorithmsBox[i] -> isChosen == false) continue;
+        algorithmsBox[i] -> Draw();
+    } 
+
     if(currentAlgo == 0) {
         avl -> Draw();
         //randomButton -> Draw();
@@ -145,13 +179,15 @@ void Manager::Draw() {
         tree234 -> Draw();
     } else if(currentAlgo == 2) {
         trie -> Draw();
+    }else if(currentAlgo == 3) {
+        graph -> Draw();
+    }else if(currentAlgo == 4) {
+        heap -> Draw();
+    }else if(currentAlgo == 5) {
+        hashTable -> Draw();
     }
 
-    for(int i = 0; i < algorithmsBox.size(); i++) {
-        
-        if(!Sliding &&  algorithmsBox[i] -> isChosen == false) continue;
-        algorithmsBox[i] -> Draw();
-    } 
+    
     if(noData) {
         float offset = camera -> height / camera -> width * 0.009f;
 
@@ -198,9 +234,6 @@ void Manager::Animator(float deltaTime) {
         }
 
         if(mask & (1 << 1)) {
-
-            
-            
                 avl -> deleteNode(value1);
             
                 avl -> RecalculatePosition();
@@ -265,6 +298,30 @@ void Manager::Animator(float deltaTime) {
             }
         }
     }
+
+    if(currentAlgo == 5) {
+        if(mask & (1 << 2)) {
+            if(hashTable -> Find(value1)) {
+                mask = 0 ;
+                hashTable -> Reset();
+            }
+        }
+
+        if(mask & 1) {
+            if(hashTable -> insert(value1)) {
+                mask = 0;
+                hashTable -> Reset();
+            }
+        }
+
+        if(mask & (1 << 1)) {
+            if(hashTable -> Delete(value1)) {
+                mask = 0;
+                hashTable -> Reset();
+                hashTable -> Recalculate();
+            }
+        }
+    }
 }
 
 void Manager::Modify(std::string value , std::string newValue) {
@@ -322,6 +379,16 @@ void Manager::Delete(std::string input) {
     if(currentAlgo == 1) {
         tree234 -> remove(value);
         tree234 -> RecalculatePosition();
+    }
+
+    if(currentAlgo == 5) {
+        mask = (1 << 1);
+        value1 = value;
+    }
+
+    if(currentAlgo == 4) {
+        heap -> deleteKey(value);
+        heap -> RecalculatePosition();
     }
 
 
@@ -385,9 +452,15 @@ void Manager::Insert(std::string input) {
         mask = 1;
     }
 
-    
+    if(currentAlgo == 5) {
+        value1 = value;
+        mask = 1;
+    }
 
-    
+    if(currentAlgo == 4) {
+        heap -> insertKey(value);
+        heap -> RecalculatePosition();
+    }
 }
 
 void Manager::Search(std::string value) {
@@ -426,7 +499,7 @@ int Rand(int a, int b) {
 
 void Manager::Initialize() {
     if(currentAlgo == 0) {
-        avl = new AVL(camera);
+        avl -> restart();
         int n = Rand(10, 50);
         avl -> currentVersion++;
         avl -> root.push_back(nullptr);
@@ -440,7 +513,7 @@ void Manager::Initialize() {
         avl -> RecalculatePosition();
 
     } else if(currentAlgo == 1) {
-        tree234 = new Tree234(camera);
+        tree234 -> restart();
         int n = Rand(10, 40);
         tree234 -> currentVersion++;
         tree234 -> root.push_back(nullptr);
@@ -461,7 +534,105 @@ void Manager::Initialize() {
             trie -> Initialize(word);
         }
         trie -> RecalculatePosition();
+    }else if(currentAlgo == 3) {
+        graph = new GRAPH(camera);
+        int n = Rand(10, 15);
+        int m = Rand(1,n + 10);
+        graph -> Initialize(n, m);
+    }else if(currentAlgo == 4) {
+        heap = new MinHeap(15, camera);
+        int n = Rand(1, 14);
+        for(int i = 0; i < n; i++) {
+            int value = Rand(1, 100);
+            heap -> insertKey(value);
+        }
+        heap -> Reset();
+        heap -> RecalculatePosition();
+    }else if(currentAlgo == 5) {
+        hashTable = new HashTable(camera);
+        int n = Rand(10, 80);
+        for(int i = 0; i < n; i++) {
+            int value = Rand(1, 100);
+            hashTable -> Initialize(value);
+        }
+        hashTable -> Reset();
     }
+}
+
+void Manager::InitializeReadFile() {
+    std::string filename = FileDiaLog::OpenFile();
+    if(filename == "") return ;
+    std::ifstream file(filename);
+    if(!file.is_open()) {
+        std::cout << "WRONG" <<'\n';
+        return ;
+    }
+
+    if(currentAlgo == 0) {
+        avl -> restart();
+        avl -> currentVersion++;
+        avl -> root.push_back(nullptr);
+        while(!file.eof()) {
+            int value;
+            file >> value;
+            avl -> Initialize(value);
+            avl -> Reset();
+        }
+        avl -> RecalculatePosition();
+    }
+
+    if(currentAlgo == 1) {
+        tree234 -> restart();
+        tree234 -> currentVersion++;
+        tree234 -> root.push_back(nullptr);
+        while(!file.eof()) {
+            int value;
+            file >> value;
+            tree234 -> Initialize(value);
+        }
+        tree234 -> RecalculatePosition();
+    }
+
+    if(currentAlgo == 2) {
+        trie = new Trie(camera);
+        while(!file.eof()) {
+            std::string word;
+            file >> word;
+            trie -> Initialize(word);
+        }
+        trie -> RecalculatePosition();
+    }
+
+    if(currentAlgo == 3) {
+        graph = new GRAPH(camera);
+        int n, m;
+        file >> n >> m;
+        graph -> FileInitialize(n, m, file);
+    }
+
+    if(currentAlgo == 4) {
+        heap = new MinHeap(15, camera);
+        while(!file.eof()) {
+            int value;
+            file >> value;
+            heap -> insertKey(value);
+        }
+        heap -> Reset();
+        heap -> RecalculatePosition();
+    }
+
+    if(currentAlgo == 5) {
+        hashTable = new HashTable(camera);
+        while(!file.eof()) {
+            int value;
+            file >> value;
+            hashTable -> Initialize(value);
+        }
+        hashTable -> Reset();
+    }
+    file.close();
+
+
 }
 
 void Manager::Reverse() {
@@ -483,4 +654,20 @@ void Manager::Reverse() {
            trie -> root.clear();
        }else trie -> root.pop_back();
     }
+}
+
+void Manager::ShowSize() {
+
+}
+
+void Manager::GetTop() {
+
+}
+
+void Manager::ConnectedComponent() {
+
+}
+
+void Manager::MinimumSpanningTree() {
+
 }

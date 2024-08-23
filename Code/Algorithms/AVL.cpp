@@ -16,6 +16,17 @@ AVL::~AVL() {
     }
 }
 
+void AVL::restart() {
+    for(int i = 0 ; i < (int) root.size(); i++) {
+        if(root[i] != nullptr) {
+            delete root[i];
+        }
+    }
+    root.clear();
+    root.push_back(nullptr);
+    currentVersion = 0;
+}
+
 void AVL::Reset(Node * node) {
     node -> traverse = false;
     node -> Done = false;
