@@ -1,0 +1,10 @@
+^G:\CODE\HCMUS\CODE\DATA-VISUALIZER\CMAKELISTS.TXT
+setlocal
+D:\CMAKE\bin\cmake.exe -SG:/Code/HCMUS/Code/Data-Visualizer -BG:/Code/HCMUS/Code/Data-Visualizer/build --check-stamp-file G:/Code/HCMUS/Code/Data-Visualizer/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

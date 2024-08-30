@@ -1,8 +1,5 @@
-abcdef
-Bob
-Alice
-Mi
-rac
-Bei
-rirp
-dwfi
+BOB
+ALICE
+LMAO
+KIA
+YA

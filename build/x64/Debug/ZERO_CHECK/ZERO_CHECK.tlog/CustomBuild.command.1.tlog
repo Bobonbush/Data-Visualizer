@@ -1,0 +1,10 @@
+^G:\CODE\HCMUS\CODE\DATA-VISUALIZER\BUILD\CMAKEFILES\33C70BA6C1F6F1BD2F013E2F9E7128B1\GENERATE.STAMP.RULE
+setlocal
+D:\CMAKE\bin\cmake.exe -SG:/Code/HCMUS/Code/Data-Visualizer -BG:/Code/HCMUS/Code/Data-Visualizer/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file G:/Code/HCMUS/Code/Data-Visualizer/build/DATAVISUALIZER.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
